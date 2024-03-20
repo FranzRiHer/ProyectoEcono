@@ -13,8 +13,9 @@
     <title>Registro Gastos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="stGastos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/scriptGastos.js"></script>
 </head>
-
 <body>
     <div class="d-flex">
         <!-- Barra de Navegacion -->
@@ -96,7 +97,7 @@
                         <input type="text" class="form-control" id="descripcionEgreso"
                             placeholder="Descripción de la transacción">
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button onclick="validarLabels()" type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
         </div>
