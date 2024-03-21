@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,10 +40,6 @@ public class Egreso {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     } 
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
     
 
 }
