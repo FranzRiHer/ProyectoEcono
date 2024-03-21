@@ -4,16 +4,13 @@ function validarLabels() {
     let descripcion = $("#descripcionEgreso").val()
 
     if ((egreso !== "" && !isNaN(egreso)) && (descripcion !== "")) {
-        console.log("Siu")
         saveEgreso(egreso, descripcion)
     } else {
-        console.log("El dato ta malito"); // El contenido no es un número o está vacío
+        window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
     }
 }
 
 function saveEgreso(egreso, descripcion) {
-    console.log("Hola Imundo");
-
     let data = {
         egresoInput: egreso,
         descripcionEgreso: descripcion
@@ -27,12 +24,15 @@ function saveEgreso(egreso, descripcion) {
         url: "",
         type: "POST",
         dataType: "JSON",
-        contentType: "",
+        contentType: "application/json; charset=utf-8",
         data: dataToSend,
         success: function (result) {
             console.log(result);
             $("#egresoInput").val("");
             $("#descripcionEgreso").val("")
+        },
+        error: function (error) {
+            console.log(error);
         }
     })
 }
