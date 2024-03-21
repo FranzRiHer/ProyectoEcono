@@ -6,8 +6,8 @@ function setFuentesIngresos() {
     if (!isNaN(cifraDinero)) {
         // Crear objeto JSON con los datos
         var datos = {
-            cifraDinero: cifraDinero,
-            comentario: comentario
+            cantidad: cifraDinero,
+            descripcion: comentario
         };
 
         // Configurar opciones para la solicitud fetch
@@ -20,7 +20,7 @@ function setFuentesIngresos() {
         };
 
         // URL a la que se enviarán los datos
-        var url = 'URL_DE_DESTINO';
+        var url = 'http://localhost:8080/ingreso/add';
 
         // Realizar solicitud fetch
         fetch(url, opciones)
