@@ -38,7 +38,7 @@ function getEgresos() {
 
 const chartData = {
     labels: ["Ingresos", "Egresos"],
-    data: [5,5 ],
+    data: [],
 };
 
 const myChart = document.querySelector(".my-chart");
