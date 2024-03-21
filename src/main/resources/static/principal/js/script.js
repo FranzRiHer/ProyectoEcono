@@ -1,7 +1,11 @@
 function redireccionar(elemento) {
     var idElemento = elemento.id;
     sendLink(idElemento, function (nuevoLink) {
-        elemento.href = nuevoLink;
+        if (nuevoLink) {
+            window.location.href = nuevoLink; // Redirige a la nueva URL
+        } else {
+            console.error("No se pudo obtener el nuevo enlace.");
+        }
     });
 }
 
@@ -9,8 +13,7 @@ function sendLink(idElemento, callback) {
     $.ajax({
         url: "http://localhost:8080/menu/vista/" + idElemento,
         type: "GET",
-        dataType: "JSON",
-        contentType: "application/json; charset=utf-8",
+        dataType: "text", // Cambiado a "text" porque estamos esperando una ruta como texto
 
         success: function (result) {
             console.log(result);
@@ -22,4 +25,6 @@ function sendLink(idElemento, callback) {
         },
     });
 }
+
+
 
