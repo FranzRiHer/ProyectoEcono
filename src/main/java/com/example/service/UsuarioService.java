@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.service;
 
-import com.example.demo.entities.Usuario;
-import com.example.demo.repository.UsuarioRepository;
+import com.example.entities.Usuario;
+import com.example.repository.UsuarioRepository;
 
 import java.util.List;
 

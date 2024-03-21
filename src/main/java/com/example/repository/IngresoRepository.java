@@ -1,8 +1,8 @@
-package com.example.demo.repository;
+package com.example.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.example.demo.entities.Ingreso;
+import com.example.entities.Ingreso;
 import java.util.List;
 
 @Repository
