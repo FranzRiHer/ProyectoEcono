@@ -1,11 +1,11 @@
-package com.example.demo.controller;
+package com.example.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.demo.entities.Usuario;
-import com.example.demo.service.UsuarioService;
-//import com.example.demo.repository.UsuarioRepository;
+import com.example.entities.Usuario;
+import com.example.service.UsuarioService;
+//import com.example.repository.UsuarioRepository;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package com.example.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import com.example.demo.entities.Egreso;
+import com.example.entities.Egreso;
 
 public interface EgresosCRUDRepository extends CrudRepository<Egreso,Long> {
     

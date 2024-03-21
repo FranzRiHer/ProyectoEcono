@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.entities.Egreso;
-import com.example.demo.service.EgresosService;
+import com.example.entities.Egreso;
+import com.example.service.EgresosService;
 
 @RestController
 @RequestMapping("/gastos")

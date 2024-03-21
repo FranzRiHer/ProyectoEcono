@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.repository;
 
-import com.example.demo.entities.Usuario;
+import com.example.entities.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UsuarioCRUDRepository extends CrudRepository<Usuario,Integer> {
