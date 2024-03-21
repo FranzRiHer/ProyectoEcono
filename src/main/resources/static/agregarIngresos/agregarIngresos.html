@@ -76,11 +76,12 @@
 
     <!-- Tabla para cargar datos -->
     <div class="container">
-        <h1>Ver historial de ingresos</h1>
-        <button onclick="getFuentesIngreso()" class="btn">Cargar</button>
-        <table id="tablaDatos">
-            <!-- Espacio para tabla de datos -->
-        </table>
+        <h1>Ingrese activos</h1>
+        <div class="input-container">
+            <input id="cifraDinero" type="text" placeholder="Cantidad">
+            <textarea id="descripcion" placeholder="Descripcion"></textarea>
+        </div>
+        <button onclick="setFuentesIngresos()" class="btn">Enviar</button>
     </div>
 
     </div>
