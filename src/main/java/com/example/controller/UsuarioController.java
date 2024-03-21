@@ -23,10 +23,13 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/usuarios")
-    public List<Usuario> getAllUsuarios(){
-        return usuarioService.getAllUsuarios();
+    @GetMapping("/usuario_get")
+    public Usuario getUsuario(){
+        return usuarioService.getUsuario();
     }
+    // public List<Usuario> getAllUsuarios(){
+    //     return usuarioService.getAllUsuarios();
+    // }
 
     @PostMapping("/add")
     public Usuario saveUsuario(@RequestBody Usuario u){

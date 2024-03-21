@@ -22,10 +22,12 @@ public class EgresosService {
         return egresosRepository.getAllEgresos();
     }
 
+
+
     @Transactional
     public Egreso save(Egreso egreso){
         // Obtener el usuario asociado al egreso
-        Usuario usuario = usuarioRepository.getUsuarioById(egreso.getUsuario().getId());
+        Usuario usuario = usuarioRepository.getAllUsuarios().get(0);
 
         // Actualizar el saldo del usuario
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
