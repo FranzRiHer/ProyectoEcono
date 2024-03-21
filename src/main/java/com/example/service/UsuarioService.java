@@ -20,6 +20,11 @@ public class UsuarioService {
         return usuarioRepository.getAllUsuarios();
     }
 
+    public Usuario getUsuario(){
+        Usuario usuario = getAllUsuarios().get(0);
+        return usuario;
+    }
+
     public Usuario save(Usuario u){
         return usuarioRepository.save(u);
     }

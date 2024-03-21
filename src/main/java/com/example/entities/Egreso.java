@@ -40,6 +40,10 @@ public class Egreso {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     } 
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
     
 
 }
