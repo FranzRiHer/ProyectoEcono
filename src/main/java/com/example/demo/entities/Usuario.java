@@ -18,7 +18,8 @@ public class Usuario {
     private int id;
     private String nombre; 
     private String email;
-    private int saldo;
+    private int ingresoTotal;
+    private int egresoTotal; 
     //@OneToMany
 
     public int getId() {
@@ -30,10 +31,19 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
-    public int getSaldo() {
-        return saldo;
-    }
 
+    public int getIngresoTotal() {
+        return ingresoTotal;
+    }
+    public void setIngresoTotal(int ingresoTotal) {
+        this.ingresoTotal = ingresoTotal;
+    }
+    public int getEgresoTotal() {
+        return egresoTotal;
+    }
+    public void setEgresoTotal(int egresoTotal) {
+        this.egresoTotal = egresoTotal;
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -43,8 +53,4 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setSaldo(int saldo) {
-        this.saldo = saldo;
-    }
-
 }
