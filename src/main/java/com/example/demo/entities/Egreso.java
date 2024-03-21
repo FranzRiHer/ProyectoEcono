@@ -19,7 +19,7 @@ public class Egreso {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
-    //private Usuario usuario;
+    private Usuario usuario;
 
 
     public Long getIdEgreso() {
