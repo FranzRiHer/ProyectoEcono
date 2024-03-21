@@ -1,12 +1,13 @@
 package com.example.demo.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-//import jakarta.persistence.OneToMany;
-//import java.util.List;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 
 @Entity
@@ -18,10 +19,12 @@ public class Usuario {
     private int id;
     private String nombre; 
     private String email;
-    private int ingresoTotal;
-    private int egresoTotal; 
-    //@OneToMany
+    private int saldo;
 
+    /*
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
+    List<Egreso> Egresos;
+    */
     public int getId() {
         return id;
     }
@@ -31,19 +34,10 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
+    public int getSaldo() {
+        return saldo;
+    }
 
-    public int getIngresoTotal() {
-        return ingresoTotal;
-    }
-    public void setIngresoTotal(int ingresoTotal) {
-        this.ingresoTotal = ingresoTotal;
-    }
-    public int getEgresoTotal() {
-        return egresoTotal;
-    }
-    public void setEgresoTotal(int egresoTotal) {
-        this.egresoTotal = egresoTotal;
-    }
     public void setId(int id) {
         this.id = id;
     }
@@ -53,4 +47,8 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
 }
