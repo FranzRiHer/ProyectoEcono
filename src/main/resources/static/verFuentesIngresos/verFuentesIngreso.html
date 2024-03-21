@@ -31,7 +31,8 @@
             </div>
             <div id="sidebar-accordion" class="accordion">
                 <div class="list-group">
-                    <a id="principal" href="#" onclick="redireccionar(this)" class="list-group-item list-group-item-action bg-dark text-light">
+                    <a id="principal" href="#" onclick="redireccionar(this)"
+                        class="list-group-item list-group-item-action bg-dark text-light">
                         <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
                     </a>
                     <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
@@ -39,10 +40,12 @@
                         <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
                     </a>
                     <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarIngresos" href="#" onclick="redireccionar(this)" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
-                        <a id="visualizarIngresos" href="#" onclick="redireccionar(this)" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Visualizar
                         </a>
                     </div>
@@ -51,7 +54,8 @@
                         <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarGastos" href="#" onclick="redireccionar(this)" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
                     </div>
@@ -64,14 +68,21 @@
         </div>
         <!-- Fin Barra de Navegacion -->
 
-    <!-- Tabla para cargar datos -->
-    <div class="container">
-        <h1>Ver historial de ingresos</h1>
-        <button onclick="getFuentesIngreso()" class="btn">Cargar</button>
-        <table id="tablaDatos">
-            <!-- Espacio para tabla de datos -->
-        </table>
-    </div>
+        <!-- Tabla para cargar datos -->
+        <div class="container">
+            <h1>Ver historial de ingresos</h1>
+            <button onclick="getFuentesIngreso()" class="btn">Cargar</button>
+            <table id="tablaDatos">
+                <thead>
+                    <tr>
+                        <th>Saldo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
     </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
