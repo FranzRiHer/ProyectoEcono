@@ -16,16 +16,18 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int id;
+    private Long id;
     private String nombre; 
     private String email;
     private int saldo;
+    private Long egresoTotal;
+    private Long ingresoTotal;
 
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
     public String getNombre() {
@@ -38,7 +40,7 @@ public class Usuario {
         return saldo;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public void setNombre(String nombre) {
@@ -49,6 +51,22 @@ public class Usuario {
     }
     public void setSaldo(int saldo) {
         this.saldo = saldo;
+    }
+
+    public Long getEgresoTotal() {
+        return egresoTotal;
+    }
+
+    public void setEgresoTotal(Long egresoTotal) {
+        this.egresoTotal = egresoTotal;
+    }
+
+    public Long getIngresoTotal() {
+        return ingresoTotal;
+    }
+
+    public void setIngresoTotal(Long ingresoTotal) {
+        this.ingresoTotal = ingresoTotal;
     }
 
 }
