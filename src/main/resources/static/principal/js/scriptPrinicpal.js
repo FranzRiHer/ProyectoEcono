@@ -71,6 +71,7 @@ function getEgresos() {
         contentType: "text",
         success: function (result) {
             $('#egresos').text(result.egresoTotal);
+            $('#saldoTotal').text(result.saldo);
             console.log(result.egresoTotal)
             return result.valorEgresos;
         },
