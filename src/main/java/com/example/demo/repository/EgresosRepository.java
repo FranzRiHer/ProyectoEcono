@@ -1,9 +1,9 @@
-package com.example.repository;
+package com.example.demo.repository;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.example.entities.Egresos;
+import com.example.demo.entities.Egreso;
 
 @Repository
 public class EgresosRepository {
@@ -11,11 +11,11 @@ public class EgresosRepository {
     @Autowired
     private EgresosCRUDRepository egresosCRUDRepository;
 
-    public List<Egresos> getAllEgresos(){
-        return (List<Egresos>) egresosCRUDRepository.findAll();
+    public List<Egreso> getAllEgresos(){
+        return (List<Egreso>) egresosCRUDRepository.findAll();
     }
 
-    public Egresos save(Egresos s){
+    public Egreso save(Egreso s){
         return egresosCRUDRepository.save(s);
     }
 

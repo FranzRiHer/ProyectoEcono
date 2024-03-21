@@ -1,4 +1,4 @@
-package com.example.entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,8 +18,8 @@ public class Egreso {
     private String descripcion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(id = "id_usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "id_usuario")
+    //private Usuario usuario;
 
 
     public Long getIdEgreso() {
