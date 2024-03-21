@@ -12,16 +12,16 @@ function validarLabels() {
 
 function saveEgreso(egreso, descripcion) {
     let data = {
-        egresoInput: egreso,
-        descripcionEgreso: descripcion
+        cantidadEgreso: egreso,
+        descripcion: descripcion
     }
 
     let dataToSend = JSON.stringify(data);
-
     console.log(dataToSend)
+    
 
     $.ajax({
-        url: "",
+        url: "http://localhost:8080/gastos/add",
         type: "POST",
         dataType: "JSON",
         contentType: "application/json; charset=utf-8",
@@ -30,9 +30,11 @@ function saveEgreso(egreso, descripcion) {
             console.log(result);
             $("#egresoInput").val("");
             $("#descripcionEgreso").val("")
+            console.log(result)
         },
         error: function (error) {
             console.log(error);
         }
     })
+    
 }
