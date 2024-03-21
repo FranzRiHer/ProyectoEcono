@@ -8,9 +8,7 @@
 
 .card-title {
     color: #000;
-    /* Cambia al color que desees */
     font-size: 1.5rem;
-    /* Ajusta al tamaño que prefieras */
 }
 
 .card-text {
@@ -18,54 +16,45 @@
     margin-bottom: 1rem;
 }
 
-/* Aquí puedes agregar más estilos personalizados si necesitas */
-
-/* Estilos comunes para todas las cajas */
 .box {
     border: 5px solid #343a40;
     margin: 10px 0;
 }
 
-/* Estilos para cajas pequeñas */
 .box-small {
     height: 100px;
 }
 
-/* Estilos para cajas grandes */
+
 .box-large {
     height: 200px;
 }
 
-
 .navbar {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin-left: 2%;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.7rem;
     top: 5%;
-    right: 10%;
-    z-index: 1;
-    background-color: #e2e2e2;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0.5, 0.5);
-}
-
-#options {
-
-    margin: 0 auto;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.7rem;
-
-    margin-top: 8%;
-
-    left: 18%;
-    right: 30%;
+    
     z-index: 1;
     background-color: #e2e2e2;
     box-shadow: 0px 2px 5px rgba(0, 0, 0.5, 0.5);
 }
 
+#options {
+    padding: 10% 1% 0% 10%;
+    border-radius: 0.7rem;
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-right: 50%;
+    
+    background-color: #e2e2e2;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0.5, 1);
+
+}
 
 #options a {
     width: 40%;
@@ -80,6 +69,51 @@
 }
 
 #options a:hover {
-    /* Efecto al pasar el cursor */
     background-color: #8c8c96;
+}
+
+.chart-heading {
+    font-family: "Rubik", sans-serif;
+    color: #023047;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+}
+
+.chart-container {
+
+    margin-top: 40%;
+    width: 150px;
+}
+
+.programming-stats {
+    border: none;
+    border-radius: 0.7rem;
+    padding: 5px 50px;
+    margin-top: 50%;
+    margin-right: 15%;
+    background-color: #e2e2e2;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0.5, 0.5);
+}
+
+.programming-stats:hover {
+
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
+}
+
+.programming-stats .details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.programming-stats .details ul li {
+    font-size: 16px;
+    margin: 12px 0;
+    text-transform: uppercase;
+}
+
+.programming-stats .details .percentage {
+    font-weight: 700;
+    color: #000000;
 }

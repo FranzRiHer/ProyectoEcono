@@ -21,6 +21,7 @@
 
 
         <!-- Barra de Navegacion -->
+
         <div id="sidebar">
             <div class="p-2">
                 <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
@@ -29,7 +30,8 @@
             </div>
             <div id="sidebar-accordion" class="accordion">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action bg-dark text-light">
+                    <a id="principal" href="#" onclick="redireccionar(this)"
+                        class="list-group-item list-group-item-action bg-dark text-light">
                         <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
                     </a>
                     <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
@@ -37,10 +39,12 @@
                         <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
                     </a>
                     <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Visualizar
                         </a>
                     </div>
@@ -49,7 +53,8 @@
                         <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
                     </a>
                     <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
                     </div>
@@ -57,22 +62,11 @@
                         class="list-group-item list-group-item-action bg-dark text-light">
                         <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
                     </a>
-                    <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
-                        <div class="d-flex flex-row text-center">
-                            <a href="#" class="list-group-item list-group-item-action bg-dark text-light">
-                                Item 1
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action bg-dark text-light">
-                                Item 2
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
-
         </div>
 
-        < class="container-fluid mt-3">
+        <div class="container-fluid mt-3">
             <!-- Saludo -->
             <div class="container-fluid mt-3">
                 <nav class="navbar bg-body-tertiary">
@@ -87,43 +81,47 @@
                 <div class="container-fluid">
                     <a href="#">
                         <i class="fa fa-chart-line-up"></i> Ingresos
+
+                        <p id="ingresos">000</p>
                     </a>
                     <a href="#">
                         <i class="fa fa-chart-line-up"></i> Gastos
+
+                        <p id="egresos">000</p>
                     </a>
                 </div>
             </div>
 
+
+
+        </div>
+
         <div>
-            
+            <div class="programming-stats">
+                <h2 class="chart-heading">Diagrama</h2>
+                <div class="chart-container">
+                    <canvas class="my-chart"></canvas>
+                </div>
+
+                <div class="details">
+                    <ul></ul>
+                </div>
+            </div>
         </div>
-
-        </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script scr="js/scrptAnalisis.js"></script>
-    <script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-        </script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/script.js"></script>
+<script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
 
 </html>
