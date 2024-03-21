@@ -21,9 +21,11 @@ public class Usuario {
     private String email;
     private int saldo;
 
-    
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+    List<Ingreso> Ingresos;
     
     public int getId() {
         return id;
