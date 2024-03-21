@@ -23,9 +23,11 @@ public class Usuario {
     private Long egresoTotal;
     private Long ingresoTotal;
 
-    
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+    List<Ingreso> Ingresos;
     
     public Long getId() {
         return id;
