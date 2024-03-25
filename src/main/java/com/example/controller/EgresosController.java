@@ -26,4 +26,9 @@ public class EgresosController {
     public Egreso saveEgresos(@RequestBody Egreso s){
         return egresosService.save(s);
     }   
+    @GetMapping("/saludo")
+    public String hola(){
+        return "Hola desde Spring Boot!";
+    }
+    
 }
