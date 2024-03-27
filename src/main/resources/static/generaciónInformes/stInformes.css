@@ -1,0 +1,15 @@
+/* Aquí puedes agregar más estilos personalizados*/
+.container {
+    visibility: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#Grafico {
+    width: 500px;
+    height: 300px;
+  }
+  
