@@ -82,7 +82,6 @@ function getEgresos() {
     });
 }
 
-
 function populateUl() {
     const ul = document.querySelector(".programming-stats .details ul");
     
