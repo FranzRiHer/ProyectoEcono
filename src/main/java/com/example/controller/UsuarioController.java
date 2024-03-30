@@ -8,13 +8,13 @@ import com.example.service.UsuarioService;
 //import com.example.repository.UsuarioRepository;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
-import java.util.List;
+//import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @CrossOrigin
 @RestController
@@ -25,17 +25,21 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/usuario_get")
-    public Usuario getUsuario(){
-        return usuarioService.getUsuario();
+    @GetMapping("/usuario_get/{id}")
+    public Usuario getUsuario(@PathVariable int id) {
+        return usuarioService.getUsuario(id-1);
     }
     // public List<Usuario> getAllUsuarios(){
-    //     return usuarioService.getAllUsuarios();
+    // return usuarioService.getAllUsuarios();
     // }
 
     @PostMapping("/add")
-    public Usuario saveUsuario(@RequestBody Usuario u){
+    public Usuario saveUsuario(@RequestBody Usuario u) {
         return usuarioService.save(u);
     }
-    
+
+    @GetMapping("/saludo")
+    public String hola() {
+        return "Hola desde Spring Boot!";
+    }
 }
