@@ -5,16 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.entities.Usuario;
 import com.example.service.UsuarioService;
-//import com.example.repository.UsuarioRepository;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -31,7 +27,7 @@ public class UsuarioController {
     }
     // public List<Usuario> getAllUsuarios(){
     //     return usuarioService.getAllUsuarios();
-    // }
+    //}
 
     @PostMapping("/add")
     public Usuario saveUsuario(@RequestBody Usuario u){
