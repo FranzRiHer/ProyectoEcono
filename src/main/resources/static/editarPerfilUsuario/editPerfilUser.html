@@ -27,63 +27,71 @@
 </head>
 <body>
 
-    <div class="d-flex">
-
-        <!-- Barra de Navegacion -->
-        <div id="sidebar">
-          <div class="p-2">
+  <div class="d-flex" style="min-height: 100vh">
+    <!-- Barra de Navegacion -->
+    <div id="sidebar">
+        <div class="p-2">
             <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
-              Menu
+                Menu
             </a>
-          </div>
-          <div id="sidebar-accordion" class="accordion">
-            <div class="list-group">
-              <a id="principal" href="#" onclick="redireccionar(this)"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
-              </a>
-              <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
-              </a>
-              <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-                <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
-                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                  Agregar
-                </a>
-                <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
-                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                  Visualizar
-                </a>
-              </div>
-              <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
-              </a>
-              <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                <a id="agregarGastos" href="#" onclick="redireccionar(this)"
-                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                  Agregar
-                </a>
-              </div>
-              <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
-              </a>
-            </div>
-          </div>
         </div>
+        <div id="sidebar-accordion" class="accordion">
+            <div class="list-group">
+                <a id="principal" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light">
+                    <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
+                </a>
+                <a href="#ingresos-items" data-toggle="collapse" aria-expanded="false"
+                    class="list-group-item list-group-item-action bg-dark text-light">
+                    <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+                </a>
+                <div id="ingresos-items" class="collapse" data-parent="#sidebar-accordion">
+                    <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+                        class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        Agregar
+                    </a>
+                    <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+                        class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        Visualizar
+                    </a>
+                </div>
+                <a href="#egresos-items" data-toggle="collapse" aria-expanded="false"
+                    class="list-group-item list-group-item-action bg-dark text-light">
+                    <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+                </a>
+                <div id="egresos-items" class="collapse" data-parent="#sidebar-accordion">
+                    <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+                        class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        Agregar
+                    </a>
+                </div>
+                <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+                    class="list-group-item list-group-item-action bg-dark text-light">
+                    <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
+                </a>
+                <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
+                    class="list-group-item list-group-item-action bg-dark text-light">
+                    <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
+                </a>
+                <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
+                    <a id="agregarIngresos" href="#"
+                        class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        Perfil
+                    </a>
+                    <a id="visualizarIngresos" href="#"
+                        class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                        Salir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <div class="container-fluid mt-3">
 
-            <!-- Saludo -->
-            <div class="container-fluid mt-3">
-              <nav id="welcomeBar" class="navbar bg-body-tertiary">
-                <div class="container-fluid">
-                  <span  class="navbar-brand mb-0 h1"><b>Bienvenido: </b> </span>
-                </div>
-              </nav>
-            </div>
+         <!-- Contenedor para la barra de bienvenida y el contenido principal -->
+         <div class="flex-grow-1 d-flex flex-column">
+          <!-- flex-grow-1 para ocupar el espacio restante -->
 
             <div class="container-fluid mt-3">
                 <h1 class="title">Configuracion del Perfil</h1>
@@ -100,5 +108,17 @@
             </form>
 
     <script src="scripts.js"></script>
+
+  <!-- Optional JavaScript -->
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

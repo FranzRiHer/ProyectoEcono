@@ -34,6 +34,8 @@ function setFuentesIngresos() {
             // Manejar la respuesta si es necesario
             console.log('Respuesta del servidor:', data);
             alert('Datos enviados exitosamente.');
+            $("#cifraDinero").val("");
+            $("#descripcion").val("")
         })
         .catch(error => {
             console.error('Error:', error);
