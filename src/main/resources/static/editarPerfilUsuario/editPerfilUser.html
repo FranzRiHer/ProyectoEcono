@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+<title>Configuración de Perfil</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+      
+<!-- Configuracion global de CSS -->
+<link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
+<link rel="stylesheet" href="stEditarUser.css" />
+      
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="/src/main/resources/static/principal/js/script.js"></script>
+ <script src="js/scriptEditPerfilUser.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Perfil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="d-flex">
+
+        <!-- Barra de Navegacion -->
+        <div id="sidebar">
+          <div class="p-2">
+            <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+              Menu
+            </a>
+          </div>
+          <div id="sidebar-accordion" class="accordion">
+            <div class="list-group">
+              <a id="principal" href="#" onclick="redireccionar(this)"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
+              </a>
+              <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+              </a>
+              <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
+                <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                  Agregar
+                </a>
+                <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                  Visualizar
+                </a>
+              </div>
+              <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+              </a>
+              <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
+                <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                  Agregar
+                </a>
+              </div>
+              <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid mt-3">
+
+            <!-- Saludo -->
+            <div class="container-fluid mt-3">
+              <nav id="welcomeBar" class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <span  class="navbar-brand mb-0 h1"><b>Bienvenido: </b> </span>
+                </div>
+              </nav>
+            </div>
+
+            <div class="container-fluid mt-3">
+                <h1 class="title">Configuracion del Perfil</h1>
+                <br />
+                <h5 class="title"></h5>
+            <form id="profile-form" class="center-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+         
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+        
+                <button type="submit">Guardar Cambios</button>
+            </form>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
