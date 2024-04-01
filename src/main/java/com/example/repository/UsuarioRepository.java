@@ -16,8 +16,8 @@ public class UsuarioRepository {
         return (List<Usuario>) usuarioCRUDRepository.findAll();
     }
 
-    public Usuario getUsuario(){
-        Usuario usuario = getAllUsuarios().get(0);
+    public Usuario getUsuario(int id){
+        Usuario usuario = getAllUsuarios().get(id);
         return usuario;
     }
 
