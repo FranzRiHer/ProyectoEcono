@@ -1,11 +1,18 @@
 function getFuentesIngreso() {
   console.log("aaaaaa");
-
+  let token = localStorage.getItem('token');
   // URL para la peticion
   var url = "http://localhost:8080/ingreso/ingreso";
 
   // Realizar solicitud GET usando Fetch API
-  fetch(url)
+  fetch(url, {
+    method: 'GET', // o 'POST', 'PUT', 'DELETE', etc., según sea necesario
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      // Agrega cualquier otro encabezado requerido aquí
+    },
+  }
+  )
     .then(response => response.json()) // Convertir respuesta a JSON
     .then(data => {
       // Manipular los datos recibidos

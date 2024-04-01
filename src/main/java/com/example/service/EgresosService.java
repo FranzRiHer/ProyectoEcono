@@ -19,6 +19,7 @@ public class EgresosService {
     private UsuarioRepository usuarioRepository;
 
     public List<Egreso> getAllEgresos(){
+        
         return egresosRepository.getAllEgresos();
     }
 

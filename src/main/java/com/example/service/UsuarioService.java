@@ -20,9 +20,8 @@ public class UsuarioService {
         return usuarioRepository.getAllUsuarios();
     }
 
-    public Usuario getUsuario(){
-        Usuario usuario = getAllUsuarios().get(0);
-        return usuario;
+    public Usuario getUsuario(int id){
+        return usuarioRepository.getUsuario(id);
     }
 
     public Usuario getUserId(Long id){
