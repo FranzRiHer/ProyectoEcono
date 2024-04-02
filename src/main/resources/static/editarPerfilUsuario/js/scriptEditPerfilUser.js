@@ -1,18 +1,20 @@
 function validarLabels() {
     let nombre = $("#nombreInput").val()
     let contraseña = $("#contraseñaInput").val()
+    let email = $("#emailInput").val()
 
-    if ((nombre === "" || contraseña === "")) {
+    if ((nombre === "" || contraseña === "" || email === "")) {
         window.alert("Por favor, complete todos los campos.");
     } else {
-        saveEdit(nombre, contraseña)
+        saveEdit(nombre, contraseña, email)
     }
 }
 
-function saveEdit(nombre, contraseña) {
+function saveEdit(nombre, contraseña, email) {
     let data = {
         name: nombre,
-        password: contraseña
+        password: contraseña,
+        correo: email
     }
 
     let dataToSend = JSON.stringify(data);
@@ -20,7 +22,7 @@ function saveEdit(nombre, contraseña) {
 
 
     $.ajax({
-        url: "http://localhost:8080/gastos/add",
+        url: "http://localhost:8080/usuarios/editar/{id}",
         type: "POST",
         dataType: "JSON",
         contentType: "application/json; charset=utf-8",
@@ -29,6 +31,7 @@ function saveEdit(nombre, contraseña) {
             console.log(result);
             $("#nombreInput").val("");
             $("#contraseñaInput").val("")
+            $("#emailInput").val()
             console.log(result)
             alert('Datos enviados exitosamente.');
         },

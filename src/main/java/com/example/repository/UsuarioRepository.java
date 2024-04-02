@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,7 @@ public class UsuarioRepository {
     public Usuario save(Usuario u){
         return usuarioCRUDRepository.save(u);
     }
+    
+    
 
 }
