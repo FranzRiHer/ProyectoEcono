@@ -1,15 +1,88 @@
-/* Aquí puedes agregar más estilos personalizados*/
-.container {
-    visibility: collapse;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+/* Estilos para la línea */
+.line {
+    fill: none;
+    stroke-width: 3px;
+    /* Grosor de la línea */
 }
 
-#Grafico {
-    width: 500px;
-    height: 300px;
-  }
-  
+/* Estilos para los ejes */
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line {
+    fill: none;
+    stroke: rgb(0, 0, 0);
+    /* Color de las líneas de los ejes */
+    stroke-width: 2px;
+}
+
+/* Estilos para los textos de los ejes */
+.x-axis text,
+.y-axis text {
+    font-family: Arial, sans-serif;
+    /* Fuente para el texto */
+    font-size: 12px;
+    /* Tamaño de fuente */
+    stroke-width: 2px;
+}
+
+/* Estilos para el contenedor SVG */
+svg {
+    margin-bottom: 5%;
+    margin-top: 3%;
+    margin-left: 10%;
+    font-family: Arial, sans-serif;
+    /* Fuente para el texto */
+    background-color: rgb(224, 217, 217);
+    border-radius: 5%;
+}
+
+.chart-heading {
+    font-family: "Rubik", sans-serif;
+    color: #023047;
+    text-transform: uppercase;
+    font-size: 24px;
+    text-align: center;
+}
+
+.chart-container {
+    width: 200px;
+    
+}
+
+.programming-stats {
+    background-color: rgb(224, 217, 217);
+    font-family: "Rubik", sans-serif;
+    margin-left: 10%;
+    align-items: center;
+    gap: 24px;
+    width: 35%;
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 8px 32px;
+    color: #023047;
+    transition: all 400ms ease;
+    margin-bottom: 5%;
+}
+
+.programming-stats:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
+}
+
+.programming-stats .details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.programming-stats .details ul li {
+    
+    font-size: 16px;
+    margin: 12px 0;
+    text-transform: uppercase;
+}
+
+.programming-stats .details .percentage {
+    font-weight: 700;
+    color: #e63946;
+}

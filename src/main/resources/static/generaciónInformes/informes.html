@@ -12,22 +12,26 @@
 
     <title>Cuida Tus Gastos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
     <!-- Configuracion global de CSS -->
     <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
     <link rel="stylesheet" href="stInformes.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Optional JavaScript -->
     <script src="/src/main/resources/static/principal/js/script.js"></script>
-    <script src="js/informes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
         integrity="sha512-0PooSiQG9yAK+aqzz/RMg8+y/83r4OfnNrEo0qwh09+5q0e1XoXv40R1ayQwCfRNedQ1EXmYf5PlqP3jUT+bkw=="
         crossorigin="anonymous"></script>
-</head> 
+    <script src="js/lineal.js"></script>
+</head>
 
 <body>
     <div class="d-flex">
-        
+
         <!-- Barra de Navegacion -->
         <div id="sidebar">
             <div class="p-2">
@@ -73,33 +77,38 @@
             </div>
         </div>
         <!-- Fin Barra de Navegacion -->
-        
+
         <!-- Tabla para cargar datos -->
         <div class="container">
             <h1>Informes</h1>
-            <div id="periodo">
-                <canvas id="Grafica"></canvas>
+            <h3>Grafica de periodos de tiempo</h3>
+            <svg id="line-chart"></svg>
+            
+            <div class="programming-stats">
+                <h4 class="chart-heading">Gráfico de ingresos</h4>
+                <div class="chart-container">
+                    <canvas class="my-chart"></canvas>
+                </div>
+                <div class="details">
+                    <ul></ul>
+                </div>
             </div>
-            <div id="categoria"></div>
-            <div id="fuente"></div>
         </div>
-        <!-- Fin Tabla para cargar datos -->
-
     </div>
 
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
-        integrity="sha512-0PooSiQG9yAK+aqzz/RMg8+y/83r4OfnNrEo0qwh09+5q0e1XoXv40R1ayQwCfRNedQ1EXmYf5PlqP3jUT+bkw=="
-        crossorigin="anonymous"></script>
-    <script src="js/informes.js"></script>
 </body>
+
+<script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 
 </html>
