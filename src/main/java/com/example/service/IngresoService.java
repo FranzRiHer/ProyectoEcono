@@ -26,7 +26,7 @@ public class IngresoService {
     @Transactional
     public Ingreso save(Ingreso ingreso, int id){
         // Obtener el usuario asociado al Ingreso
-        Usuario usuario = usuarioRepository.getAllUsuarios().get(id);
+        Usuario usuario = usuarioRepository.getUserById(Long.valueOf(id));
 
         System.out.println(usuario.getUsername());
 
@@ -42,5 +42,10 @@ public class IngresoService {
         // Guardar el Ingreso
         return ingresoRepository.save(ingreso);
 
+    }
+    @Transactional
+    public Usuario prueba(int id){
+        Usuario usuario = usuarioRepository.getUsuario(0);
+        return usuario;
     }
 }

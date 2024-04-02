@@ -24,7 +24,7 @@ function setFuentesIngresos() {
 
         // URL a la que se enviarán los datos
         var url = 'http://localhost:8080/ingreso/add/' + id;
-
+        console.log(url)
         // Realizar solicitud fetch
         fetch(url, opciones)
         .then(response => {
