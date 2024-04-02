@@ -1,140 +1,89 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Datos para el gráfico de líneas
-    var data = [
-        { month: 'Enero', value1: 50, value2: 30 },
-        { month: 'Febrero', value1: 20, value2: 25 },
-        { month: 'Marzo', value1: 15, value2: 40 },
-        { month: 'Abril', value1: 50, value2: 20 },
-        { month: 'Mayo', value1: 18, value2: 35 },
-        { month: 'Junio', value1: 30, value2: 45 }
-    ];
+    const myChart1 = document.getElementById("lineChart");
 
-    // Configurar márgenes y dimensiones del gráfico de líneas
-    var margin = { top: 20, right: 100, bottom: 50, left: 50 }, // Incrementamos el right para dar espacio a la leyenda
-        svgWidth = 800,
-        svgHeight = 400,
-        width = svgWidth - margin.left - margin.right,
-        height = svgHeight - margin.top - margin.bottom;
-
-    // Crear el contenedor SVG
-    var svg = d3.select('svg')
-        .attr('width', svgWidth)
-        .attr('height', svgHeight);
-
-    // Crear el contenedor para el gráfico de líneas
-    var lineChart = svg.append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-    // Escala X para los meses
-    var x = d3.scaleBand()
-        .range([0, width])
-        .domain(data.map(function (d) { return d.month; }))
-        .padding(0.1);
-
-    // Escala Y para los valores
-    var y = d3.scaleLinear()
-        .range([height, 0])
-        .domain([0, d3.max(data, function (d) { return Math.max(d.value1, d.value2); })]);
-
-    // Definir la línea para value1
-    var line1 = d3.line()
-        .x(function (d) { return x(d.month) + x.bandwidth() / 2; })
-        .y(function (d) { return y(d.value1); });
-
-    // Definir la línea para value2
-    var line2 = d3.line()
-        .x(function (d) { return x(d.month) + x.bandwidth() / 2; })
-        .y(function (d) { return y(d.value2); });
-
-    // Dibujar la línea para value1
-    lineChart.append('path')
-        .datum(data)
-        .attr('class', 'line')
-        .style('stroke', '#9064a1') // Color azul para value1
-        .attr('d', line1);
-
-    // Dibujar la línea para value2
-    lineChart.append('path')
-        .datum(data)
-        .attr('class', 'line')
-        .style('stroke', '#2391bd') // Color rojo para value2
-        .attr('d', line2);
-
-    // Agregar ejes X e Y
-    lineChart.append('g')
-        .attr('class', 'x-axis')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(d3.axisBottom(x));
-
-    lineChart.append('g')
-        .attr('class', 'y-axis')
-        .call(d3.axisLeft(y));
-
-    // Agregar la leyenda
-    var legend = svg.selectAll('.legend')
-        .data(['Ingresos', 'Gastos'])
-        .enter().append('g')
-        .attr('class', 'legend')
-        .attr('transform', function (d, i) { return 'translate(' + (margin.left + width + 20) + ',' + (margin.top + i * 20) + ')'; });
-
-    legend.append('rect')
-        .attr('width', 18)
-        .attr('height', 18)
-        .style('fill', function (d) { return d === 'Ingresos' ? '#9064a1' : '#2391bd'; });
-
-    legend.append('text')
-        .attr('x', 24)
-        .attr('y', 9)
-        .attr('dy', '.35em')
-        .text(function (d) { return d; });
-
-
-        const chartData = {
-            labels: ["Python", "Java", "JavaScript", "C#", "Others"],
-            data: [30, 17, 10, 7, 36],
-        };
-        
-        const myChart = document.querySelector(".my-chart");
-        const ul = document.querySelector(".programming-stats .details ul");
-        
-        new Chart(myChart, {
-            type: "radar",
-            data: {
-                labels: chartData.labels,
-                datasets: [
-                    {
-                        label: "% de ingreso",
-                        data: chartData.data,
-                        borderColor: 'rgb(77, 56, 124)', // Color más oscuro y transparente para la línea que muestra los datos
-                        borderWidth: 5, // Grosor más delgado de la línea que muestra los datos
-                    },
-                ],
+    const lineData = {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+        datasets: [
+            {
+                label: "Valor 1",
+                data: [50, 20, 15, 50, 18, 30],
+                borderColor: '#9064a1',
+                borderWidth: 2,
+                fill: false
             },
-            options: {
-                borderWidth: 10,
-                borderRadius: 2,
-                hoverBorderWidth: 0,
-                plugins: {
-                    legend: {
-                        labels: {
-                            Color: 'rgba(0, 0, 0, 0.3)' // Color más oscuro para los nombres de las opciones
-                        }
-                    },
+            {
+                label: "Valor 2",
+                data: [30, 25, 40, 20, 35, 45],
+                borderColor: '#2391bd',
+                borderWidth: 2,
+                fill: false
+            }
+        ]
+    };
+
+    new Chart(myChart1, {
+        type: 'line',
+        data: lineData,
+        options: {
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Mes'
+                    }
                 },
-                scales: {
-                    r: {
-                        grid: {
-                            color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
-                        },
-                        angleLines: {
-                            color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
-                        }
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Valor'
                     }
                 }
+            }
+        }
+    });
+
+    // Datos para el gráfico de radar
+    const radarChart = document.getElementById("radarChart");
+    const radarData = {
+        labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'],
+        datasets: [
+            {
+                label: "% de ingreso",
+                data: [20, 30, 40, 50, 60],
+                borderColor: 'rgb(77, 56, 124)', // Color más oscuro y transparente para la línea que muestra los datos
+                borderWidth: 5, // Grosor más delgado de la línea que muestra los datos
             },
-        });
-        
-        
-        
+        ],
+    };
+
+    new Chart(radarChart, {
+        type: "radar",
+        data: radarData,
+        options: {
+            borderWidth: 10,
+            borderRadius: 2,
+            hoverBorderWidth: 0,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'rgba(0, 0, 0, 0.3)' // Color más oscuro para los nombres de las opciones
+                    }
+                },
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
+                    },
+                    angleLines: {
+                        color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
+                    }
+                }
+            }
+        },
+    });
 
 });

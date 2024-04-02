@@ -1,69 +1,29 @@
-/* Estilos para la línea */
-.line {
-    fill: none;
-    stroke-width: 3px;
-    /* Grosor de la línea */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-/* Estilos para los ejes */
-.x-axis path,
-.x-axis line,
-.y-axis path,
-.y-axis line {
-    fill: none;
-    stroke: rgb(0, 0, 0);
-    /* Color de las líneas de los ejes */
-    stroke-width: 2px;
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-/* Estilos para los textos de los ejes */
-.x-axis text,
-.y-axis text {
-    font-family: Arial, sans-serif;
-    /* Fuente para el texto */
-    font-size: 12px;
-    /* Tamaño de fuente */
-    stroke-width: 2px;
+h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-/* Estilos para el contenedor SVG */
-svg {
-    margin-bottom: 5%;
-    margin-top: 3%;
-    margin-left: 10%;
-    font-family: Arial, sans-serif;
-    /* Fuente para el texto */
-    background-color: rgb(187, 187, 187);
-    border-radius: 5%;
+#line,
+#radar {
+    margin-top: 20px;
+    border-radius: 50%;
 }
 
-.chart-heading {
-    font-family: "Rubik", sans-serif;
-    color: #000000;
-    text-transform: uppercase;
-    font-size: 20px;
-    text-align: center;
-}
-
-.chart-container {
+canvas {
     width: 100%;
-}
-
-.programming-stats {
-    background-color: rgb(185, 185, 185);
-    font-family: "Rubik", sans-serif;
-    margin-left: 10%;
-    align-items: center;
-    gap: 24px;
-    width: 35%;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    padding: 8px 32px;
-    transition: all 400ms ease;
-    margin-bottom: 5%;
-}
-
-.programming-stats:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
+    height: 300px;
 }
