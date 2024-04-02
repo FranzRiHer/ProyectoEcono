@@ -16,6 +16,7 @@ public class IngresoRepository {
     }
 
     public Ingreso save(Ingreso i){
+        System.out.println(i);
         return ingresosCRUDRepository.save(i);
     }
     

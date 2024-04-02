@@ -5,6 +5,7 @@ function setFuentesIngresos() {
     // Validar si la cifra de dinero es un número
     if (!isNaN(cifraDinero)) {
         let token = localStorage.getItem('token');
+        let id = localStorage.getItem('userId')
         // Crear objeto JSON con los datos
         var datos = {
             cantidad: cifraDinero,
@@ -22,7 +23,7 @@ function setFuentesIngresos() {
         };
 
         // URL a la que se enviarán los datos
-        var url = 'http://localhost:8080/ingreso/add';
+        var url = 'http://localhost:8080/ingreso/add/' + id;
 
         // Realizar solicitud fetch
         fetch(url, opciones)

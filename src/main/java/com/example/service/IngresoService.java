@@ -24,9 +24,11 @@ public class IngresoService {
     }
     
     @Transactional
-    public Ingreso save(Ingreso ingreso){
+    public Ingreso save(Ingreso ingreso, int id){
         // Obtener el usuario asociado al Ingreso
-        Usuario usuario = usuarioRepository.getAllUsuarios().get(0);
+        Usuario usuario = usuarioRepository.getAllUsuarios().get(id);
+
+        System.out.println(usuario.getUsername());
 
         // Actualizar el saldo del usuario
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());

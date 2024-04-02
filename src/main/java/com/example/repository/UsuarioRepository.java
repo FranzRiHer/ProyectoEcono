@@ -22,7 +22,7 @@ public class UsuarioRepository {
     }
 
     public Usuario getUserById(Long id){
-        return usuarioCRUDRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return usuarioCRUDRepository.findById(id).orElse(null);
     }
 
 
