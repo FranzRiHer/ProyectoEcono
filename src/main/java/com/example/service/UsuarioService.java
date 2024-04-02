@@ -24,8 +24,17 @@ public class UsuarioService {
         return usuarioRepository.getUsuario(id);
     }
 
+    public Usuario getUserId(Long id){
+        Usuario usuario = usuarioRepository.getUserById(id);
+        return usuario;
+    }
+
     public Usuario save(Usuario u){
         return usuarioRepository.save(u);
+    }
+
+    public void deleteUser(Long id){
+        usuarioRepository.deleteUsaer(id);;
     }
     
 }

@@ -21,8 +21,8 @@ public class UsuarioRepository {
         return usuario;
     }
 
-    public Usuario getUsuarioById(Long id){
-        return usuarioCRUDRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public Usuario getUserById(Long id){
+        return usuarioCRUDRepository.findById(id).orElse(null);
     }
 
 
@@ -30,4 +30,7 @@ public class UsuarioRepository {
         return usuarioCRUDRepository.save(u);
     }
 
+    public void deleteUsaer(Long id){
+        usuarioCRUDRepository.deleteById(id);
+    }
 }
