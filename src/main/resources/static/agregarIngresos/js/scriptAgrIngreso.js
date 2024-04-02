@@ -4,6 +4,7 @@ function setFuentesIngresos() {
 
     // Validar si la cifra de dinero es un número
     if (!isNaN(cifraDinero)) {
+        let token = localStorage.getItem('token');
         // Crear objeto JSON con los datos
         var datos = {
             cantidad: cifraDinero,
@@ -14,6 +15,7 @@ function setFuentesIngresos() {
         var opciones = {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(datos)
@@ -34,6 +36,8 @@ function setFuentesIngresos() {
             // Manejar la respuesta si es necesario
             console.log('Respuesta del servidor:', data);
             alert('Datos enviados exitosamente.');
+            $("#cifraDinero").val("");
+            $("#descripcion").val("")
         })
         .catch(error => {
             console.error('Error:', error);

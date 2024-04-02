@@ -44,16 +44,28 @@ const chartData = {
 const myChart = document.querySelector(".my-chart"); // Make sure .my-chart is the class of your <canvas>
 const ul = document.querySelector(".programming-stats .details ul"); // Adjust if necessary
 
+
+
 function getIngresos() {
+    let token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+    let id = localStorage.getItem('userId');
+    console.log("ID:"+id);
+    console.log("Token:"+token);
     return $.ajax({
-        url: "http://localhost:8080/usuarios/usuario_get",
+        url: "http://localhost:8080/usuarios/usuario_get/"+id,
         type: "GET",
         dataType: "JSON",
-        contentType: "text",
+        contentType: "application/json",
+        // La propiedad contentType no es necesaria para un GET, pero se deja si es requerido por el backend
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
         success: function (result) {
             $('#ingresos').text(result.ingresoTotal);
-            console.log(result.ingresoTotal)
-            return result.valorIngresos;
+            console.log(result.ingresoTotal);
+            return result.valorIngresos; // Asegúrate de que este es el objeto o valor correcto que quieres retornar
         },
         error: function (error) {
             $('#ingresos').text('Error al cargar los ingresos.');
@@ -63,47 +75,28 @@ function getIngresos() {
 }
 
 function getEgresos() {
-
+    let token = localStorage.getItem('token'); // Asegúrate de obtener el token de la misma manera que en getIngresos
+    let id = localStorage.getItem('userId');
     return $.ajax({
-        url: "http://localhost:8080/usuarios/usuario_get",
+        url: "http://localhost:8080/usuarios/usuario_get/"+id,
         type: "GET",
         dataType: "JSON",
-        contentType: "text",
+        contentType: "application/json",
+        // La propiedad contentType no es necesaria para un GET, pero se deja si es requerido por el backend
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
         success: function (result) {
             $('#egresos').text(result.egresoTotal);
             $('#saldoTotal').text(result.saldo);
-            console.log(result.egresoTotal)
-            return result.valorEgresos;
+            console.log(result.egresoTotal);
+            return result.valorEgresos; // Verifica que este sea el valor correcto que deseas retornar
         },
         error: function (error) {
-            $('#egresos').text('Error al cargar los ingresos.');
+            $('#egresos').text('Error al cargar los egresos.');
             console.log(error);
         },
-    });
-}
-
-
-function populateUl() {
-    const ul = document.querySelector(".programming-stats .details ul");
-    
-    if (!ul) {
-        console.error('The UL element does not exist in the DOM.');
-        return; // Do not proceed if ul is not found
-    }
-
-    // Calcula el total
-    const total = chartData.data.reduce((acc, curr) => acc + curr, 0);
-
-    // Limpia el UL antes de añadir nuevos elementos
-    ul.innerHTML = '';
-
-    chartData.labels.forEach((label, index) => {
-        // Calcula el porcentaje que representa cada valor
-        const percentage = ((chartData.data[index] / total) * 100).toFixed(2); // Redondea a dos decimales
-
-        // Crea y añade el nuevo elemento LI
-        let li = document.createElement("li");
-        li.innerHTML = `${label}: <span class='percentage'>${percentage}%</span>`;
-        ul.appendChild(li);
     });
 }

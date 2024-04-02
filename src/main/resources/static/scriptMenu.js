@@ -10,10 +10,16 @@ function redireccionar(elemento) {
 }
 
 function sendLink(idElemento, callback) {
+    let token = localStorage.getItem('token');
     $.ajax({
         url: "http://localhost:8080/menu/vista/" + idElemento,
         type: "GET",
         dataType: "text", // Cambiado a "text" porque estamos esperando una ruta como texto
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
 
         success: function (result) {
             console.log(result);
