@@ -33,25 +33,24 @@ svg {
     margin-left: 10%;
     font-family: Arial, sans-serif;
     /* Fuente para el texto */
-    background-color: rgb(224, 217, 217);
+    background-color: rgb(187, 187, 187);
     border-radius: 5%;
 }
 
 .chart-heading {
     font-family: "Rubik", sans-serif;
-    color: #023047;
+    color: #000000;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 
 .chart-container {
-    width: 200px;
-    
+    width: 100%;
 }
 
 .programming-stats {
-    background-color: rgb(224, 217, 217);
+    background-color: rgb(185, 185, 185);
     font-family: "Rubik", sans-serif;
     margin-left: 10%;
     align-items: center;
@@ -60,7 +59,6 @@ svg {
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     padding: 8px 32px;
-    color: #023047;
     transition: all 400ms ease;
     margin-bottom: 5%;
 }
@@ -68,21 +66,4 @@ svg {
 .programming-stats:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
-}
-
-.programming-stats .details ul {
-    list-style: none;
-    padding: 0;
-}
-
-.programming-stats .details ul li {
-    
-    font-size: 16px;
-    margin: 12px 0;
-    text-transform: uppercase;
-}
-
-.programming-stats .details .percentage {
-    font-weight: 700;
-    color: #e63946;
 }

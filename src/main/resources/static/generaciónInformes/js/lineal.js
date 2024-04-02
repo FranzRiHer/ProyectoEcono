@@ -98,13 +98,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const ul = document.querySelector(".programming-stats .details ul");
         
         new Chart(myChart, {
-            type: "doughnut",
+            type: "radar",
             data: {
                 labels: chartData.labels,
                 datasets: [
                     {
-                        label: "Language Popularity",
+                        label: "% de ingreso",
                         data: chartData.data,
+                        borderColor: 'rgb(77, 56, 124)', // Color más oscuro y transparente para la línea que muestra los datos
+                        borderWidth: 5, // Grosor más delgado de la línea que muestra los datos
                     },
                 ],
             },
@@ -114,19 +116,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 hoverBorderWidth: 0,
                 plugins: {
                     legend: {
-                        display: false,
+                        labels: {
+                            Color: 'rgba(0, 0, 0, 0.3)' // Color más oscuro para los nombres de las opciones
+                        }
                     },
                 },
+                scales: {
+                    r: {
+                        grid: {
+                            color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
+                        },
+                        angleLines: {
+                            color: "rgba(0, 0, 0, 1)" // Color más oscuro para las líneas del radar
+                        }
+                    }
+                }
             },
         });
         
-        const populateUl = () => {
-            chartData.labels.forEach((l, i) => {
-                let li = document.createElement("li");
-                li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
-                ul.appendChild(li);
-            });
-        };
         
-        populateUl();
+        
+
 });
