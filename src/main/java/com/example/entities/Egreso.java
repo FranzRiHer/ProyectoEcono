@@ -22,6 +22,11 @@ public class Egreso {
     
     private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria")
+
+    private CategoriaEgreso categoriaEgreso;
+
 
     public Long getIdEgreso() {
         return idEgreso;
@@ -44,6 +49,15 @@ public class Egreso {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public CategoriaEgreso getCategoriaEgreso() {
+        return categoriaEgreso;
+    }
+    public void setCategoriaEgreso(CategoriaEgreso categoriaEgreso) {
+        this.categoriaEgreso = categoriaEgreso;
     }
     
 }

@@ -1,3 +1,12 @@
+function mostrarPersonalizado(){
+    var opcion = document.getElementById("categoriaMenu");
+    if(opcion.value === "personalizado") {
+        document.getElementById('opcionPersonalizada').style.display = 'block';
+    } else {
+        document.getElementById('opcionPersonalizada').style.display = 'none';
+    }
+}
+
 function validarLabels() {
     let egreso = $("#egresoInput").val();
     let descripcion = $("#descripcionEgreso").val();
@@ -46,3 +55,4 @@ function saveEgreso(egreso, descripcion) {
         }
     });
 }
+

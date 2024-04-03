@@ -81,50 +81,25 @@
       </div>
     </div>
 
-<<<<<<< HEAD
-    <div class="container-fluid mt-3">
-
-      <!-- Saludo -->
-      <div class="container-fluid mt-3">
-        <nav id="welcomeBar" class="navbar bg-body-tertiary">
-          <div class="container-fluid">
-            <span  class="navbar-brand mb-0 h1"><b>Bienvenido: </b> </span>
-          </div>
-        </nav>
-      </div>
-
-      <!-- Registro -->
-      <div class="container-fluid mt-3">
-        <h1 class="title">Registre sus gastos</h1>
-        <br />
-        <h5 class="title"></h5>
-        <form>
-          <div class="form-group">
-            <label for="cuantoInput">Cantidad del Egreso</label>
-            <input type="text" class="form-control" id="egresoInput" placeholder="Cantidad" />
-          </div>
-          <div class="form-group">
-            <label for="descripcionInput">Descripcion de la transacción</label>
-            <input type="text" class="form-control" id="descripcionEgreso"
-              placeholder="Descripcion" />
-          </div>
-          <div class="form-group">
-            <label for="categoriaInput">Categoria del egreso</label>
-            <input type="text" class="form-control" id="categoriaEgreso"
-              placeholder="Categoria" />
-          </div>
-        </form>
-        <button onclick="validarLabels()" type="submit" class="btn btn-primary">
-          Enviar
-        </button>
-=======
     <!-- Tabla para cargar datos -->
     <div class="container">
       <h1>Ingrese sus gastos</h1>
       <div class="input-container">
         <input id="egresoInput" type="text" placeholder="Cantidad">
         <textarea id="descripcionEgreso" placeholder="Descripcion"></textarea>
->>>>>>> 19743f8ba7a109909e3f62e57bfcd87e5a9f1f36
+        <label for="categoriaMenu">Elige una categoria:</label>
+
+        <select name="categorias" id="categoriaMenu" onchange="mostrarPersonalizado()">
+          <option value="CatManutencion">Manutencion</option>
+          <option value="CatEntretenimiento">Entretenimieto</option>
+          <option value="CatMascota">Mascota</option>
+          <option value="CatSocial">Social</option>
+          <option value="CatDeuda">Deuda</option>
+          <option value="personalizado">Otro...</option>
+        </select>
+
+        <input type="text" id="opcionPersonalizada" style="display:none;" placeholder="Introduce tu opción">
+
       </div>
       <button onclick="validarLabels()" class="btn">Enviar</button>
     </div>
