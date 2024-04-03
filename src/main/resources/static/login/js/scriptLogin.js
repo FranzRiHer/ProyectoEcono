@@ -30,11 +30,17 @@ $(document).ready(function () {
                 // Comprobación adicional para asegurarse de que el campo userId existe
                 if (tokenPayload.userId) {
                     var userId = tokenPayload.userId;
+                    var rol = tokenPayload.rol;
                     // Guardar el ID del usuario en localStorage
                     localStorage.setItem('userId', userId);
-                    
+                    localStorage.setItem('rol',rol)
                     // Redireccionar a la página principal
-                    window.location.href = '/src/main/resources/static/principal/index.html';
+                    if (rol == "USER"){
+                        window.location.href = '/src/main/resources/static/principal/index.html';
+                    } else {
+                        window.location.href = '/src/main/resources/static/administrador/principal/indexadmin.html';
+                    }
+                    
                 } else {
                     // Manejar el caso de que userId no exista o sea null
                     alert("Error al obtener la información del usuario. Por favor, intenta nuevamente.");

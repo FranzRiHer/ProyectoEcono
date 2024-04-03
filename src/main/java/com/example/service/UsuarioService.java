@@ -29,7 +29,7 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario u){
-        return usuarioRepository.save(u);
+        return userRepository.save(u);
     }
     public Usuario getUsuarioById(Long id) {
         Optional<Usuario> usuarioOptional = userRepository.findById(id);

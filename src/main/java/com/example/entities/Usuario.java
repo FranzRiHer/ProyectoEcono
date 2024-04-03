@@ -71,6 +71,7 @@ public class Usuario implements UserDetails {
         this.username = username;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
