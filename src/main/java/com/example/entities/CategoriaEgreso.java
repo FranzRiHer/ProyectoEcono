@@ -50,4 +50,5 @@ public class CategoriaEgreso {
         this.descripcion = descripcion;
     }
 
+
 }
