@@ -1,14 +1,11 @@
 package com.example.service;
 
 import java.util.List;
-import java.util.concurrent.atomic.LongAccumulator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Ingreso;
 import com.example.entities.Usuario;
-import com.example.repository.UsuarioRepository;
 import com.example.repository.IngresoRepository;
 
 
