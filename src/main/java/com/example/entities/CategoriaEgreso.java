@@ -26,6 +26,11 @@ public class CategoriaEgreso {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoriaEgreso" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
 
+    public CategoriaEgreso( String descripcion, Long idUsuario) {
+        this.descripcion = descripcion;
+        this.idUsuario = idUsuario;
+    }
+
     public Long getIdCategoriaEgreso() {
         return idCategoriaEgreso;
     }
@@ -49,5 +54,6 @@ public class CategoriaEgreso {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 
 }
