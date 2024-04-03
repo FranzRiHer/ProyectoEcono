@@ -1,4 +1,5 @@
 package com.example.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,29 +17,22 @@ public class EgresosService {
     private EgresosRepository egresosRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
-    public List<Egreso> getAllEgresos(){
-        
+    public List<Egreso> getAllEgresos() {
+
         return egresosRepository.getAllEgresos();
     }
 
-
-
     @Transactional
-    public Egreso save(Egreso egreso){
+    public Egreso save(Egreso egreso) {
         // Obtener el usuario asociado al egreso
-        Usuario usuario = usuarioRepository.getAllUsuarios().get(0);
 
-        // Actualizar el saldo del usuario
+        Usuario usuario = egreso.getUsuario();
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
-
-        // Actualizar el total de egresos del usuario
-        usuario.setEgresoTotal(usuario.getEgresoTotal() + egreso.getCantidadEgreso());
-
-        // Guardar el usuario actualizado
-        usuarioRepository.save(usuario);
-
+        usuario.setEgresoTotal(egreso.getUsuario().getEgresoTotal() + egreso.getCantidadEgreso());
+        Usuario usuarioGuardado = usuarioService.save(usuario);
+        
         // Guardar el egreso
         return egresosRepository.save(egreso);
 

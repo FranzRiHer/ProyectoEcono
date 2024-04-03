@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.example.entities.Rol;
 import com.example.entities.Usuario;
 
 import io.jsonwebtoken.Claims;
@@ -28,7 +29,9 @@ public class JwtService {
 
     private String getToken(Map<String,Object> extraClaims, UserDetails user) {
         Long userId = obtenerIdUsuarioDesdeUserDetails(user); // Aquí debes implementar el método para obtener el ID del usuario
-
+        Rol rol=  obtenerRol(user);
+        extraClaims.put("userId", userId);
+        extraClaims.put("rol",rol);
         // Agregar el ID del usuario a los reclamos adicionales
         extraClaims.put("userId", userId);
         return Jwts
@@ -90,6 +93,14 @@ public class JwtService {
             // Esto dependerá de cómo manejes la autenticación y la gestión de usuarios en tu aplicación
             // Por ejemplo, podrías buscar el ID en la base de datos o en otro lugar
             return null; // En este ejemplo, se devuelve null para indicar que no se pudo obtener el ID del usuario
+        }
+    }
+    
+    private Rol obtenerRol(UserDetails userDetails) {
+        if (userDetails instanceof Usuario) {
+            return ((Usuario) userDetails).getRol(); 
+        } else {
+            return null; 
         }
     }
     

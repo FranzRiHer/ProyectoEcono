@@ -83,7 +83,8 @@ INSERT INTO `menu` (`id`, `url`) VALUES
 ('agregarGastos', '/src/main/resources/static/registroGastos/rGastos.html'),
 ('agregarIngresos', '/src/main/resources/static/agregarIngresos/agregarIngresos.html'),
 ('principal', '/src/main/resources/static/principal/index.html'),
-('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html');
+('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html'),
+('editarPerfilUser','/src/main/resources/static/editarPerfilUser/editarPerfilUser.html');
 
 -- --------------------------------------------------------
 

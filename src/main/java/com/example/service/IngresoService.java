@@ -23,8 +23,15 @@ public class IngresoService {
     }
     
     @Transactional
-    public Ingreso save(Ingreso ingreso, Long id){
+    public Ingreso save(Ingreso ingreso){
+        Usuario usuario = ingreso.getUsuario();
+        usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
+        usuario.setIngresoTotal(ingreso.getUsuario().getIngresoTotal() + ingreso.getCantidad());
+        Usuario usuarioGuardado = usuarioService.save(usuario);
+
+
         // Obtener el usuario asociado al Ingreso
+        /*
         Usuario usuario = usuarioService.getUsuarioById(id);
 
         // Actualizar el saldo del usuario
@@ -35,7 +42,7 @@ public class IngresoService {
 
         // Guardar el usuario actualizado
         usuarioService.save(usuario);
-
+ */
         // Guardar el Ingreso
         return ingresoRepository.save(ingreso);
 
