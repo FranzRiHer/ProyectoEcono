@@ -16,16 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin
 @RestController
 @RequestMapping("/categorias_e")
-
-
 public class CategoriaEgresosController {
 
     @Autowired
     private CategoriaEgresoService catEgService;
     
     @GetMapping("/get_cat_e_user/{id}")
-    public List<CategoriaEgreso> getCategorasEgresosUsuario(@PathVariable Long id){
-        return catEgService.getCategorasEgresosUsuario(id);
+    public List<CategoriaEgreso> getCategoriasEgresosUsuario(@PathVariable Long id){
+        return catEgService.getCategoriasEgresosUsuario(id);
     }
 
     @PostMapping("/add_cat_e")

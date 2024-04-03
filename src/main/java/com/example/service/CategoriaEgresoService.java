@@ -5,17 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.entities.CategoriaEgreso;
 import com.example.repository.CategoriaEgresosRepository;
-
 import jakarta.transaction.Transactional;
-
 
 @Service
 public class CategoriaEgresoService {
     @Autowired
     private CategoriaEgresosRepository catEgRepo;
 
-    public List<CategoriaEgreso> getCategorasEgresosUsuario(Long userID){
-        return catEgRepo.getCategorasEgresosUsuario(userID);
+    public List<CategoriaEgreso> getCategoriasEgresosUsuario(Long userID){
+        return catEgRepo.getCategoriasEgresosUsuario(userID);
     }
 
     @Transactional

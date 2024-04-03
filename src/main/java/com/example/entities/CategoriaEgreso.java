@@ -25,7 +25,7 @@ public class CategoriaEgreso {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoriaEgreso" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
-
+    
     public Long getIdCategoriaEgreso() {
         return idCategoriaEgreso;
     }

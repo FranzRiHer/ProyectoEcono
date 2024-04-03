@@ -20,7 +20,7 @@ public class CategoriaEgresosRepository {
         return categoriaEgresosCRUDRepository.save(ce);
     }
 
-    public List<CategoriaEgreso> getCategorasEgresosUsuario(long userID){
+    public List<CategoriaEgreso> getCategoriasEgresosUsuario(long userID){
         return (List<CategoriaEgreso>) categoriaEgresosCRUDRepository.findByidUsuario(userID);
     } 
     
