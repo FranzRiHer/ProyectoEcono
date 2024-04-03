@@ -2,7 +2,6 @@ let categorias = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     cargarCategorias();
-    setTimeout(() => console.log(categorias), 500);
 });
 
 function mostrarPersonalizado(){
@@ -60,6 +59,7 @@ function validarCategoria() {
 
         if (!existeCategoria) {
             crearCategoria(descripcion); 
+            setTimeout(() => cargarCategorias(), 500);
         } else {
             alert("La categoría ya existe.");
         }
@@ -93,12 +93,10 @@ function crearCategoria(desc){
             }
         },
         success: function (result) {
-            console.log(result);
             $("#categoriaPersonalizada").val("");
             alert('Datos enviados exitosamente.');
         },
         error: function (error) {
-            console.log(error);
             alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
         }
     });
