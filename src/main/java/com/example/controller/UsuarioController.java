@@ -8,20 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.entities.Usuario;
 import com.example.service.UsuarioService;
-
-=======
->>>>>>> 394ad5cb4bd8245f415bdaa04a5536bcb00b0f9b
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-<<<<<<< HEAD
-=======
-import java.util.List;
-
->>>>>>> 394ad5cb4bd8245f415bdaa04a5536bcb00b0f9b
 @CrossOrigin
 @RestController
 @RequestMapping("/usuarios")
