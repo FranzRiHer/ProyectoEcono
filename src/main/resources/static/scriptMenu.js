@@ -1,5 +1,5 @@
 function redireccionar(elemento) {
-    var idElemento = elemento.id;
+    var idElemento = elemento.id;  
     sendLink(idElemento, function (nuevoLink) {
         if (nuevoLink) {
             window.location.href = nuevoLink; // Redirige a la nueva URL

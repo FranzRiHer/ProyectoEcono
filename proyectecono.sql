@@ -84,6 +84,7 @@ INSERT INTO `menu` (`id`, `url`) VALUES
 ('agregarIngresos', '/src/main/resources/static/agregarIngresos/agregarIngresos.html'),
 ('principal', '/src/main/resources/static/principal/index.html'),
 ('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html');
+('editarPerfilUser','/src/main/resources/static/editarPerfilUser/editarPerfilUser.html');
 
 -- --------------------------------------------------------
 
