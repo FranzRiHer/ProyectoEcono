@@ -54,7 +54,7 @@ public class Usuario implements UserDetails {
     public Long getId() {
         return id;
     }
-    public String getNombre() {
+    public String getNombre() { 
         return nombre;
     }
     public String getEmail() {
