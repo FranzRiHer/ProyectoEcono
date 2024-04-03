@@ -21,8 +21,8 @@ public class AdminController {
     private UsuarioService usuarioService;
 
     @GetMapping("/getUser")
-    public Usuario getUsuario(@RequestBody Long id) {
-        return usuarioService.getUserId(id);
+    public Usuario getUsuario(@RequestBody int id) {
+        return usuarioService.getUsuario(id);
     }
 
     @GetMapping("/getAllUsers")

@@ -29,13 +29,8 @@ public class IngresoController {
     }
 
     @PostMapping("/add/{id}")
-    public Ingreso saveIngreso(@RequestBody Ingreso i, @PathVariable int id){
+    public Ingreso saveIngreso(@RequestBody Ingreso i, @PathVariable Long id){
         return ingresoService.save(i, id);
     }
-    
-    @GetMapping("/ingresoPrueba/{id}")
-    public int pruebaId(@PathVariable int id){
-        return id;
-    }
-    
+
 }

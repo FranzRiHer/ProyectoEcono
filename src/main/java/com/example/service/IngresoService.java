@@ -1,6 +1,8 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.concurrent.atomic.LongAccumulator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,18 +19,16 @@ public class IngresoService {
     private IngresoRepository ingresoRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     public List<Ingreso> getAllIngresos(){
         return ingresoRepository.getAllIngresos();
     }
     
     @Transactional
-    public Ingreso save(Ingreso ingreso, int id){
+    public Ingreso save(Ingreso ingreso, Long id){
         // Obtener el usuario asociado al Ingreso
-        Usuario usuario = usuarioRepository.getUserById(Long.valueOf(id));
-
-        System.out.println(usuario.getUsername());
+        Usuario usuario = usuarioService.getUsuarioById(id);
 
         // Actualizar el saldo del usuario
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
@@ -37,15 +37,11 @@ public class IngresoService {
         usuario.setIngresoTotal(usuario.getIngresoTotal() + ingreso.getCantidad());
 
         // Guardar el usuario actualizado
-        usuarioRepository.save(usuario);
+        usuarioService.save(usuario);
 
         // Guardar el Ingreso
         return ingresoRepository.save(ingreso);
 
     }
-    @Transactional
-    public Usuario prueba(int id){
-        Usuario usuario = usuarioRepository.getUsuario(0);
-        return usuario;
-    }
+    
 }
