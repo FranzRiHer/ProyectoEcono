@@ -29,5 +29,7 @@ public class UsuarioRepository {
     public Usuario save(Usuario u){
         return usuarioCRUDRepository.save(u);
     }
+    
+    
 
 }
