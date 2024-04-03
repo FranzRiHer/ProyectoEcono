@@ -16,13 +16,13 @@
 
     <!-- Configuracion global de CSS -->
     <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css" />
-    <link rel="stylesheet" href="stConsulClientes.css" />
+    <link rel="stylesheet" href="stModificarClientes.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="/src/main/resources/static/scriptMenu.js"></script>
-    <script src="js/scConsultarClientes.js"></script>
+    <script src="js/scModificarClientes.js"></script>
 </head>
 
 <body>
@@ -103,25 +103,39 @@
         <!-- Contenedor para la barra de bienvenida y el contenido principal -->
         <!-- Tabla para cargar datos -->
         <div class="container">
-            <h1>Ver Usuario por ID</h1>
+            <h1>Actualizar Usuario por ID</h1>
             <div class="input-container">
                 <input id="idUsuario" type="text" placeholder="Digite Id">
             </div>
-            <button onclick="getCliente()" class="btn">Cargar</button>
-            <table id="tablaDatos">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>UserName</th>
-                        <th>Rol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <button onclick="getCliente()" class="btn">Traer Información</button>
+            <div class="container-fluid mt-3">
+
+                <!-- Contenedor para la barra de bienvenida y el contenido principal -->
+                <div class="flex-grow-1 d-flex flex-column">
+                    <!-- flex-grow-1 para ocupar el espacio restante -->
+
+                    <div class="container-fluid mt-3" id="InformacionColceccion" style="display:none">
+                        <h1 class="title">Información del Perfil</h1>
+                        <br />
+                        <h5 class="title"></h5>
+                        <form id="profile-form" class="center-form">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="nameInput" name="name" required>
+
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" id="emailInput" name="email" required>
+
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="contrasenaInput" name="password" required>
+
+                        </form>
+                        <button onclick="validarLabels()" class="btn">Actualizar Cliente</button>
+                    </div>
+
+                </div>
+                <!-- Fin Tabla para cargar datos -->
+            </div>
         </div>
-        <!-- Fin Tabla para cargar datos -->
     </div>
 </body>
 
