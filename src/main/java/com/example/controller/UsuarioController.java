@@ -1,15 +1,13 @@
 package com.example.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.entities.Usuario;
 import com.example.service.UsuarioService;
-<<<<<<< HEAD
-//import com.example.repository.UsuarioRepository;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import java.util.List;
 
 =======
 >>>>>>> 394ad5cb4bd8245f415bdaa04a5536bcb00b0f9b
@@ -34,17 +32,14 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuario_get/{id}")
-    public Usuario getUsuario(@PathVariable int id) {
-        return usuarioService.getUsuario(id-1);
+    public Usuario getUsuario(@PathVariable Long id) {
+        return usuarioService.getUsuarioById(id);
     }
-    // public List<Usuario> getAllUsuarios(){
-<<<<<<< HEAD
-    // return usuarioService.getAllUsuarios();
-    // }
-=======
-    //     return usuarioService.getAllUsuarios();
-    //}
->>>>>>> 394ad5cb4bd8245f415bdaa04a5536bcb00b0f9b
+
+    @GetMapping("/usuarios_get")
+    public List<Usuario> geAlltUsuario() {
+        return usuarioService.getAllUsuarios();
+    }
 
     @PostMapping("/add")
     public Usuario saveUsuario(@RequestBody Usuario u) {
@@ -55,4 +50,11 @@ public class UsuarioController {
     public String hola() {
         return "Hola desde Spring Boot!";
     }
+
+        
+    @GetMapping("/Prueba/{id}")
+    public int pruebaId(@PathVariable int id){
+        return id;
+    }    
+    
 }

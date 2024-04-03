@@ -26,10 +26,9 @@ public class IngresoController {
         return ingresoService.getAllIngresos();
     }
 
-    @PostMapping("/add")
-    public Ingreso saveIngreso(@RequestBody Ingreso i){
-        return ingresoService.save(i);
+    @PostMapping("/add/{id}")
+    public Ingreso saveIngreso(@RequestBody Ingreso i, @PathVariable Long id){
+        return ingresoService.save(i, id);
     }
-    
-    
+
 }
