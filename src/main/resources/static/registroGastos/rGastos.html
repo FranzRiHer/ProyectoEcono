@@ -90,15 +90,13 @@
         <label for="categoriaMenu">Elige una categoria:</label>
 
         <select name="categorias" id="categoriaMenu" onchange="mostrarPersonalizado()">
-          <option value="CatManutencion">Manutencion</option>
-          <option value="CatEntretenimiento">Entretenimieto</option>
-          <option value="CatMascota">Mascota</option>
-          <option value="CatSocial">Social</option>
-          <option value="CatDeuda">Deuda</option>
-          <option value="personalizado">Otro...</option>
+          <!-- Las opciones se cargarán dinámicamente -->
         </select>
 
-        <input type="text" id="opcionPersonalizada" style="display:none;" placeholder="Introduce tu opción">
+        <div>
+          <input type="text" id="categoriaPersonalizada" style="display:none;" placeholder="Introduce tu opción">
+          <button id = "validadCatBTN" onclick="validarCategoria()" class="btn" style="display:none;">Crear Categoria </button>
+        </div>
 
       </div>
       <button onclick="validarLabels()" class="btn">Enviar</button>
