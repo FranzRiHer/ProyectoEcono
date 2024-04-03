@@ -1,3 +1,19 @@
+let categorias = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    cargarCategorias();
+    setTimeout(() => console.log(categorias), 500);
+});
+
+function mostrarPersonalizado(){
+    var opcion = document.getElementById("categoriaMenu");
+    if(opcion.value === "personalizado") {
+        document.getElementById('crearCategoriaBTN').style.display = 'block';
+    } else {
+        document.getElementById('crearCategoriaBTN').style.display = 'none';
+    }
+}
+
 function getCliente() {
     let id = localStorage.getItem('userId') // Asegúrate de obtener el valor correcto
     console.log("ID del usuario: ", id); // Verificar el ID obtenido
@@ -44,8 +60,6 @@ function validarCategoria() {
 
         if (!existeCategoria) {
             crearCategoria(descripcion); 
-            setTimeout(() =>  cargarCategorias(), 500);
-
         } else {
             alert("La categoría ya existe.");
         }
@@ -62,6 +76,8 @@ function crearCategoria(desc){
     }
 
     let dataToSend = JSON.stringify(data);
+    console.log(dataToSend);
+
     let token = localStorage.getItem('token');
 
     $.ajax({
