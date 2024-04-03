@@ -1,15 +1,16 @@
+let categorias = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     cargarCategorias();
+    setTimeout(() => console.log(categorias), 500);
 });
 
 function mostrarPersonalizado(){
     var opcion = document.getElementById("categoriaMenu");
     if(opcion.value === "personalizado") {
-        document.getElementById('categoriaPersonalizada').style.display = 'block';
-        document.getElementById('validadCatBTN').style.display = 'block';
+        document.getElementById('crearCategoriaBTN').style.display = 'block';
     } else {
-        document.getElementById('categoriaPersonalizada').style.display = 'none';
-        document.getElementById('validadCatBTN').style.display = 'none';
+        document.getElementById('crearCategoriaBTN').style.display = 'none';
     }
 }
 
@@ -24,14 +25,23 @@ function validarLabels() {
     }
 }
 
-function validarCategoria(){
-    let descripcion = $("#categoriaPersonalizada").val();
+function validarCategoria() {
+    let descripcion = $("#categoriaPersonalizada").val().toUpperCase(); // Convertir a mayúsculas
     document.getElementById('categoriaPersonalizada').value = '';
 
-    if((descripcion !== "")){
-        crearCategoria(descripcion)
+    if (descripcion !== "") {
+        // Verificar si la categoría ya existe en el arreglo local
+        let existeCategoria = categorias.some(function(categoria) {
+            return categoria.toUpperCase() === descripcion;
+        });
+
+        if (!existeCategoria) {
+            crearCategoria(descripcion); 
+        } else {
+            alert("La categoría ya existe.");
+        }
     } else {
-        window.alert("El campo de categoria debe estar lleno.");
+        window.alert("El campo de categoría debe estar lleno.");
     }
 }
 
@@ -61,9 +71,7 @@ function crearCategoria(desc){
         },
         success: function (result) {
             console.log(result);
-            $("#egresoInput").val("");
-            $("#descripcionEgreso").val("");
-            console.log(result);
+            $("#categoriaPersonalizada").val("");
             alert('Datos enviados exitosamente.');
         },
         error: function (error) {
@@ -127,20 +135,25 @@ function cargarCategorias() {
         success: function (result) {
             const select = $('#categoriaMenu');
             select.empty();
+            categorias = [];
 
             // Verificar si el resultado está vacío
             if (result.length === 0) {
 
                 // Categorías por defecto
-                setTimeout(() => crearCategoria('Comida'), 0);
-                setTimeout(() => crearCategoria('Transporte'), 500);
-                setTimeout(() => crearCategoria('Social'), 1000);
+                setTimeout(() => crearCategoria('COMIDA'), 0);
+                setTimeout(() => crearCategoria('TRASNPORTE'), 500);
+                setTimeout(() => crearCategoria('SOCIAL'), 1000);
+                categorias.push('COMIDA');
+                categorias.push('TRASNPORTE');
+                categorias.push('SOCIAL');
 
             } else {
                 // Cargar categorías del resultado
                 $.each(result, function() {
                     const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
                     select.append(option);
+                    categorias.push(this.descripcion); 
                 });
             }
 
@@ -153,5 +166,3 @@ function cargarCategorias() {
         }
     });
 }
-
-setInterval(cargarCategorias, 10000);
