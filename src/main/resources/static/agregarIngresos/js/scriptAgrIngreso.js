@@ -1,4 +1,26 @@
-function setFuentesIngresos() {
+function getCliente() {
+    let id = localStorage.getItem('userId') // Asegúrate de obtener el valor correcto
+    console.log("ID del usuario: ", id); // Verificar el ID obtenido
+    let token = localStorage.getItem("token");
+    var url = "http://localhost:8080/usuarios/usuario_get/" + id;
+  
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+      setFuentesIngresos(data); // Pasar el objeto directamente
+    })
+    .catch((error) => {
+      console.error("Error al obtener los datos:", error);
+    });
+  }
+
+function setFuentesIngresos(data) {
     var cifraDinero = document.getElementById("cifraDinero").value;
     var comentario = document.getElementById("descripcion").value;
 
@@ -9,9 +31,10 @@ function setFuentesIngresos() {
         // Crear objeto JSON con los datos
         var datos = {
             cantidad: cifraDinero,
-            descripcion: comentario
+            descripcion: comentario,
+            usuario: data
         };
-
+        console.log(datos)
         // Configurar opciones para la solicitud fetch
         var opciones = {
             method: 'POST',
@@ -20,7 +43,9 @@ function setFuentesIngresos() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(datos)
+
         };
+        console.log(JSON.stringify(datos))
 
         // URL a la que se enviarán los datos
         var url = 'http://localhost:8080/ingreso/add/' + id;

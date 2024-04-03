@@ -1,5 +1,8 @@
+var id; // Asegúrate de obtener el valor correcto
+var datosOriginales = {};
+
 function getCliente() {
-  let id = $("#idUsuario").val(); // Asegúrate de obtener el valor correcto
+  id = $("#idUsuario").val(); 
   console.log("ID del usuario: ", id); // Verificar el ID obtenido
   let token = localStorage.getItem("token");
   var url = "http://localhost:8080/usuarios/usuario_get/" + id;
@@ -20,10 +23,14 @@ function getCliente() {
 }
 
 function mostrarDatosLabel(data) {
+  datosOriginales = data;
 
   $("#nameInput").val(data.nombre);
   $("#emailInput").val(data.email);
-  $("#contrasenaInput").val(data.password);
+  //$("#contrasenaInput").val(data.password);
+  $("#contrasenaInput").val("");
+  document.getElementById('InformacionColceccion').style.display = 'block';
+
 }
 
 function validarLabels() {
@@ -39,16 +46,16 @@ function validarLabels() {
 }
 
 function saveEdit(nombre, contrasena, email) {
-  let id = localStorage.getItem('userId');
   let token = localStorage.getItem('token');
   let data = {
-      nombre: nombre,
-      email: email,
-      password: contrasena
-  }
+    nombre: nombre,
+    email: email,
+    password: contrasena
+}
 
   let dataToSend = JSON.stringify(data);
-  console.log(dataToSend)
+
+  console.log("dATASASA" + dataToSend)
 
 
   $.ajax({
@@ -60,7 +67,7 @@ function saveEdit(nombre, contrasena, email) {
       beforeSend: function(xhr) {
           if (token) {
               xhr.setRequestHeader("Authorization", "Bearer " + token);
-              console.log(data);
+              console.log(datosOriginales);
           }
       },
       success: function (result) {
@@ -77,7 +84,7 @@ function saveEdit(nombre, contrasena, email) {
           $("#nameInput").val("");
           $("#contrasenaInput").val("");
           $("#emailInput").val("");
-          alert('Datos enviados exitosamente.');S
+          alert('Datos enviados exitosamente.');
       }
   })
 }

@@ -22,8 +22,8 @@ public class UsuarioRepository {
         return usuario;
     }
 
-    public Usuario getUsuarioById(Long id){
-        return usuarioCRUDRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public Optional<Usuario> getUsuarioById(Long id){
+        return usuarioCRUDRepository.findById(id);
     }
 
     public Usuario save(Usuario u){
