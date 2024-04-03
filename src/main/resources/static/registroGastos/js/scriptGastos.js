@@ -2,7 +2,6 @@ let categorias = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     cargarCategorias();
-    setTimeout(() => console.log(categorias), 500);
 });
 
 function mostrarPersonalizado(){
@@ -37,6 +36,8 @@ function validarCategoria() {
 
         if (!existeCategoria) {
             crearCategoria(descripcion); 
+            setTimeout(() =>  cargarCategorias(), 500);
+
         } else {
             alert("La categoría ya existe.");
         }
@@ -53,8 +54,6 @@ function crearCategoria(desc){
     }
 
     let dataToSend = JSON.stringify(data);
-    console.log(dataToSend);
-
     let token = localStorage.getItem('token');
 
     $.ajax({
