@@ -170,6 +170,7 @@ function cargarCategorias() {
                 categorias.push('COMIDA');
                 categorias.push('TRASNPORTE');
                 categorias.push('SOCIAL');
+                setTimeout(() => cargarCategorias(), 500);
 
             } else {
                 // Cargar categorías del resultado
