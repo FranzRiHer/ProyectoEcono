@@ -101,7 +101,76 @@
             </div>
         </div>
         <!-- Contenedor para la barra de bienvenida y el contenido principal -->
-        SU CONTENIDO AQUI
+        <div class="container-fluid">
+            <div class="row mb-4 align-items-center"> <!-- Margen en la parte inferior de la fila para la búsqueda -->
+                <div class="col-lg-3 col-md-3 col-sm-12 mb-3 mb-md-0 d-flex align-items-center">
+                    <input class="form-control" id="searchInput" type="text" placeholder="Buscar...">
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-3 mb-md-0 d-flex align-items-center">
+                    <input class="form-control" type="date" id="fechaInicio" placeholder="Fecha de inicio">
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-3 mb-md-0 d-flex align-items-center">
+                    <input class="form-control" type="date" id="fechaFin" placeholder="Fecha de fin">
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 d-flex align-items-center justify-content-md-end">
+                    <button class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+                </div>      
+            </div>
+        
+            <!-- Tabla de datos -->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los datos del usuario se insertarían aquí -->
+                        <tr>
+                            <td>1010</td>
+                            <td>Camilo</td>
+                            <td>Camilo@gmail.com</td>
+                            <td>2024-04-04</td>
+                        </tr>
+                        <tr>
+                            <td>1020</td>
+                            <td>Alex</td>
+                            <td>Alex@gmail.com</td>
+                            <td>2024-03-03</td>
+                        </tr>
+                        <tr>
+                            <td>1030</td>
+                            <td>Dilan</td>
+                            <td>Dilan@gmail.com</td>
+                            <td>2024-05-05</td>
+                        </tr>
+                        <tr>
+                            <td>1040</td>
+                            <td>Angie</td>
+                            <td>Angie@gmail.com</td>
+                            <td>2024-02-02</td>
+                        </tr>
+                        <tr>
+                            <td>1050</td>
+                            <td>Eitan</td>
+                            <td>Eitan@gmail.com</td>
+                            <td>2024-0-06</td>
+                        </tr>
+                        <tr>
+                            <td>1060</td>
+                            <td>Issajar</td>
+                            <td>Issajar@gmail.com</td>
+                            <td>2024-05-05</td>
+                        </tr>
+                        <!-- Aquí termina el bucle -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Fin Tabla para cargar datos -->
     </div>
 </body>

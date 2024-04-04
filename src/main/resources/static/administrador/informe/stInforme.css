@@ -1,0 +1,54 @@
+body {
+    background-color: #f8f9fa;
+    padding-top: 20px; /* Espacio adicional en la parte superior de la página */
+}
+
+/* Ajustes para que el contenedor ocupe toda la pantalla */
+.container-fluid {
+    padding: 30px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco para el contenedor */
+    border-radius: 8px; /* Bordes redondeados para el contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para el contenedor */
+    margin: 20px; /* Sin margen para que ocupe toda la pantalla */
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    background-color: #ffffff;
+    margin-bottom: 0; /* Sin margen inferior para la tabla */
+}
+
+thead {
+    background-color: #eeeeee;
+}
+
+.search-box,
+.fechaInicio,
+.fechaFin{
+    margin-bottom: 1rem;
+}
+
+.form-control{
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+th {
+    color: #495057;
+}
+
+/* Espacio adicional para los encabezados de la tabla */
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Ajustes de responsive design para pequeños dispositivos */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 15px; /* Padding más pequeño para dispositivos pequeños */
+    }
+}
