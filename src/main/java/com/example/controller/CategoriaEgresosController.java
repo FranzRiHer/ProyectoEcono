@@ -8,8 +8,11 @@ import com.example.service.CategoriaEgresoService;
 import com.example.entities.CategoriaEgreso;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @CrossOrigin
@@ -29,5 +32,11 @@ public class CategoriaEgresosController {
     public CategoriaEgreso saveCategoriaEgreso(@RequestBody CategoriaEgreso catE){
         return catEgService.save(catE);
     }
+
+    @GetMapping("/get_cat_desc/{descripcion}")
+    public CategoriaEgreso getCategoriaByDesc(@PathVariable String descripcion) {
+        return catEgService.getCategoriaBydescripcion(descripcion);
+    }
+    
     
 }

@@ -19,5 +19,9 @@ public class CategoriaEgresosRepository {
     public List<CategoriaEgreso> getCategoriasEgresos(){
         return (List<CategoriaEgreso>) categoriaEgresosCRUDRepository.findAll();
     } 
+
+    public CategoriaEgreso getCategoriaBydescripcion(String desc){
+        return categoriaEgresosCRUDRepository.findBydescripcion(desc);
+    }
     
 }
