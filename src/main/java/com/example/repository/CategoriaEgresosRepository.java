@@ -12,16 +12,12 @@ public class CategoriaEgresosRepository {
     @Autowired
     private CategoriaEgresosCRUDRepository categoriaEgresosCRUDRepository;
 
-    public List<CategoriaEgreso> getAllCategoriasE(){
-        return (List<CategoriaEgreso>) categoriaEgresosCRUDRepository.findAll();
-    }
-
     public CategoriaEgreso save(CategoriaEgreso ce){
         return categoriaEgresosCRUDRepository.save(ce);
     }
 
-    public List<CategoriaEgreso> getCategoriasEgresosUsuario(long userID){
-        return (List<CategoriaEgreso>) categoriaEgresosCRUDRepository.findByidUsuario(userID);
+    public List<CategoriaEgreso> getCategoriasEgresos(){
+        return (List<CategoriaEgreso>) categoriaEgresosCRUDRepository.findAll();
     } 
     
 }

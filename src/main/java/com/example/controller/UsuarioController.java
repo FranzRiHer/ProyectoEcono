@@ -5,25 +5,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.entities.Usuario;
 import com.example.service.UsuarioService;
-//import com.example.repository.UsuarioRepository;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import java.util.List;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
@@ -60,17 +54,12 @@ public class UsuarioController {
             usuario.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));
     
             // Guarda los cambios en el repositorio
-            Usuario usuarioGuardado = usuarioService.save(usuario);
+            usuarioService.save(usuario);
             return ResponseEntity.ok("La actualización de datos fue exitosa.");
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Hubo un problema con la actualización de datos.");
         }
     }
-    
-        
-    // public List<Usuario> getAllUsuarios(){
-    // return usuarioService.getAllUsuarios();
-    // }
 
     @PostMapping("/add")
     public Usuario saveUsuario(@RequestBody Usuario u) {

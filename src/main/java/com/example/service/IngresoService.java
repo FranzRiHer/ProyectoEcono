@@ -27,25 +27,9 @@ public class IngresoService {
         Usuario usuario = ingreso.getUsuario();
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
         usuario.setIngresoTotal(ingreso.getUsuario().getIngresoTotal() + ingreso.getCantidad());
-        Usuario usuarioGuardado = usuarioService.save(usuario);
-
-
-        // Obtener el usuario asociado al Ingreso
-        /*
-        Usuario usuario = usuarioService.getUsuarioById(id);
-
-        // Actualizar el saldo del usuario
-        usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
-
-        // Actualizar el total de Ingresos del usuario
-        usuario.setIngresoTotal(usuario.getIngresoTotal() + ingreso.getCantidad());
-
-        // Guardar el usuario actualizado
         usuarioService.save(usuario);
- */
-        // Guardar el Ingreso
-        return ingresoRepository.save(ingreso);
 
+        return ingresoRepository.save(ingreso);
     }
     
 }

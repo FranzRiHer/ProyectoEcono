@@ -12,8 +12,8 @@ public class CategoriaEgresoService {
     @Autowired
     private CategoriaEgresosRepository catEgRepo;
 
-    public List<CategoriaEgreso> getCategoriasEgresosUsuario(Long userID){
-        return catEgRepo.getCategoriasEgresosUsuario(userID);
+    public List<CategoriaEgreso> getCategoriasEgresos(){
+        return catEgRepo.getCategoriasEgresos();
     }
 
     @Transactional
