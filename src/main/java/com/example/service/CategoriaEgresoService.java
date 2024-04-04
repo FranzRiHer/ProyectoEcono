@@ -20,4 +20,8 @@ public class CategoriaEgresoService {
     public CategoriaEgreso save(CategoriaEgreso catE){
         return catEgRepo.save(catE);
     }
+    
+    public CategoriaEgreso getCategoriaBydescripcion(String desc){
+        return catEgRepo.getCategoriaBydescripcion(desc);
+    }
 }
