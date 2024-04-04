@@ -1,26 +1,13 @@
-function getCliente() {
-    let id = localStorage.getItem('userId') // Asegúrate de obtener el valor correcto
-    console.log("ID del usuario: ", id); // Verificar el ID obtenido
-    let token = localStorage.getItem("token");
-    var url = "http://localhost:8080/usuarios/usuario_get/" + id;
-  
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-      setMeta(data); // Pasar el objeto directamente
-    })
-    .catch((error) => {
-      console.error("Error al obtener los datos:", error);
-    });
-  }
+function crearMetas (){
+    setTimeout(() => setMetaLujos(), 0);
+   // setTimeout(() => crearCategoria('TRASNPORTE'), 500);
+    //setTimeout(() => crearCategoria('SOCIAL'), 1000);
 
-function setMeta(data) {
+    
+
+}
+
+function setMetaLujos() {
     var nombre = "lujos";
     var porcentaje_lujos = document.getElementById("lujos").value;
     console.log("Porcentaje de lujos: ", porcentaje_lujos);
@@ -29,12 +16,12 @@ function setMeta(data) {
     // Validar si la cifra de dinero es un número
     if (!isNaN(porcentaje_lujos)) {
         let token = localStorage.getItem('token');
-        let id = localStorage.getItem('userId')
+        let idUser = localStorage.getItem('userId')
         // Crear objeto JSON con los datos
         var datos = {
             nombre: nombre,
             porcentaje: porcentaje_lujos,
-            usuario: data
+            usuario: {"id": idUser}
         };
         console.log(datos)
         // Configurar opciones para la solicitud fetch

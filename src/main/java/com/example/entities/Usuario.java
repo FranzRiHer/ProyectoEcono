@@ -55,7 +55,6 @@ public class Usuario implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Ingreso> ingresos;
     @JsonIgnoreProperties("usuario")
-    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Meta> metas;
 
@@ -152,6 +151,14 @@ public class Usuario implements UserDetails {
 
     public void setEgresos(List<Egreso> egresos) {
         this.egresos = egresos;
+    }
+
+    public void setMeta(List<Meta> metas){
+        this.metas = metas;
+    }
+    
+    public List<Meta> getMetas(){
+        return metas;
     }
 
 }

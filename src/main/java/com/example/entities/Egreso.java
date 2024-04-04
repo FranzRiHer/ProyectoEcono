@@ -25,10 +25,6 @@ public class Egreso {
     @JoinColumn(name = "id_categoria")
     private CategoriaEgreso categoriaEgreso;
 
-    @ManyToOne
-    @JoinColumn(name = "id_meta")
-    private Meta meta;
-
     public Long getIdEgreso() {
         return idEgreso;
     }

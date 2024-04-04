@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.service.MetaService;
 import com.example.entities.Meta;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @CrossOrigin
 @RestController
@@ -28,9 +31,10 @@ public class MetasController {
         return metaService.getMetaById(id);
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public Meta savMeta(@RequestBody Meta meta){
         return metaService.saveMeta(meta);
     }
+
 
 }
