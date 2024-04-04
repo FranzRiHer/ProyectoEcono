@@ -38,9 +38,6 @@ CREATE TABLE `egreso` (
 -- Volcado de datos para la tabla `egreso`
 --
 
-INSERT INTO `egreso` (`id_egreso`, `cantidad_egreso`, `descripcion`, `id_usuario`) VALUES
-(5, 5000, 'Empanada.', NULL),
-(6, 20000, 'trago', NULL);
 
 -- --------------------------------------------------------
 
@@ -58,11 +55,6 @@ CREATE TABLE `ingreso` (
 --
 -- Volcado de datos para la tabla `ingreso`
 --
-
-INSERT INTO `ingreso` (`id`, `cantidad`, `descripcion`, `id_usuario`) VALUES
-(7, 25000, 'Préstamo Totis.', NULL),
-(8, 45643, 'bla bla bla', NULL),
-(9, 12345, 'bkbknk', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,7 +76,14 @@ INSERT INTO `menu` (`id`, `url`) VALUES
 ('agregarIngresos', '/src/main/resources/static/agregarIngresos/agregarIngresos.html'),
 ('principal', '/src/main/resources/static/principal/index.html'),
 ('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html'),
-('editarPerfilUser','/src/main/resources/static/editarPerfilUser/editarPerfilUser.html');
+('editarPerfilUser','/src/main/resources/static/editarPerfilUser/editarPerfilUser.html'),
+('agregarIngresosADMIN','/src/main/resources/static/administrador/agregar/agregarIngresos.html'),
+('visualizarIngresosADMIN','/src/main/resources/static/administrador/visualizar/verIngresos.html'),
+('agregarGastosADMIN','/src/main/resources/static/administrador/agregar/agregarEgresos.html'),
+('consultarClienteADMIN','/src/main/resources/static/administrador/consultarClientes/consultarClientes.html'),
+('modificarClienteADMIN','/src/main/resources/static/administrador/modificarClientes/modicarClientes.html'),
+('informeClienteADMIN','/src/main/resources/static/administrador/informe/verInforme.html'),
+('editarPerfilUserADMIN','/src/main/resources/static/administrador/editar/editarPerfilUser.html')
 
 -- --------------------------------------------------------
 
@@ -97,16 +96,14 @@ CREATE TABLE `usuario` (
   `email` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `saldo` int(11) NOT NULL,
-  `egreso_total` bigint(20) DEFAULT NULL,
-  `ingreso_total` bigint(20) DEFAULT NULL
+  `egreso_total` bigint(20) NOT NULL,
+  `ingreso_total` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `email`, `nombre`, `saldo`, `egreso_total`, `ingreso_total`) VALUES
-(1, 'prueba@', 'user default', 57988, 25000, 82988);
 
 --
 -- Índices para tablas volcadas
