@@ -1,6 +1,11 @@
 package com.example.repository;
 import com.example.entities.Meta;
+
+import jakarta.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,5 +31,13 @@ public class MetaRepository {
         }
         return metaCRUDRepository.findById(id).orElse(null);
     }
+
+    public Optional<Meta> findById(Long id){
+        // No es necesario lanzar una excepción aquí, Optional.empty() es suficiente si no se encuentra la meta.
+        return metaCRUDRepository.findById(id);
+    }
+
+
+    
     
 }  

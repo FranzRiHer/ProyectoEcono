@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.repository.MetaRepository;
+
+import jakarta.transaction.Transactional;
+
 import com.example.entities.Meta;
 import com.example.entities.Usuario;
 
@@ -31,5 +34,14 @@ public class MetaService {
         return metaRepository.getMetaById(id);
     }
 
+    @Transactional
+    public Meta updateMeta(Long id, Meta metaDetails) {
+        Meta meta = getMetaById(id);
+
+        meta.setPorcentaje(metaDetails.getPorcentaje());
+        // ...cualquier otra propiedad que quieras actualizar
+        
+        return metaRepository.save(meta);
+    }
     
 }
