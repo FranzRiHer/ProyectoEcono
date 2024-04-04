@@ -16,6 +16,11 @@ public class CategoriaEgresoService {
         return catEgRepo.getCategoriasEgresosUsuario(userID);
     }
 
+    
+    /*public CategoriaEgreso getCategoriaEgreso(){
+        return catEgRepo.getCategoria
+    }*/
+
     @Transactional
     public CategoriaEgreso save(CategoriaEgreso catE){
         return catEgRepo.save(catE);

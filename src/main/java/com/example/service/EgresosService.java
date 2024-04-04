@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Egreso;
 import com.example.entities.Usuario;
 import com.example.repository.EgresosRepository;
-import com.example.repository.UsuarioRepository;
-
 import java.util.List;
 
 @Service

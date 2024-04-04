@@ -33,7 +33,7 @@ function getCliente() {
     .catch((error) => {
       console.error("Error al obtener los datos:", error);
     });
-  }
+}
 
 function validarLabels(data) {
     let datos = data
@@ -103,8 +103,8 @@ function crearCategoria(desc){
 
 }
 
-function saveEgreso(egreso, descripcion) {
-    let data = {
+function saveEgreso(egreso, descripcion, data) {
+    var datos = {
         cantidadEgreso: egreso,
         descripcion: descripcion,
         usuario: data
@@ -131,7 +131,8 @@ function saveEgreso(egreso, descripcion) {
         },
         success: function (result) {
             console.log(result);
-            $("#categoriaPersonalizada").val("");
+            $("#egresoInput").val("");
+            $("#descripcionEgreso").val("");
             console.log(result);
             alert('Datos enviados exitosamente.');
         },
