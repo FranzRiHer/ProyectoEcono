@@ -22,6 +22,7 @@ public class EgresosController {
     public List<Egreso> getAllEgresos(){
         return egresosService.getAllEgresos();
     }
+    
     @PostMapping("/add")
     public Egreso saveEgresos(@RequestBody Egreso s){
         return egresosService.save(s);

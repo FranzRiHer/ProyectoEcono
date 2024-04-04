@@ -23,6 +23,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Data
@@ -46,13 +47,13 @@ public class Usuario implements UserDetails {
     private String username;
     String password;
     @Enumerated(EnumType.STRING) 
-    Rol rol;
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
-    List<Egreso> Egresos;
+    private Rol rol;
+    @JsonIgnoreProperties("usuario")
+    @OneToMany(mappedBy = "usuario" , cascade = CascadeType.ALL)
+    private List<Egreso> egresos;
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
-    List<Ingreso> Ingresos;
+    private List<Ingreso> ingresos;
     
     public Long getId() {
         return id;
@@ -104,34 +105,49 @@ public class Usuario implements UserDetails {
         this.ingresoTotal = ingresoTotal;
     }
 
-    @JsonIgnore
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
       return List.of(new SimpleGrantedAuthority((rol.name())));
     }
 
-    @JsonIgnore
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
        return true;
     }
 
-    @JsonIgnore
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
        return true;
     }
 
-    @JsonIgnore
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @JsonIgnore
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
+    }
+    public List<Ingreso> getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(List<Ingreso> ingresos) {
+        this.ingresos = ingresos;
+    }
+
+    public List<Egreso> getEgresos() {
+        return egresos;
+    }
+
+    public void setEgresos(List<Egreso> egresos) {
+        this.egresos = egresos;
     }
 
 }
