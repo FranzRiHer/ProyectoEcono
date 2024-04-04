@@ -23,7 +23,8 @@ function getCliente() {
 function setMeta(data) {
     var nombre = "lujos";
     var porcentaje_lujos = document.getElementById("lujos").value;
-    porcentaje_lujos = porcentaje_lujos / 100;
+    console.log("Porcentaje de lujos: ", porcentaje_lujos);
+
 
     // Validar si la cifra de dinero es un número
     if (!isNaN(porcentaje_lujos)) {
@@ -49,7 +50,7 @@ function setMeta(data) {
         console.log(JSON.stringify(datos))
 
         // URL a la que se enviarán los datos
-        var url = 'http://localhost:8080/metas/add/' + id;
+        var url = 'http://localhost:8080/metas/add';
         console.log(url)
         // Realizar solicitud fetch
         fetch(url, opciones)

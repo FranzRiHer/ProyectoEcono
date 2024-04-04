@@ -35,47 +35,70 @@
         <!-- Barra de Navegacion -->
         <div id="sidebar">
             <div class="p-2">
-                <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
-                    Menu
-                </a>
+              <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+                Menu
+              </a>
             </div>
             <div id="sidebar-accordion" class="accordion">
-                <div class="list-group">
-                    <a id="principal" href="#" onclick="redireccionar(this)"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
-                    </a>
-                    <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
-                    </a>
-                    <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Agregar
-                        </a>
-                        <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Visualizar
-                        </a>
-                    </div>
-                    <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
-                    </a>
-                    <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarGastos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Agregar
-                        </a>
-                    </div>
-                    <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
-                    </a>
+              <div class="list-group">
+                <a id="principal" href="#" onclick="redireccionar(this)"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
+                </a>
+                <a href="#ingresos-items" data-toggle="collapse" aria-expanded="false"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+                </a>
+                <div id="ingresos-items" class="collapse" data-parent="#sidebar-accordion">
+                  <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Agregar
+                  </a>
+                  <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Visualizar
+                  </a>
                 </div>
+                <a href="#egresos-items" data-toggle="collapse" aria-expanded="false"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+                </a>
+                <div id="egresos-items" class="collapse" data-parent="#sidebar-accordion">
+                  <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Agregar
+                  </a>
+                </div>
+                <a href="#metas-items" data-toggle="collapse" aria-expanded="false"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="bi bi-clipboard-data-fill mr-3" aria-hidden="true"></i>Metas
+                </a>
+                <div id="metas-items" class="collapse" data-parent="#sidebar-accordion">
+                  <a id="ModificarMetas" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Modificar Metas
+                  </a>
+                </div>
+                <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
+                </a>
+                <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
+                  class="list-group-item list-group-item-action bg-dark text-light">
+                  <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
+                </a>
+                <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
+                  <a id="editarPerfilUser" href="#" onclick="redireccionar(this)"
+                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Perfil
+                  </a>
+                  <a id="visualizarIngresos" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Salir
+                  </a>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
         <!-- Fin Barra de Navegacion -->
 
         <!-- Tabla para cargar datos -->
