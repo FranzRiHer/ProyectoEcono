@@ -1,59 +1,65 @@
+document.addEventListener('DOMContentLoaded', function() {
+  getFuentesIngreso();
+});
+
+
 function getFuentesIngreso() {
-  console.log("aaaaaa");
   let token = localStorage.getItem('token');
-  // URL para la peticion
+  let userId = localStorage.getItem('userId'); // Asumiendo que el ID del usuario se almacena aquí
   var url = "http://localhost:8080/ingreso/ingreso";
 
-  // Realizar solicitud GET usando Fetch API
   fetch(url, {
-    method: 'GET', // o 'POST', 'PUT', 'DELETE', etc., según sea necesario
+    method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
-      // Agrega cualquier otro encabezado requerido aquí
     },
-  }
-  )
-    .then(response => response.json()) // Convertir respuesta a JSON
-    .then(data => {
-      // Manipular los datos recibidos
-      mostrarDatosEnTabla(data);
-    })
-    .catch(error => {
-      console.error("Error al obtener los datos:", error);
-    });
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Filtrar los ingresos para el usuario logueado
+    console.log(data)
+    const datosUsuario = data.filter(ingreso => ingreso.usuario.id.toString() === userId);
+    mostrarDatosEnTabla(datosUsuario);
+  })
+  .catch(error => {
+    console.error("Error al obtener los datos:", error);
+  });
 }
 
 function mostrarDatosEnTabla(data) {
   var tabla = document.getElementById("tablaDatos");
   tabla.innerHTML = ""; // Limpiar tabla antes de agregar nuevos datos
 
-  // Agregar encabezados
+  // Crear y agregar encabezados
   var thead = document.createElement("thead");
   var filaEncabezado = document.createElement("tr");
-  var thSaldo = document.createElement("th");
+  var thCantidad = document.createElement("th");
   var thDescripcion = document.createElement("th");
 
-  thSaldo.textContent = "Saldo";
+  thCantidad.textContent = "Cantidad";
   thDescripcion.textContent = "Descripción";
-
-  filaEncabezado.appendChild(thSaldo);
+  filaEncabezado.appendChild(thCantidad);
   filaEncabezado.appendChild(thDescripcion);
   thead.appendChild(filaEncabezado);
-
   tabla.appendChild(thead);
+
+  var tbody = document.createElement("tbody"); // Asegúrate de crear un tbody para contener las filas de datos
 
   // Iterar sobre los datos y crear filas de tabla
   data.forEach(rowData => {
-    var row = tabla.insertRow();
+    var row = tbody.insertRow();
 
-    // Accede directamente a las propiedades 'cantidad' y 'descripcion'
     var cellCantidad = row.insertCell();
-    cellCantidad.textContent = rowData.cantidad; // Primero 'cantidad'
+    cellCantidad.textContent = rowData.cantidad; // Usar 'cantidad'
 
     var cellDescripcion = row.insertCell();
-    cellDescripcion.textContent = rowData.descripcion; // Luego 'descripcion'
+    cellDescripcion.textContent = rowData.descripcion; // Usar 'descripcion'
   });
-  // Fijar encabezados
+
+  tabla.appendChild(tbody); // Agregar el tbody al final, después de llenarlo
+
+  // Estilos para fijar encabezados (opcional, mejora visual)
   thead.style.position = "sticky";
   thead.style.top = "0";
+  thead.style.background = "#fff"; // Asegura que el fondo sea sólido para no ver los datos a través de él
 }
