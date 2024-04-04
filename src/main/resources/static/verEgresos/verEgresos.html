@@ -61,6 +61,10 @@
                             class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
+                        <a id="visualizarEngresos" href="#" onclick="redireccionar(this)"
+                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                            Visualizar
+                        </a>
                     </div>
                     <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
                         class="list-group-item list-group-item-action bg-dark text-light">
@@ -88,20 +92,26 @@
         <!-- Tabla para cargar datos -->
         <div class="container">
             <h1>Ver historial de sus egresos</h1>
-            <button onclick="getEgresos()" class="btn">Cargar</button>
+            <div>
+                <label for="categoriaSelect">Filtrar por categoría:</label>
+                <select id="categoriaSelect" onchange="filtrarPorCategoria()">
+                    <!-- Opciones de categorías se agregarán aquí dinámicamente -->
+                </select>
+            </div>
+            <button onclick="filtrarPorCategoria()" class="btn">Cargar</button>
             <table id="tablaDatos">
                 <thead>
                     <tr>
                         <th>Cantidad</th>
                         <th>Descripción</th>
-                        <!--<th>Fecha</th>
-                        <th>Categoria</th>-->
+                        <th>Categoria</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
         </div>
+        
         <!-- Fin Tabla para cargar datos -->
 
     </div>
