@@ -17,20 +17,18 @@ public class EgresosService {
     @Autowired
     private UsuarioService usuarioService;
 
-
     public List<Egreso> getAllEgresos() {
-
         return egresosRepository.getAllEgresos();
     }
 
     @Transactional
     public Egreso save(Egreso egreso) {
         // Obtener el usuario asociado al egreso
-        Usuario usuario = egreso.getUsuario();
+        Usuario usuario = usuarioService.getUsuarioById(egreso.getUsuario().getId());
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
         usuario.setEgresoTotal(egreso.getUsuario().getEgresoTotal() + egreso.getCantidadEgreso());
-        usuarioService.save(usuario);
-        
+        usuario = usuarioService.save(usuario);
+        egreso.setUsuario(usuario);
         // Guardar el egreso
         return egresosRepository.save(egreso);
 

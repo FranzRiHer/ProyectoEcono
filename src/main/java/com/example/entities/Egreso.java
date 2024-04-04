@@ -1,7 +1,6 @@
 package com.example.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,14 +16,14 @@ public class Egreso {
     private int cantidadEgreso;
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_usuario")
     
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "id_categoria")
-    //private CategoriaEgreso categoriaEgreso;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private CategoriaEgreso categoriaEgreso;
 
     public Long getIdEgreso() {
         return idEgreso;
@@ -57,13 +56,12 @@ public class Egreso {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-/* 
+
     public CategoriaEgreso getCategoriaEgreso() {
         return categoriaEgreso;
     }
 
     public void setCategoriaEgreso(CategoriaEgreso categoriaEgreso) {
         this.categoriaEgreso = categoriaEgreso;
-    }
-*/    
+    }  
 }
