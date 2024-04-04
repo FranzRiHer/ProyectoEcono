@@ -28,14 +28,14 @@ function mostrarDatosLabel(data) {
   $("#nameInput").val(data.nombre);
   $("#emailInput").val(data.email);
   //$("#contrasenaInput").val(data.password);
-  $("#contrasenaInput").val("");
+
   document.getElementById('InformacionColceccion').style.display = 'block';
 
 }
 
 function validarLabels() {
   let nombre = $("#nameInput").val()
-  let contrasena = $("#contrasenaInput").val()
+  let contrasena = $("#contrasenaInput").val(data.password)
   let email = $("#emailInput").val()
 
   if ((nombre === "" || contrasena === "" || email === "")) {

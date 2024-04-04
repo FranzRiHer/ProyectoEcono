@@ -32,7 +32,7 @@ $(document).ready(function () {
                 // localStorage.setItem('token', response.token);
                 alert("Registro exitoso. Por favor, inicie sesión.");
                 // Redireccionar al usuario a la página de inicio de sesión
-                window.location.href = '/src/main/resources/static/principal/index.html';
+                window.location.href = '/src/main/resources/static/login/login.html';
             },
             error: function (xhr, status, error) {
                 // Manejar errores específicos del registro (por ejemplo, usuario ya existe)
