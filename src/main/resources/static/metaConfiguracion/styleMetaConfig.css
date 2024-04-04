@@ -1,0 +1,61 @@
+/* Agrega una transición suave para todos los elementos interactivos */
+*, *:focus, *:hover {
+  transition: all 0.3s ease;
+}
+
+/* Estilos para la barra lateral y los títulos */
+#sidebar {
+  background-color: #333; /* Oscurece un poco la barra lateral para más contraste */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+}
+
+#sidebar .list-group-item {
+  border: none; /* Remueve los bordes para un look más limpio */
+}
+
+/* Añade un efecto de hover a los elementos de la lista */
+#sidebar .list-group-item:hover {
+  background-color: #444; /* Un poco más claro que el color de fondo */
+}
+
+/* Mejora visual para el contenedor principal */
+.container {
+    max-width: 600px; /* Centra y limita el ancho del formulario */
+    margin: 30px auto; /* Espaciado superior e inferior */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para el área del formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombreado sutil */
+  }
+
+/* Estilos específicos para los inputs */
+.input-group input[type="text"] {
+  border: 1px solid #ccc; /* Color de borde más suave */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Sombra interior para profundidad */
+  padding: 8px 12px; /* Más espacio interno */
+  border-radius: 4px; /* Esquinas ligeramente redondeadas */
+}
+
+.input-group input[type="text"]:focus {
+  outline: none; /* Remueve el borde de foco predeterminado */
+  border-color: #007bff; /* Borde con color de marca al enfocar */
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25); /* Sombra de enfoque */
+}
+
+/* Mejora de los botones */
+.btn {
+  background-color: black; /* Color principal para el botón */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra para dar la sensación de botón elevado */
+  font-weight: bold;
+  font-size: 13px;
+
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Un tono más oscuro al pasar el ratón */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Sombra más profunda para efecto al pasar el ratón */
+}
