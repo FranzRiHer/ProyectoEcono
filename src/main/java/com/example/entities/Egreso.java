@@ -1,5 +1,7 @@
 package com.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class Egreso {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    
+    @JsonIgnoreProperties("egresos")
     private Usuario usuario;
 
     @ManyToOne

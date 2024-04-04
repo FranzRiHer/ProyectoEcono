@@ -2,62 +2,72 @@ document.addEventListener('DOMContentLoaded', function() {
   getEgresos();
 });
 
-
 function getEgresos() {
   let token = localStorage.getItem('token');
-  // URL para la peticion
+  let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
   var url = "http://localhost:8080/gastos/egresos";
 
-  // Realizar solicitud GET usando Fetch API
   fetch(url, {
-    method: 'GET', // o 'POST', 'PUT', 'DELETE', etc., según sea necesario
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      // Agrega cualquier otro encabezado requerido aquí
-    },
-  }
-  )
-    .then(response => response.json()) // Convertir respuesta a JSON
-    .then(data => {
-      // Manipular los datos recibidos
-      mostrarDatosEnTabla(data);
-    })
-    .catch(error => {
-      console.error("Error al obtener los datos:", error);
-    });
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`,
+          },
+      })
+      .then(response => response.json())
+      .then(data => {
+          let datosUsuario = data.filter(egreso => egreso.usuario.id == userId); // Filtrar por usuario logueado
+          mostrarDatosEnTabla(datosUsuario);
+          llenarCategorias(datosUsuario); // Llenar el menú desplegable con las categorías disponibles
+      })
+      .catch(error => {
+          console.error("Error al obtener los datos:", error);
+      });
 }
 
 function mostrarDatosEnTabla(data) {
   var tabla = document.getElementById("tablaDatos");
-  tabla.innerHTML = ""; // Limpiar tabla antes de agregar nuevos datos
+  tabla.innerHTML = "<thead><tr><th>Cantidad</th><th>Descripción</th><th>Categoria</th></tr></thead>";
+  var tbody = document.createElement("tbody");
 
-  // Agregar encabezados
-  var thead = document.createElement("thead");
-  var filaEncabezado = document.createElement("tr");
-  var thCantidad = document.createElement("th");
-  var thDescripcion = document.createElement("th");
-
-  thCantidad.textContent = "Cantidad";
-  thDescripcion.textContent = "Descripción";
-
-  filaEncabezado.appendChild(thCantidad);
-  filaEncabezado.appendChild(thDescripcion);
-  thead.appendChild(filaEncabezado);
-
-  tabla.appendChild(thead);
-
-  // Iterar sobre los datos y crear filas de tabla
   data.forEach(rowData => {
-    var row = tabla.insertRow();
+      var row = tbody.insertRow();
 
-    // Accede directamente a las propiedades 'cantidad' y 'descripcion'
-    var cellCantidad = row.insertCell();
-    cellCantidad.textContent = rowData.cantidad; // Primero 'cantidad'
+      var cellCantidad = row.insertCell();
+      cellCantidad.textContent = rowData.cantidadEgreso;
 
-    var cellDescripcion = row.insertCell();
-    cellDescripcion.textContent = rowData.descripcion; // Luego 'descripcion'
+      var cellDescripcion = row.insertCell();
+      cellDescripcion.textContent = rowData.descripcion;
+
+      var cellCategoria = row.insertCell();
+      cellCategoria.textContent = rowData.categoriaEgreso.descripcion;
   });
-  // Fijar encabezados
-  thead.style.position = "sticky";
-  thead.style.top = "0";
+
+  tabla.appendChild(tbody);
+}
+
+function llenarCategorias(data) {
+  var categorias = new Set(data.map(rowData => rowData.categoriaEgreso.descripcion));
+  var select = document.getElementById("categoriaSelect");
+  select.innerHTML = '<option value="Todas">Todas</option>'; // Limpiar opciones anteriores y añadir "Todas"
+
+  categorias.forEach(categoria => {
+      var option = document.createElement("option");
+      option.value = categoria;
+      option.textContent = categoria;
+      select.appendChild(option);
+  });
+}
+
+function filtrarPorCategoria() {
+  var categoriaSeleccionada = document.getElementById("categoriaSelect").value;
+  var todasFilas = document.querySelectorAll("#tablaDatos tbody tr");
+
+  todasFilas.forEach(fila => {
+      var categoriaFila = fila.cells[2].textContent; // Índice 2 para la columna de categoría
+      if (categoriaSeleccionada === "Todas" || categoriaFila === categoriaSeleccionada) {
+          fila.style.display = "";
+      } else {
+          fila.style.display = "none";
+      }
+  });
 }
