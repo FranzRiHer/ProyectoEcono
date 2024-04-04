@@ -22,6 +22,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Data
 @Builder
@@ -35,19 +37,20 @@ public class Usuario implements UserDetails {
     private Long id;
     private String nombre; 
     private String email;
-    private int saldo;
     @Column(columnDefinition = "integer default 0")
-    private Long egresoTotal;
+    private int saldo = 0; // Explícitamente inicializado a 0
     @Column(columnDefinition = "integer default 0")
-    private Long ingresoTotal;
+    private int egresoTotal = 0; // Inicializado a 0L para Long
+    @Column(columnDefinition = "integer default 0")
+    private int ingresoTotal = 0; // Inicializado a 0L para Long
     private String username;
     String password;
     @Enumerated(EnumType.STRING) 
     Rol rol;
-
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario" , cascade = CascadeType.ALL)
     List<Egreso> Egresos;
-
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
     List<Ingreso> Ingresos;
     
@@ -71,6 +74,7 @@ public class Usuario implements UserDetails {
         this.username = username;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -84,39 +88,47 @@ public class Usuario implements UserDetails {
         this.saldo = saldo;
     }
 
-    public Long getEgresoTotal() {
+    public int getEgresoTotal() {
         return egresoTotal;
     }
 
-    public void setEgresoTotal(Long egresoTotal) {
+    public void setEgresoTotal(int egresoTotal) {
         this.egresoTotal = egresoTotal;
     }
 
-    public Long getIngresoTotal() {
+    public int getIngresoTotal() {
         return ingresoTotal;
     }
 
-    public void setIngresoTotal(Long ingresoTotal) {
+    public void setIngresoTotal(int ingresoTotal) {
         this.ingresoTotal = ingresoTotal;
     }
 
-
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
       return List.of(new SimpleGrantedAuthority((rol.name())));
     }
+
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
        return true;
     }
+
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
        return true;
     }
+
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;

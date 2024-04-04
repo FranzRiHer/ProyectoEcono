@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8" />
@@ -12,7 +11,7 @@
   <title>Cuida Tus Gastos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-  <!-- Configuracion global de CSS -->
+  <!-- Configuración global de CSS -->
   <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
   <link rel="stylesheet" href="stGastos.css" />
 
@@ -24,7 +23,7 @@
 <body>
   <div class="d-flex">
 
-    <!-- Barra de Navegacion -->
+    <!-- Barra de Navegación -->
     <div id="sidebar">
       <div class="p-2">
         <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
@@ -70,7 +69,8 @@
             <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
           </a>
           <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
-            <a id="agregarIngresos" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+            <a id="editarPerfilUser" href="#" onclick="redireccionar(this)"
+            class="list-group-item list-group-item-action bg-dark text-light pl-5">
               Perfil
             </a>
             <a id="visualizarIngresos" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
@@ -85,24 +85,54 @@
     <div class="container">
       <h1>Ingrese sus gastos</h1>
       <div class="input-container">
-        <input id="egresoInput" type="text" placeholder="Cantidad">
-        <textarea id="descripcionEgreso" placeholder="Descripcion"></textarea>
+        <input id="egresoInput" type="text" placeholder="Cantidad" class="form-control">
+        <textarea id="descripcionEgreso" placeholder="Descripción" class="form-control"></textarea>
+        <label for="categoriaMenu">Elige una categoría:</label>
+    
+        <select name="categorias" id="categoriaMenu" onchange="mostrarPersonalizado()" class="form-control">
+          <!-- Las opciones se cargarán dinámicamente -->
+        </select>
+    
+        <!-- Asegúrate de que el botón esté usando la clase `btn-block` para que tome el ancho completo del contenedor -->
+        <button id = "crearCategoriaBTN" type="button" class="btn btn-primary btn-block mt-2" data-toggle="modal" data-target="#modalRegistroCategoria"style="display:none;">
+          Registrar Nueva Categoría
+        </button>
       </div>
-      <button onclick="validarLabels()" class="btn">Enviar</button>
+      <button onclick="getCliente()" class="btn">Enviar</button>
     </div>
 
   </div>
 
-  <!-- Optional JavaScript -->
+  <!-- Modal para registro de nueva categoría -->
+  <div class="modal fade" id="modalRegistroCategoria" tabindex="-1" role="dialog" aria-labelledby="modalRegistroCategoriaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalRegistroCategoriaLabel">Registrar Nueva Categoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="categoriaPersonalizada" placeholder="Nombre de la nueva categoría">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="validarCategoria()">Guardar Categoría</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- Optional JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
 </body>
-
 </html>

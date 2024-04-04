@@ -16,8 +16,8 @@ public class EgresosRepository {
         return (List<Egreso>) egresosCRUDRepository.findAll();
     }
 
-    public Egreso save(Egreso s){
-        return egresosCRUDRepository.save(s);
+    public Egreso save(Egreso e){
+        return egresosCRUDRepository.save(e);
     }
 
 }

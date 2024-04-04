@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Ingreso;
 import com.example.entities.Usuario;
-import com.example.repository.UsuarioRepository;
 import com.example.repository.IngresoRepository;
 
 
@@ -17,7 +16,7 @@ public class IngresoService {
     private IngresoRepository ingresoRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     public List<Ingreso> getAllIngresos(){
         return ingresoRepository.getAllIngresos();
@@ -25,20 +24,12 @@ public class IngresoService {
     
     @Transactional
     public Ingreso save(Ingreso ingreso){
-        // Obtener el usuario asociado al Ingreso
-        Usuario usuario = usuarioRepository.getAllUsuarios().get(0);
-
-        // Actualizar el saldo del usuario
+        Usuario usuario = ingreso.getUsuario();
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
+        usuario.setIngresoTotal(ingreso.getUsuario().getIngresoTotal() + ingreso.getCantidad());
+        usuarioService.save(usuario);
 
-        // Actualizar el total de Ingresos del usuario
-        usuario.setIngresoTotal(usuario.getIngresoTotal() + ingreso.getCantidad());
-
-        // Guardar el usuario actualizado
-        usuarioRepository.save(usuario);
-
-        // Guardar el Ingreso
         return ingresoRepository.save(ingreso);
-
     }
+    
 }

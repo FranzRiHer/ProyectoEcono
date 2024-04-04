@@ -41,7 +41,7 @@ public class AuthService {
             .password(passwordEncoder.encode( request.getPassword()))
             .nombre(request.getNombre())
             .email(request.getEmail())
-            .rol(Rol.USER)
+            .rol(Rol.valueOf(request.getRol().toUpperCase()))
             .build();
 
         userRepository.save(user);

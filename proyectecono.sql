@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2024 a las 23:20:52
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Apr 04, 2024 at 01:48 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,34 +18,57 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyectecono`
+-- Database: `proyectecono`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `egreso`
+-- Table structure for table `categoria_egreso`
+--
+
+CREATE TABLE `categoria_egreso` (
+  `id_categoria_egreso` bigint(20) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `id_usuario` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categoria_egreso`
+--
+
+INSERT INTO `categoria_egreso` (`id_categoria_egreso`, `descripcion`, `id_usuario`) VALUES
+(5, 'COMIDA', 3),
+(6, 'TRASNPORTE', 3),
+(7, 'SOCIAL', 3),
+(8, 'MATEO', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `egreso`
 --
 
 CREATE TABLE `egreso` (
   `id_egreso` bigint(20) NOT NULL,
   `cantidad_egreso` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_categoria` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `egreso`
+-- Dumping data for table `egreso`
 --
 
-INSERT INTO `egreso` (`id_egreso`, `cantidad_egreso`, `descripcion`, `id_usuario`) VALUES
-(5, 5000, 'Empanada.', NULL),
-(6, 20000, 'trago', NULL);
+INSERT INTO `egreso` (`id_egreso`, `cantidad_egreso`, `descripcion`, `id_usuario`, `id_categoria`) VALUES
+(5, 5000, 'Empanada.', NULL, NULL),
+(6, 20000, 'trago', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingreso`
+-- Table structure for table `ingreso`
 --
 
 CREATE TABLE `ingreso` (
@@ -53,42 +76,39 @@ CREATE TABLE `ingreso` (
   `cantidad` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `id_usuario` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `ingreso`
+-- Dumping data for table `ingreso`
 --
-
-INSERT INTO `ingreso` (`id`, `cantidad`, `descripcion`, `id_usuario`) VALUES
-(7, 25000, 'Préstamo Totis.', NULL),
-(8, 45643, 'bla bla bla', NULL),
-(9, 12345, 'bkbknk', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
   `id` varchar(32) NOT NULL,
   `url` varchar(90) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `url`) VALUES
 ('agregarGastos', '/src/main/resources/static/registroGastos/rGastos.html'),
 ('agregarIngresos', '/src/main/resources/static/agregarIngresos/agregarIngresos.html'),
 ('principal', '/src/main/resources/static/principal/index.html'),
-('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html');
+('verEgresos', '/src/main/resources/static/verEgresos/verEgresos.html'),
+('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html'),
+('editarPerfilUser', 'src/main/resources/static/editarPerfilUser/editarPerfilUser.html');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -97,76 +117,95 @@ CREATE TABLE `usuario` (
   `nombre` varchar(255) DEFAULT NULL,
   `saldo` int(11) NOT NULL,
   `egreso_total` bigint(20) DEFAULT NULL,
-  `ingreso_total` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ingreso_total` bigint(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `rol` enum('ADMIN','USER') DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `email`, `nombre`, `saldo`, `egreso_total`, `ingreso_total`) VALUES
-(1, 'prueba@', 'user default', 57988, 25000, 82988);
+INSERT INTO `usuario` (`id`, `email`, `nombre`, `saldo`, `egreso_total`, `ingreso_total`, `password`, `rol`, `username`) VALUES
+(1, 'prueba@', 'user default', 57988, 25000, 82988, NULL, NULL, NULL),
+(2, 'user@prueba.com', 'Usuario Prueba', 0, NULL, NULL, '$2a$10$SMAN.NwbyIaRiIasYq6d1u9KJpxU9rilctT2cHzX2JWsmTVUFwtoe', 'USER', 'userTest'),
+(3, 'fgasdfa', 'mateo', 0, NULL, NULL, '$2a$10$4.KPET.OPw3JqMBRlpdKR.ucrbOepx16ZFLQhoZoWUsw2T95NxZEu', 'USER', 'mateo');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `egreso`
+-- Indexes for table `categoria_egreso`
+--
+ALTER TABLE `categoria_egreso`
+  ADD PRIMARY KEY (`id_categoria_egreso`);
+
+--
+-- Indexes for table `egreso`
 --
 ALTER TABLE `egreso`
   ADD PRIMARY KEY (`id_egreso`),
-  ADD KEY `FKcl3v0otyssmqm3qmlgo311r07` (`id_usuario`);
+  ADD KEY `FKcl3v0otyssmqm3qmlgo311r07` (`id_usuario`),
+  ADD KEY `FKdgv8xomcpawbgcnvj4s40ooue` (`id_categoria`);
 
 --
--- Indices de la tabla `ingreso`
+-- Indexes for table `ingreso`
 --
 ALTER TABLE `ingreso`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `egreso`
+-- AUTO_INCREMENT for table `categoria_egreso`
+--
+ALTER TABLE `categoria_egreso`
+  MODIFY `id_categoria_egreso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `egreso`
 --
 ALTER TABLE `egreso`
   MODIFY `id_egreso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `ingreso`
+-- AUTO_INCREMENT for table `ingreso`
 --
 ALTER TABLE `ingreso`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `egreso`
+-- Constraints for table `egreso`
 --
 ALTER TABLE `egreso`
-  ADD CONSTRAINT `FKcl3v0otyssmqm3qmlgo311r07` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `FKcl3v0otyssmqm3qmlgo311r07` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `FKdgv8xomcpawbgcnvj4s40ooue` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_egreso` (`id_categoria_egreso`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
