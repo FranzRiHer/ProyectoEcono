@@ -1,0 +1,47 @@
+/* Estilos CSS */
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Ancho del formulario */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #343a40;
+}
+
+.btn-secondary {
+    background-color: #ddd;
+}
+
+/* Animaciones para diferentes tipos de botones */
+.button:hover {
+    transform: scale(1.1);
+}
