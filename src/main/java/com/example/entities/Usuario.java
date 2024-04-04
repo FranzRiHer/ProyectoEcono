@@ -40,9 +40,9 @@ public class Usuario implements UserDetails {
     @Column(columnDefinition = "integer default 0")
     private int saldo = 0; // Explícitamente inicializado a 0
     @Column(columnDefinition = "integer default 0")
-    private Long egresoTotal = 0L; // Inicializado a 0L para Long
+    private int egresoTotal = 0; // Inicializado a 0L para Long
     @Column(columnDefinition = "integer default 0")
-    private Long ingresoTotal = 0L; // Inicializado a 0L para Long
+    private int ingresoTotal = 0; // Inicializado a 0L para Long
     private String username;
     String password;
     @Enumerated(EnumType.STRING) 
@@ -88,19 +88,19 @@ public class Usuario implements UserDetails {
         this.saldo = saldo;
     }
 
-    public Long getEgresoTotal() {
+    public int getEgresoTotal() {
         return egresoTotal;
     }
 
-    public void setEgresoTotal(Long egresoTotal) {
+    public void setEgresoTotal(int egresoTotal) {
         this.egresoTotal = egresoTotal;
     }
 
-    public Long getIngresoTotal() {
+    public int getIngresoTotal() {
         return ingresoTotal;
     }
 
-    public void setIngresoTotal(Long ingresoTotal) {
+    public void setIngresoTotal(int ingresoTotal) {
         this.ingresoTotal = ingresoTotal;
     }
 
@@ -109,21 +109,25 @@ public class Usuario implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
       return List.of(new SimpleGrantedAuthority((rol.name())));
     }
+
     @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
        return true;
     }
+
     @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
        return true;
     }
+
     @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     @JsonIgnore
     @Override
     public boolean isEnabled() {

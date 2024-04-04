@@ -8,7 +8,6 @@ import com.example.service.CategoriaEgresoService;
 import com.example.entities.CategoriaEgreso;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,9 +20,9 @@ public class CategoriaEgresosController {
     @Autowired
     private CategoriaEgresoService catEgService;
     
-    @GetMapping("/get_cat_e_user/{id}")
-    public List<CategoriaEgreso> getCategoriasEgresosUsuario(@PathVariable Long id){
-        return catEgService.getCategoriasEgresosUsuario(id);
+    @GetMapping("/get_cat_e")
+    public List<CategoriaEgreso> getCategoriasEgresos(){
+        return catEgService.getCategoriasEgresos();
     }
 
     @PostMapping("/add_cat_e")
