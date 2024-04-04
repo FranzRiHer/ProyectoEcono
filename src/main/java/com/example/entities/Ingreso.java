@@ -19,7 +19,6 @@ public class Ingreso {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
-
     private Usuario usuario;
     
     public int getId() {

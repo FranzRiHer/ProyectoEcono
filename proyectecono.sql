@@ -103,8 +103,8 @@ INSERT INTO `menu` (`id`, `url`) VALUES
 ('principal', '/src/main/resources/static/principal/index.html'),
 ('verEgresos', '/src/main/resources/static/verEgresos/verEgresos.html'),
 ('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html'),
-('editarPerfilUser', 'src/main/resources/static/editarPerfilUser/editarPerfilUser.html');
-
+('editarPerfilUser', 'src/main/resources/static/editarPerfilUser/editarPerfilUser.html'),
+('ModificarMetas','/src/main/resources/static/metaConfiguracion/metaConfig.html');
 -- --------------------------------------------------------
 
 --

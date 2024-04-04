@@ -54,7 +54,11 @@ public class Usuario implements UserDetails {
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Ingreso> ingresos;
-    
+    @JsonIgnoreProperties("usuario")
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Meta> metas;
+
     public Long getId() {
         return id;
     }
