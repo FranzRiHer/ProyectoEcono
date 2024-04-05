@@ -1,32 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Consulta Cliente</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/" />
+    <title>Cuida Tus Gastos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Configuracion global de CSS -->
-    <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css" />
-    <link rel="stylesheet" href="stModificarClientes.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
+    <link rel="stylesheet" href="/src/main/resources/static/verEgresos/stVerEgresos.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!-- Optional JavaScript -->
     <script src="/src/main/resources/static/scriptMenu.js"></script>
-    <script src="js/scModificarClientes.js"></script>
+    <script src="/src/main/resources/static/verEgresos/js/scriptVerEgresos.js"></script>
 </head>
 
 <body>
-    <div class="d-flex" style="min-height: 100vh">
+    <div class="d-flex">
+
         <!-- Barra de Navegacion Admin -->
         <div id="sidebar">
             <div class="p-2">
@@ -63,7 +61,7 @@
                             class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Agregar
                         </a>
-                        <a id="visualizarEngresos" href="#" onclick="redireccionar(this)"
+                        <a id="visualizarEngresosADMIN" href="#" onclick="redireccionar(this)"
                             class="list-group-item list-group-item-action bg-dark text-light pl-5">
                             Visualizar
                         </a>
@@ -104,53 +102,44 @@
                 </div>
             </div>
         </div>
-        <!-- Contenedor para la barra de bienvenida y el contenido principal -->
+        <!-- Fin Barra de Navegacion -->
+
         <!-- Tabla para cargar datos -->
         <div class="container">
-            <h1>Actualizar Usuario por ID</h1>
-            <div class="input-container">
-                <input id="idUsuario" type="text" placeholder="Digite Id">
+            <h1>Ver historial de sus egresos</h1>
+            <div>
+                <label for="categoriaSelect">Filtrar por categoría:</label>
+                <select id="categoriaSelect" onchange="filtrarPorCategoria()">
+                    <!-- Opciones de categorías se agregarán aquí dinámicamente -->
+                </select>
             </div>
-            <button onclick="getCliente()" class="btn">Traer Información</button>
-            <div class="container-fluid mt-3">
-
-                <!-- Contenedor para la barra de bienvenida y el contenido principal -->
-                <div class="flex-grow-1 d-flex flex-column">
-                    <!-- flex-grow-1 para ocupar el espacio restante -->
-
-                    <div class="container-fluid mt-3" id="InformacionColceccion" style="display:none">
-                        <h1 class="title">Información del Perfil</h1>
-                        <br />
-                        <h5 class="title"></h5>
-                        <form id="profile-form" class="center-form">
-                            <label for="name">Nombre:</label>
-                            <input type="text" id="nameInput" name="name" required>
-
-                            <label for="email">Correo Electrónico:</label>
-                            <input type="email" id="emailInput" name="email" required>
-
-
-                        </form>
-                        <button onclick="validarLabels()" class="btn">Actualizar Cliente</button>
-                    </div>
-
-                </div>
-                <!-- Fin Tabla para cargar datos -->
-            </div>
+            <button onclick="filtrarPorCategoria()" class="btn">Cargar</button>
+            <table id="tablaDatos">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
+        
+        <!-- Fin Tabla para cargar datos -->
+
     </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
 </body>
-
-<script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
 
 </html>
