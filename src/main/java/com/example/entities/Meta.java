@@ -21,6 +21,17 @@ public class Meta {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    public Meta() {
+
+    }
+
+    public Meta(String nombre, int porcentaje, int total, Usuario usuario) {
+        this.nombre = nombre;
+        this.porcentaje = porcentaje;
+        this.total = total;
+        this.usuario = usuario;
+    }
+
     public Long getId() {
         return id;
     }

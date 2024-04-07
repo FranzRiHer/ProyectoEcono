@@ -1,7 +1,6 @@
 package com.example.repository;
 import com.example.entities.Meta;
 
-import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;

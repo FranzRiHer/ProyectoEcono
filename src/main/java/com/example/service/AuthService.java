@@ -24,7 +24,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
+    private final MetaService metaService;
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user=userRepository.findByUsername(request.getUsername()).orElseThrow();
@@ -38,18 +38,23 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         Usuario user = Usuario.builder()
             .username(request.getUsername())
-            .password(passwordEncoder.encode( request.getPassword()))
+            .password(passwordEncoder.encode(request.getPassword()))
             .nombre(request.getNombre())
             .email(request.getEmail())
             .rol(Rol.valueOf(request.getRol().toUpperCase()))
             .build();
 
-        userRepository.save(user);
+        // Guarda el usuario y captura la entidad guardada para obtener el ID generado
+        Usuario savedUser = userRepository.save(user);
+
+        // Crea metas predeterminadas
+        metaService.createDefaultMetasForUser(savedUser);
+            
+
+        String token = jwtService.getToken(savedUser);
 
         return AuthResponse.builder()
-            .token(jwtService.getToken(user))
+            .token(token)
             .build();
-        
     }
-
 }
