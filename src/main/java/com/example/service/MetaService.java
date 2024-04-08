@@ -35,15 +35,6 @@ public class MetaService {
         return metaRepository.getMetaById(id);
     }
 
-    @Transactional
-    public Meta updateMeta(Long id, Meta metaDetails) {
-        Meta meta = getMetaById(id);
-
-        meta.setPorcentaje(metaDetails.getPorcentaje());
-
-        return metaRepository.save(meta);
-    }
-
     public void createDefaultMetasForUser(Usuario user) {
         List<Meta> defaultMetas = getDefaultMetas(user);
         for (Meta meta : defaultMetas) {
@@ -59,5 +50,19 @@ public class MetaService {
         metas.add(new Meta("Ahorro", 15, 0, user));
         metas.add(new Meta("Inversiones", 15, 0, user));
         return metas;
+    }
+
+    public List<Meta> getUserMetas(Long user_id) {
+        Usuario usuario = usuarioService.getUsuarioById(user_id);
+        return usuario.getMetas();
+    }
+
+    @Transactional
+    public Meta updateMeta(Long id, Meta metaDetails) {
+        Meta meta = getMetaById(id);
+
+        meta.setPorcentaje(metaDetails.getPorcentaje());
+
+        return metaRepository.save(meta);
     }
 }

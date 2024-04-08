@@ -15,9 +15,6 @@
   <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
   <link rel="stylesheet" href="styleMetaConfig.css" /> <!-- Enlace al archivo de estilos externo -->
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="/src/main/resources/static/scriptMenu.js"></script>
-  <script src="js/scriptMetaConfig.js"></script>
 </head>
 
 <body>
@@ -93,51 +90,18 @@
 
     <!-- Tabla para cargar datos -->
     <div class="container">
-      <h1>Modifica tus Metas </h1>
-      <div class="input-container">
-        <div class="form-group">
-          <label for="lujos">Lujos:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="lujos" placeholder="20">
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="gastos_basicos">Gastos Básicos:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="gastos_basicos" placeholder="50">
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="ahorro">Ahorro:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="ahorro" placeholder="15">
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inversiones">Inversiones:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="inversiones" placeholder="15">
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-            </div>
-          </div>
-        </div>
+      <h1>Modifica tus Metas</h1>
+      <div id="metasContainer" class="input-container">
+        <!-- Los inputs de las metas se generarán dinámicamente aquí -->
       </div>
-      <button onclick="crearMetas()" class="btn">Confirmar Cambio</button>
+      <button onclick="actualizarMetas()" class="btn">Confirmar Cambio</button>
     </div>
 
-  </div>
-
   <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="/src/main/resources/static/scriptMenu.js"></script>
+  <script src="js/scriptMetaConfig.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

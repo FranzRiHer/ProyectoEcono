@@ -3,7 +3,6 @@ package com.example.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,14 +28,19 @@ public class MetasController {
         return metaService.getAllMetas();
     } 
 
+    @GetMapping("/get_metas_by_user/{id}")
+    public List<Meta> getMetasByUser(@PathVariable(value = "id") Long user_id){
+        return metaService.getUserMetas(user_id);
+    } 
+
     @PostMapping("/add")
-    public Meta savMeta(@RequestBody Meta meta){
+    public Meta saveMeta(@RequestBody Meta meta){
         return metaService.saveMeta(meta);
     }
 
-    @PatchMapping("/{id}/update")
+    @PatchMapping("/update/{id_meta}")
     @ResponseStatus(HttpStatus.OK)
-    public Meta updateMeta(@PathVariable(value = "id") Long id, @RequestBody Meta meta) {
-        return metaService.updateMeta(id, meta);
+    public Meta updateMeta(@PathVariable(value = "id_meta") Long id, @RequestBody Meta metaInfo) {
+        return metaService.updateMeta(id, metaInfo);
     }
 }
