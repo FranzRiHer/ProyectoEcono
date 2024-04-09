@@ -24,7 +24,7 @@ public class IngresoService {
     
     @Transactional
     public Ingreso save(Ingreso ingreso){
-        Usuario usuario = ingreso.getUsuario();
+        Usuario usuario = usuarioService.getUsuarioById(ingreso.getUsuario().getId());
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
         usuario.setIngresoTotal(ingreso.getUsuario().getIngresoTotal() + ingreso.getCantidad());
         usuarioService.save(usuario);

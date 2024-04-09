@@ -35,8 +35,9 @@ function mostrarDatosLabel(data) {
 
 function validarLabels() {
   let nombre = $("#nameInput").val()
-  let contrasena = $("#contrasenaInput").val(data.password)
+  let contrasena = datosOriginales.password
   let email = $("#emailInput").val()
+  console.log(nombre + contrasena + email)
 
   if ((nombre === "" || contrasena === "" || email === "")) {
       window.alert("Por favor, complete todos los campos.");
