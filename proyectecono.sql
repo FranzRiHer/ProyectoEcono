@@ -98,13 +98,19 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `url`) VALUES
-('agregarGastos', '/src/main/resources/static/registroGastos/rGastos.html'),
-('agregarIngresos', '/src/main/resources/static/agregarIngresos/agregarIngresos.html'),
-('principal', '/src/main/resources/static/principal/index.html'),
-('verEgresos', '/src/main/resources/static/verEgresos/verEgresos.html'),
-('visualizarIngresos', '/src/main/resources/static/verFuentesIngresos/verFuentesIngreso.html'),
-('editarPerfilUser', 'src/main/resources/static/editarPerfilUser/editarPerfilUser.html'),
-('ModificarMetas','/src/main/resources/static/metaConfiguracion/metaConfig.html');
+('consClienteADMIN', '/src/main/resources/static/administrador/consultarClientes/consultarClientes.html'),
+('editarPerfilADMIN', '/src/main/resources/static/administrador/editar/editarPerfilAdmin.html'),
+('editarPerfilEST', '/src/main/resources/static/estudiante/editarPerfilUser/editarPerfil.html'),
+('egresosADMIN', '/src/main/resources/static/administrador/egresos/egresosAdmin.html'),
+('egresosEST', '/src/main/resources/static/estudiante/egresos/egresosEst.html'),
+('infoClienteADMIN', '/src/main/resources/static/administrador/informe/verInformeADMIN.html'),
+('informesEST', '/src/main/resources/static/estudiante/generacionInformes/informesEst.html'),
+('ingresosADMIN', '/src/main/resources/static/administrador/ingresos/ingresosAdmin.html'),
+('ingresosEST', '/src/main/resources/static/estudiante/ingresos/ingresosEst.html'),
+('modClienteADMIN', '/src/main/resources/static/administrador/modificarClientes/modicarClientes.html'),
+('modMetasEST', '/src/main/resources/static/estudiante/metaConfiguracion/metaConfig.html'),
+('principalADMIN', '/src/main/resources/static/administrador/principal/indexadmin.html'),
+('principalEST', '/src/main/resources/static/estudiante/principal/indexEst.html');
 -- --------------------------------------------------------
 
 --

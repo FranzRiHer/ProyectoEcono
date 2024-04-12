@@ -1,0 +1,58 @@
+<!-- Barra de Navegacion Admin -->
+<div id="sidebar">
+    <div class="p-2">
+        <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+            Principal
+        </a>
+    </div>
+    <div id="sidebar-accordion" class="accordion">
+        <div class="list-group">
+            <a id="principalADMIN" href="#" onclick="redireccionar(this)"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
+            </a>
+            <a id="ingresosADMIN" href="#" onclick="redireccionar(this)"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+            </a>
+            <a id="egresosADMIN" href="#" onclick="redireccionar(this)"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+            </a>
+            <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Opciones
+                Desarrollador
+            </a>
+            <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
+                <a id="consClienteADMIN" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Consultar Cliente
+                </a>
+                <a id="modClienteADMIN" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Modificar Cliente
+                </a>
+                <a id="infoClienteADMIN" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Ver Informes
+                </a>
+            </div>
+            <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
+            </a>
+            <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
+                <a id="editarPerfilADMIN" href="#" onclick="redireccionar(this)"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Perfil
+                </a>
+                <a id="visualizarIngresos" href="#"
+                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
+                    Salir
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Barra de Navegacion Admin -->
