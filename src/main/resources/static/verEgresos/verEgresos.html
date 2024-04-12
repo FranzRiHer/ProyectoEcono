@@ -2,188 +2,140 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Cuida Tus Gastos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Cuida Tus Gastos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Configuracion global de CSS -->
-    <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
-    <link rel="stylesheet" href="stVerEgresos.css">
+  <!-- Configuracion global de CSS -->
+  <link rel="stylesheet" href="/src/main/resources/static/stylesGlobal.css">
+  <link rel="stylesheet" href="stVerEgresos.css">
 
-    <!-- Optional JavaScript -->
-    <script src="/src/main/resources/static/scriptMenu.js"></script>
-    <script src="js/scriptVerEgresos.js"></script>
+  <!-- Optional JavaScript -->
+  <script src="/src/main/resources/static/scriptMenu.js"></script>
+  <script src="js/scriptVerEgresos.js"></script>
 </head>
 
 <body>
-    <div class="d-flex">
+  <div class="d-flex">
 
-        <!-- Barra de Navegacion -->
-        <div id="sidebar">
-            <div class="p-2">
-              <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
-                Menu
-              </a>
-            </div>
-            <div id="sidebar-accordion" class="accordion">
-<<<<<<< HEAD
-              <div class="list-group">
-                <a id="principal" href="#" onclick="redireccionar(this)"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
-                </a>
-                <a href="#ingresos-items" data-toggle="collapse" aria-expanded="false"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
-                </a>
-                <div id="ingresos-items" class="collapse" data-parent="#sidebar-accordion">
-                  <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
-                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Agregar
-                  </a>
-                  <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
-                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Visualizar
-                  </a>
-=======
-                <div class="list-group">
-                    <a id="principal" href="#" onclick="redireccionar(this)"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
-                    </a>
-                    <a href="#ingresos-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
-                    </a>
-                    <div id="ingresos-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Agregar
-                        </a>
-                        <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Visualizar
-                        </a>
-                    </div>
-                    <a href="#egresos-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
-                    </a>
-                    <div id="egresos-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="agregarGastos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Agregar
-                        </a>
-                        <a id="visualizarEngresos" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Visualizar
-                        </a>
-                    </div>
-                    <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
-                    </a>
-                    <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
-                        class="list-group-item list-group-item-action bg-dark text-light">
-                        <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
-                    </a>
-                    <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a id="editarPerfilUser" href="#" onclick="redireccionar(this)"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Perfil
-                        </a>
-                        <a id="visualizarIngresos" href="#"
-                            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                            Salir
-                        </a>
-                    </div>
->>>>>>> 61722acbf1cd3f4a58a6e45ec803a18728119cd9
-                </div>
-                <a href="#egresos-items" data-toggle="collapse" aria-expanded="false"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
-                </a>
-                <div id="egresos-items" class="collapse" data-parent="#sidebar-accordion">
-                  <a id="agregarGastos" href="#" onclick="redireccionar(this)"
-                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Agregar
-                  </a>
-                </div>
-                <a href="#metas-items" data-toggle="collapse" aria-expanded="false"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="bi bi-clipboard-data-fill mr-3" aria-hidden="true"></i>Metas
-                </a>
-                <div id="metas-items" class="collapse" data-parent="#sidebar-accordion">
-                  <a id="ModificarMetas" href="#" onclick="redireccionar(this)"
-                    class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Modificar Metas
-                  </a>
-                </div>
-                <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
-                </a>
-                <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
-                  class="list-group-item list-group-item-action bg-dark text-light">
-                  <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
-                </a>
-                <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
-                  <a id="editarPerfilUser" href="#" onclick="redireccionar(this)"
-                  class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Perfil
-                  </a>
-                  <a id="visualizarIngresos" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
-                    Salir
-                  </a>
-                </div>
-              </div>
-            </div>
+    <!-- Barra de Navegacion -->
+    <div id="sidebar">
+      <div class="p-2">
+        <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+          Menu
+        </a>
+      </div>
+      <div id="sidebar-accordion" class="accordion">
+        <div class="list-group">
+          <a id="principal" href="#" onclick="redireccionar(this)"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
+          </a>
+          <a href="#ingresos-items" data-toggle="collapse" aria-expanded="false"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+          </a>
+          <div id="ingresos-items" class="collapse" data-parent="#sidebar-accordion">
+            <a id="agregarIngresos" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Agregar
+            </a>
+            <a id="visualizarIngresos" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Visualizar
+            </a>
           </div>
-        <!-- Fin Barra de Navegacion -->
-
-        <!-- Tabla para cargar datos -->
-        <div class="container">
-            <h1>Ver historial de sus egresos</h1>
-            <div>
-                <label for="categoriaSelect">Filtrar por categoría:</label>
-                <select id="categoriaSelect" onchange="filtrarPorCategoria()">
-                    <!-- Opciones de categorías se agregarán aquí dinámicamente -->
-                </select>
-            </div>
-            <button onclick="filtrarPorCategoria()" class="btn">Cargar</button>
-            <table id="tablaDatos">
-                <thead>
-                    <tr>
-                        <th>Cantidad</th>
-                        <th>Descripción</th>
-                        <th>Categoria</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+          <a href="#egresos-items" data-toggle="collapse" aria-expanded="false"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+          </a>
+          <div id="egresos-items" class="collapse" data-parent="#sidebar-accordion">
+            <a id="agregarGastos" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Agregar
+            </a>
+            <a id="visualizarEngresos" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Visualizar
+            </a>
+          </div>
+          <a href="#metas-items" data-toggle="collapse" aria-expanded="false"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="bi bi-clipboard-data-fill mr-3" aria-hidden="true"></i>Metas
+          </a>
+          <div id="metas-items" class="collapse" data-parent="#sidebar-accordion">
+            <a id="ModificarMetas" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Modificar Metas
+            </a>
+          </div>
+          <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
+          </a>
+          <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
+            class="list-group-item list-group-item-action bg-dark text-light">
+            <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
+          </a>
+          <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
+            <a id="editarPerfilUser" href="#" onclick="redireccionar(this)"
+              class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Perfil
+            </a>
+            <a id="visualizarIngresos" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+              Salir
+            </a>
+          </div>
         </div>
-        
-        <!-- Fin Tabla para cargar datos -->
 
+      </div>
     </div>
 
+    <!-- Fin Barra de Navegacion -->
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-        </script>
+    <!-- Tabla para cargar datos -->
+    <div class="container">
+      <h1>Ver historial de sus egresos</h1>
+      <div>
+        <label for="categoriaSelect">Filtrar por categoría:</label>
+        <select id="categoriaSelect" onchange="filtrarPorCategoria()">
+          <!-- Opciones de categorías se agregarán aquí dinámicamente -->
+        </select>
+      </div>
+      <button onclick="filtrarPorCategoria()" class="btn">Cargar</button>
+      <table id="tablaDatos">
+        <thead>
+          <tr>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fin Tabla para cargar datos -->
+
+  </div>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
