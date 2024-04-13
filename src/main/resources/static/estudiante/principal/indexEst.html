@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+
+  <title>Cuida tus finanzas</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+  <!-- Configuracion global de CSS -->
+  <link rel="stylesheet" href="/src/main/resources/static/menu/stylesGlobal.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="/src/main/resources/static/menu/js/scriptMenu.js"></script>
+  <script src="js/scriptPrinicpal.js"></script>
+</head>
+
+<body>
+  <div class="d-flex" style="min-height: 100vh">
+    <!-- Barra de Navegacion Estudiante -->
+    <div id="menu-container"></div>
+    <script>
+      $(function () {
+        $("#menu-container").load(
+          "/src/main/resources/static/menu/menuEstudiante.html"
+        );
+      });
+    </script>
+    <!-- Fin Barra de Navegacion Estudiante-->
+    <!-- Contenedor para la barra de bienvenida y el contenido principal -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <!-- flex-grow-1 para ocupar el espacio restante -->
+
+      <!-- Barra de Bienvenida -->
+      <div id="welcomeBar" class="navbar bg-body-tertiary">
+        <span class="navbar-brand mb-0 h1"><b id="estudiante">Bienvenido Estudiante</b></span>
+      </div>
+
+      <!-- Contenido Principal que incluye las Opciones y el Diagrama -->
+      <div class="d-flex flex-grow-1">
+        <!-- Nuevo contenedor flex para opciones y diagrama -->
+
+        <!-- Contenedor de Opciones -->
+        <div class="container-fluid mt-3 flex-grow-1">
+          <div id="options" class="mb-3">
+            <div class="container-fluid">
+              <a href="#">
+                <i class="fa fa-chart-line-up"></i> Ingresos
+                <p id="ingresos">000</p>
+              </a>
+              <a href="#">
+                <i class="fa fa-chart-line-up"></i> Gastos
+                <p id="egresos">000</p>
+              </a>
+              <a href="#">
+                <i class="fa fa-chart-line-up"></i> SALDO TOTAL
+                <p id="saldoTotal">000</p>
+              </a>
+            </div>
+          </div>
+          <div class="programming-stats">
+            <h2 class="chart-heading">Diagrama</h2>
+            <div class="chart-container">
+              <canvas class="my-chart"></canvas>
+            </div>
+            <div class="details">
+              <ul></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="https://www.jsdelivr.com/package/npm/chart.js"></script>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</html>

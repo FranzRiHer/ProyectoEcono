@@ -23,12 +23,10 @@ public class EgresosService {
 
     @Transactional
     public Egreso save(Egreso egreso) {
-        // Obtener el usuario asociado al egreso
         Usuario usuario = usuarioService.getUsuarioById(egreso.getUsuario().getId());
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
         usuario.setEgresoTotal(egreso.getUsuario().getEgresoTotal() + egreso.getCantidadEgreso());
-        usuario = usuarioService.save(usuario);
-        egreso.setUsuario(usuario);
+        usuarioService.save(usuario);
         // Guardar el egreso
         return egresosRepository.save(egreso);
 
