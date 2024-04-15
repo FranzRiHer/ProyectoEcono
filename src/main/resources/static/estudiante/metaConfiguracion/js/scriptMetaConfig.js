@@ -8,9 +8,32 @@ var global_metas = [];
 $(document).ready(function () {
     global_metas = [];
     getMetas();
+    getMetasCsv();
 });
   
-//
+async function getMetasCsv() {
+    try {
+        const idUser = parseInt(localStorage.getItem('userId'), 10);
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:8080/metas/get_metas_csv/${idUser}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener las metas en formato CSV.');
+        }
+
+        const csvData = await response.text();
+        console.log(csvData);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
 async function getMetas() {
     try {
         const token = localStorage.getItem('token');

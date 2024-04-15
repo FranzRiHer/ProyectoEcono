@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Chatbot</title>
+  <!-- Bootstrap para estilos rápidos -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Chatbot</h2>
+    <div id="chatbox" class="border rounded p-3" style="height: 300px; overflow-y: scroll;">
+      <!-- Aquí se mostrarán los mensajes del chatbot y del usuario -->
+    </div>
+    <div class="input-group mt-3">
+      <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje aquí...">
+      <div class="input-group-append">
+        <button onclick="sendMessage()" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JQuery para manejar eventos y AJAX de forma sencilla -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="pilotoChatbot.js"></script>
+</body>
+</html>
