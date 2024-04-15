@@ -1,14 +1,20 @@
 package com.example.entities;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Ingreso {
@@ -18,6 +24,10 @@ public class Ingreso {
     private int id;
     private String descripcion; 
     private int cantidad;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_creacion")
+    private Date fechaCreacion;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -48,7 +58,14 @@ public class Ingreso {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     } 
-    
+        @PrePersist
+    protected void onCreate() {
+        fechaCreacion = new Date();
+    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
 
     
 
