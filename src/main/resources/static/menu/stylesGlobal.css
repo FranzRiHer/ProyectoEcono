@@ -96,5 +96,27 @@ p {
 }
 
 /* ------------------------------------------------------------------------------ */
+.boton-flotante {
+    position: fixed; /* Mantiene el botón en una posición fija en la pantalla */
+    bottom: 20px; /* Espacio desde la parte inferior de la pantalla */
+    right: 20px; /* Espacio desde la izquierda de la pantalla */
+    z-index: 100; /* Asegura que el botón esté por encima de otros elementos */
+  }
+  
+  /* Estilos adicionales para la imagen dentro del enlace, si es necesario */
+  .boton-flotante img {
+    display: block;
+    max-width: 300px; /* o el tamaño que desees */
+    max-height: 300px; /* o el tamaño que desees */
+    transition: transform 0.3s ease; /* Para un efecto suave al pasar el mouse */
+  }
+  
+  .boton-flotante:hover img {
+    transform: scale(1.1); /* Agrandar un poco el botón al pasar el mouse */
+  }
+  
+
+/* ------------------------------------------------------------------------------ */
+
 
 /* Descomentar para las animaciones de container (aun no trabajamos en animaciones) .container {transition: all 0.5s ease-in-out;}*/
