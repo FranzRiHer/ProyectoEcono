@@ -8,11 +8,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class CategoriaEgreso {
+public class CategoriaIngreso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCategoriaEgreso; 
+    private Long idCategoriaIngreso; 
 
     private String descripcion;
 
@@ -21,11 +21,11 @@ public class CategoriaEgreso {
     private Usuario usuario;
 
     public Long getIdCategoriaEgreso() {
-        return idCategoriaEgreso;
+        return idCategoriaIngreso;
     }
 
-    public void setIdCategoriaEgreso(Long idCategoriaEgreso) {
-        this.idCategoriaEgreso = idCategoriaEgreso;
+    public void setIdCategoriaEgreso(Long idCategoriaIngreso) {
+        this.idCategoriaIngreso = idCategoriaIngreso;
     }
 
     public String getDescripcion() {
