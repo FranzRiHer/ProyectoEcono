@@ -97,24 +97,41 @@ p {
 
 /* ------------------------------------------------------------------------------ */
 .boton-flotante {
-    position: fixed; /* Mantiene el botón en una posición fija en la pantalla */
-    bottom: 20px; /* Espacio desde la parte inferior de la pantalla */
-    right: 20px; /* Espacio desde la izquierda de la pantalla */
-    z-index: 100; /* Asegura que el botón esté por encima de otros elementos */
-  }
-  
-  /* Estilos adicionales para la imagen dentro del enlace, si es necesario */
-  .boton-flotante img {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+    /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+.boton-flotante img {
     display: block;
-    max-width: 300px; /* o el tamaño que desees */
-    max-height: 300px; /* o el tamaño que desees */
-    transition: transform 0.3s ease; /* Para un efecto suave al pasar el mouse */
-  }
-  
-  .boton-flotante:hover img {
-    transform: scale(1.1); /* Agrandar un poco el botón al pasar el mouse */
-  }
-  
+    max-width: 300px;
+    max-height: 300px;
+    transition: opacity 0.3s ease;
+    /* Transición suave de opacidad */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.boton-flotante .hover {
+    opacity: 0;
+    /* Inicialmente oculta la imagen de hover */
+    position: absolute;
+    /* Asegura que ambas imágenes se alineen correctamente */
+}
+
+.boton-flotante:hover .normal {
+    opacity: 0;
+    /* Oculta la imagen normal al pasar el mouse */
+}
+
+.boton-flotante:hover .hover {
+    opacity: 1;
+    /* Muestra la imagen de hover al pasar el mouse */
+}
 
 /* ------------------------------------------------------------------------------ */
 
