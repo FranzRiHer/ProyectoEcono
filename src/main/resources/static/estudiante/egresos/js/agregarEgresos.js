@@ -1,12 +1,12 @@
 let categorias = [];
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     cargarCategorias();
 });
 
-function mostrarPersonalizado(){
+function mostrarPersonalizado() {
     var opcion = document.getElementById("categoriaMenu");
-    if(opcion.value === "personalizado") {
+    if (opcion.value === "personalizado") {
         document.getElementById('crearCategoriaBTN').style.display = 'block';
     } else {
         document.getElementById('crearCategoriaBTN').style.display = 'none';
@@ -24,7 +24,7 @@ function validarLabels() {
     } else {
         window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
     }
-    if(desc === "personalizado"){
+    if (desc === "personalizado") {
         window.alert("Escoja una categoria valida");
     }
 }
@@ -35,12 +35,12 @@ function validarCategoria() {
 
     if (descripcion !== "") {
         // Verificar si la categoría ya existe en el arreglo local
-        let existeCategoria = categorias.some(function(categoria) {
+        let existeCategoria = categorias.some(function (categoria) {
             return categoria.toUpperCase() === descripcion;
         });
 
         if (!existeCategoria) {
-            crearCategoria(descripcion); 
+            crearCategoria(descripcion);
             setTimeout(() => cargarCategorias(), 500);
         } else {
             alert("La categoría ya existe.");
@@ -48,11 +48,11 @@ function validarCategoria() {
     } else {
         window.alert("El campo de categoría debe estar lleno.");
     }
-    
+
 
 }
 
-function crearCategoria(desc){
+function crearCategoria(desc) {
     let data = {
         descripcion: desc
     }
@@ -69,7 +69,7 @@ function crearCategoria(desc){
         contentType: "application/json; charset=utf-8",
         data: dataToSend,
         // Incluir el token de autenticación en el encabezado de la solicitud
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
@@ -79,7 +79,11 @@ function crearCategoria(desc){
             alert('Datos enviados exitosamente.');
             location.reload();
         },
-        error: function (error) {
+        error: function (xhr, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }
             alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
         }
     });
@@ -93,12 +97,12 @@ function saveEgreso(egreso, descripcion) {
     var datos = {
         cantidadEgreso: egreso,
         descripcion: descripcion,
-        usuario: {"id": id},
-        categoriaEgreso: {"idCategoriaEgreso": idCategoria}
+        usuario: { "id": id },
+        categoriaEgreso: { "idCategoriaEgreso": idCategoria }
     };
 
     let dataToSend = JSON.stringify(datos);
-    console.log("Data To dend"  + dataToSend);
+    console.log("Data To dend" + dataToSend);
 
     // Obtener el token de autenticación del almacenamiento local
     let token = localStorage.getItem('token');
@@ -110,7 +114,7 @@ function saveEgreso(egreso, descripcion) {
         contentType: "application/json; charset=utf-8",
         data: dataToSend,
         // Incluir el token de autenticación en el encabezado de la solicitud
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
@@ -123,9 +127,14 @@ function saveEgreso(egreso, descripcion) {
             getEgresos();
             filtrarPorCategoria();
         },
-        error: function (error) {
-            console.log(error);
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+        error: function (xhr, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }
+            else{
+                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            }
         }
     });
 }
@@ -138,7 +147,7 @@ function cargarCategorias() {
         url: "http://localhost:8080/categorias_e/get_cat_e",
         type: "GET",
         dataType: "JSON",
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
@@ -162,10 +171,10 @@ function cargarCategorias() {
 
             } else {
                 // Cargar categorías del resultado
-                $.each(result, function() {
+                $.each(result, function () {
                     const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
                     select.append(option);
-                    categorias.push(this.descripcion); 
+                    categorias.push(this.descripcion);
                 });
             }
 
@@ -173,8 +182,13 @@ function cargarCategorias() {
             const optionPersonalizado = $('<option>').attr('value', 'personalizado').text('Otro...');
             select.append(optionPersonalizado);
         },
-        error: function(xhr, status, error) {
-            console.error('Error al cargar las categorías:', error);
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }else{
+                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            }    
         }
     });
 }
