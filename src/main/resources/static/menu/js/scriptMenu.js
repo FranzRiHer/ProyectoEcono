@@ -25,9 +25,23 @@ function sendLink(idElemento, callback) {
             console.log(result);
             callback(result);
         },
-        error: function (error) {
-            console.log(error);
-            callback(null);
+        error: function (xhr,error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }else{
+                alert('Error con el servidor');
+            }
         },
     });
+}
+
+function manejarExpiracionToken() {
+    alert("Su sesión ha expirado. Por favor, inicie sesión de nuevo.");
+    window.location.href = '/src/main/resources/static/acceso/login/login.html'; // Redirige al usuario a la página de inicio de sesión
+}
+
+function cerrarSesion() {
+    localStorage.removeItem('token'); // Elimina el token de localStorage
+    window.location.href = '/src/main/resources/static/acceso/login/login.html'; // Redirige al login
 }
