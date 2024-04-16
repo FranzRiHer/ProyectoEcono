@@ -32,4 +32,25 @@ public class IngresoService {
         return ingresoRepository.save(ingreso);
     }
     
+    public List<Ingreso> getUserIngresos(Long user_id) {
+        Usuario usuario = usuarioService.getUsuarioById(user_id);
+        return usuario.getIngresos();
+    }
+
+    public String convertIngresosToCSV(List<Ingreso> ingresosList) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Añadir encabezados de columnas
+        csvBuilder.append("Descripcion,Cantidad");
+    
+        for (Ingreso ingreso : ingresosList) {
+            csvBuilder.append(ingreso.getDescripcion())
+                      .append(",")
+                      .append(ingreso.getCantidad())
+                      .append(",")
+                      .append(ingreso.getDescripcion())
+                      .append(",");
+        }
+    
+        return csvBuilder.toString();
+    }
 }

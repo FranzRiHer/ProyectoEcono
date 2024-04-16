@@ -1,6 +1,8 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.entities.CategoriaEgreso;
@@ -23,5 +25,14 @@ public class CategoriaEgresoService {
     
     public CategoriaEgreso getCategoriaBydescripcion(String desc){
         return catEgRepo.getCategoriaBydescripcion(desc);
+    }
+
+    public CategoriaEgreso getCategoriaById(Long id) {
+        Optional<CategoriaEgreso> categoriaEgresoOptional = catEgRepo.getCategoriaById(id);
+        if (categoriaEgresoOptional.isPresent()) {
+            return categoriaEgresoOptional.get();
+        } else {
+            throw new RuntimeException("Categoria no encontrada");
+        }
     }
 }

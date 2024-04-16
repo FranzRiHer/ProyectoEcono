@@ -10,7 +10,8 @@ public class CategoriaEgreso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCategoriaEgreso; 
+    private Long
+     idCategoriaEgreso; 
 
     private String descripcion;
     
