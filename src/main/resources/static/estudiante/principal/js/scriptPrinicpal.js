@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Egresos mayores a ingresos")
             enviarNotificacion("Cuidado con sus gastos. Sus egresos superan sus ingresos.");
         }
+        // Verificar si los egresos de alguna meta superan el porcentaje indicado por la meta para el total de los ingresos
+        metasUsuario.forEach(meta => {
+            let egresosMeta = meta.total;
+            let porcentajeMeta = meta.porcentaje;
+            if (egresosMeta > (valorIngresos2 * (porcentajeMeta / 100))) {
+                enviarNotificacion(`¡Atención! Los egresos de la meta "${meta.nombre}" superan el ${porcentajeMeta}% de los ingresos.`);
+            }
+        });
+
 
 
         const ctx = document.querySelector(".my-chart");
@@ -112,6 +121,7 @@ function getEgresos() {
 // Notificaciones --------------------------------------------------------------------------------------
 
 function enviarNotificacion(mensaje) {
+    getMetas()
     // Verificar si el navegador soporta notificaciones
     if (!("Notification" in window)) {
         console.log("Este navegador no soporta notificaciones.");
@@ -127,4 +137,28 @@ function enviarNotificacion(mensaje) {
             }
         });
     }
+}
+
+// Función para obtener las metas del usuario
+function getMetas() {
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('userId');
+    return $.ajax({
+        url: `http://localhost:8080/metas/get_metas_by_user/${id}`,
+        type: "GET",
+        dataType: "JSON",
+        contentType: "application/json",
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function (result) {
+            console.log("Metas obtenidas:", result);
+            return result; // Retorna las metas
+        },
+        error: function (error) {
+            console.log('Error al cargar las metas:', error);
+        },
+    });
 }
