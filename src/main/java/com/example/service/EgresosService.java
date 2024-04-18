@@ -31,4 +31,10 @@ public class EgresosService {
         return egresosRepository.save(egreso);
 
     }
+
+    public List<Egreso> getEgresosUser(long id_User){
+        Usuario usuario = usuarioService.getUsuarioById(id_User);
+        List<Egreso> lista = usuario.getEgresos();
+        return lista;
+    }
 }
