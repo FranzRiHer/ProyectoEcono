@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class CategoriaEgresoService {
     }
 
     @Transactional
-    public CategoriaEgreso save(CategoriaEgreso catE){
+    public CategoriaEgreso save(CategoriaEgreso catE) {
+        Usuario usuario = usuarioService.getUsuarioById(catE.getUsuario().getId());
+        usuarioService.save(usuario);
+        // Guardar el egreso
         return catEgRepo.save(catE);
     }
     
@@ -30,9 +34,24 @@ public class CategoriaEgresoService {
     }
 
     public List<CategoriaEgreso> getUserCatEgresos(Long user_id) {
-
         Usuario usuario = usuarioService.getUsuarioById(user_id);
         return usuario.getCategoriasEgreso();
+    }
+
+    public void createDefaultCategoriasForUser(Usuario user) {
+        List<CategoriaEgreso> defaultCategorias = getDefaultCategorias(user);
+        for (CategoriaEgreso categoria : defaultCategorias) {
+            catEgRepo.save(categoria); // Guarda cada categoria en la base de datos
+        }
+    }
+
+    public List<CategoriaEgreso> getDefaultCategorias(Usuario user) {
+        // Retorna una lista de objetos CategoriaEgreso con los valores predeterminados y el ID de usuario establecido
+        List<CategoriaEgreso> categorias = new ArrayList<>();
+        categorias.add(new CategoriaEgreso("COMIDA", user));
+        categorias.add(new CategoriaEgreso("TRANSPORTE", user));
+        categorias.add(new CategoriaEgreso("SOCIAL", user));
+        return categorias;
     }
     
 }

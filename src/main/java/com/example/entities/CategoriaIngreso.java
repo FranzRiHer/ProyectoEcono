@@ -1,5 +1,7 @@
 package com.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class CategoriaIngreso {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonIgnoreProperties("categoriasIngreso")
     private Usuario usuario;
 
     public Long getIdCategoriaEgreso() {
@@ -44,4 +47,11 @@ public class CategoriaIngreso {
         this.usuario = usuario;
     }
 
+    public CategoriaIngreso(String descripcion, Usuario usuario) {
+        this.descripcion = descripcion;
+        this.usuario = usuario;
+    }
+
+    public CategoriaIngreso() {
+    }
 }

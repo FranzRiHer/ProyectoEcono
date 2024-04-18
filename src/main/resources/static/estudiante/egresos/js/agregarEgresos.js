@@ -53,8 +53,12 @@ function validarCategoria() {
 }
 
 function crearCategoria(desc) {
+    id = localStorage.getItem('userId')
     let data = {
-        descripcion: desc
+        descripcion: desc,
+        usuario: {
+            id: id
+        }        
     }
 
     let dataToSend = JSON.stringify(data);
@@ -142,9 +146,10 @@ function saveEgreso(egreso, descripcion) {
 function cargarCategorias() {
 
     let token = localStorage.getItem('token');
+    let id = localStorage.getItem('userId')
 
     $.ajax({
-        url: "http://localhost:8080/categorias_e/get_cat_e",
+        url: "http://localhost:8080/categorias_e/get_by_user/" + id,
         type: "GET",
         dataType: "JSON",
         beforeSend: function (xhr) {
@@ -157,38 +162,25 @@ function cargarCategorias() {
             select.empty();
             categorias = [];
 
-            // Verificar si el resultado está vacío
-            if (result.length === 0) {
-
-                // Categorías por defecto
-                setTimeout(() => crearCategoria('COMIDA'), 0);
-                setTimeout(() => crearCategoria('TRASNPORTE'), 500);
-                setTimeout(() => crearCategoria('SOCIAL'), 1000);
-                categorias.push('COMIDA');
-                categorias.push('TRASNPORTE');
-                categorias.push('SOCIAL');
-                setTimeout(() => cargarCategorias(), 500);
-
-            } else {
-                // Cargar categorías del resultado
-                $.each(result, function () {
-                    const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
-                    select.append(option);
-                    categorias.push(this.descripcion);
-                });
-            }
+            // Cargar categorías del resultado
+            $.each(result, function () {
+                const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
+                select.append(option);
+                categorias.push(this.descripcion);
+            });
 
             // Añadir opción personalizada al final
             const optionPersonalizado = $('<option>').attr('value', 'personalizado').text('Otro...');
             select.append(optionPersonalizado);
         },
+
         error: function (xhr, status, error) {
             if (xhr.status === 401) {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
-            }else{
-                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
-            }    
+            } else {
+                alert('Error al traer las categorias. Por favor, inténtelo de nuevo.');
+            }
         }
     });
 }
