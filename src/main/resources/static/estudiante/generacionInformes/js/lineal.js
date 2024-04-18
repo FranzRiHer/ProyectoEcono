@@ -1,49 +1,145 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Datos para el gráfico de líneas
-    const myChart1 = document.getElementById("lineChart");
 
-    const lineData = {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-        datasets: [
-            {
-                label: "Valor 1",
-                data: [50, 20, 15, 50, 18, 30],
-                borderColor: '#9064a1',
-                borderWidth: 2,
-                fill: false
-            },
-            {
-                label: "Valor 2",
-                data: [30, 25, 40, 20, 35, 45],
-                borderColor: '#2391bd',
-                borderWidth: 2,
-                fill: false
-            }
-        ]
+    const getMonthName = (dateString) => {
+        const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const date = new Date(dateString);
+        const monthIndex = date.getMonth();
+        return monthNames[monthIndex];
     };
 
-    new Chart(myChart1, {
-        type: 'line',
-        data: lineData,
-        options: {
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Mes'
+    // Función para obtener los datos de ingresos
+    function getIngresos() {
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
+        var url = "http://localhost:8080/ingreso/ingreso";
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Procesar los datos de ingresos obtenidos
+                const ingresosPorMes = {};
+
+                // Iterar sobre cada ingreso y acumular por mes
+                data.forEach(entry => {
+                    const fecha = new Date(entry.fechaCreacion);
+                    const mes = fecha.getMonth() + 1; // El mes en JavaScript es base 0, por eso se suma 1
+                    const cantidad = entry.cantidad;
+
+                    // Si el mes ya existe en el objeto, sumar la cantidad, de lo contrario, inicializarlo
+                    if (ingresosPorMes[mes]) {
+                        ingresosPorMes[mes] += cantidad;
+                    } else {
+                        ingresosPorMes[mes] = cantidad;
                     }
-                },
-                y: {
-                    display: true,
-                    title: {
+                });
+
+                console.log("Ingresos por mes:", ingresosPorMes);
+
+                // Actualizar el gráfico de líneas con los datos de ingresos por mes
+                updateLineChart(ingresosPorMes, {});
+            })
+            .catch(error => {
+                console.error("Error al obtener los datos de ingresos:", error);
+            });
+    }
+
+    
+    // Función para obtener los datos de egresos
+    function getEgresos() {
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
+        var url = "http://localhost:8080/gastos/egresos";
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Procesar los datos de egresos obtenidos
+                const egresosPorMes = {};
+
+                // Iterar sobre cada egreso y acumular por mes
+                data.forEach(entry => {
+                    const fecha = new Date(entry.fechaCreacion);
+                    const mes = fecha.getMonth() + 1; // El mes en JavaScript es base 0, por eso se suma 1
+                    const cantidad = entry.cantidadEgreso;
+
+                    // Si el mes ya existe en el objeto, sumar la cantidad, de lo contrario, inicializarlo
+                    if (egresosPorMes[mes]) {
+                        egresosPorMes[mes] += cantidad;
+                    } else {
+                        egresosPorMes[mes] = cantidad;
+                    }
+                });
+
+                console.log("Egresos por mes:", egresosPorMes);
+
+                // Actualizar el gráfico de líneas con los datos de egresos por mes
+                updateLineChart({}, egresosPorMes);
+            })
+            .catch(error => {
+                console.error("Error al obtener los datos de egresos:", error);
+            });
+    }
+
+    // Función para actualizar el gráfico de líneas con los datos de ingresos y egresos
+    function updateLineChart(ingresosPorMes, egresosPorMes) {
+        const lineChartElement = document.getElementById("lineChart").getContext('2d');
+
+        // Crear el nuevo gráfico con los datos actualizados
+        lineChart = new Chart(lineChartElement, {
+            type: 'line',
+            data: {
+                labels: Object.keys(ingresosPorMes).map(month => getMonthName(`${new Date().getFullYear()}-${month}-01`)), // Obtener nombres de los meses
+                datasets: [
+                    {
+                        label: "Ingresos",
+                        data: Object.values(ingresosPorMes),
+                        borderColor: '#9064a1',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: "Egresos",
+                        data: Object.values(egresosPorMes),
+                        borderColor: '#2391bd',
+                        borderWidth: 2,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
                         display: true,
-                        text: 'Valor'
+                        title: {
+                            display: true,
+                            text: 'Mes'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Valor'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
+
+    // Llamar a las funciones para obtener los datos de ingresos y egresos al cargar el DOM
+    getIngresos();
+    getEgresos();
 
     // Datos para el gráfico de radar
     const radarChart = document.getElementById("radarChart");
