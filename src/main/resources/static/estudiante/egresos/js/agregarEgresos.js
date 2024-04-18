@@ -1,6 +1,7 @@
 let categorias = [];
 
 document.addEventListener('DOMContentLoaded', function () {
+    getMetas()
     cargarCategorias();
 });
 
@@ -80,15 +81,14 @@ function crearCategoria(desc) {
         },
         success: function (result) {
             $("#categoriaPersonalizada").val("");
-            alert('Datos enviados exitosamente.');
-            location.reload();
+            alert('Categoria creada exitosamente.');
         },
         error: function (xhr, error) {
             if (xhr.status === 401) {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             }
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            alert('Error al crear la categoría. Por favor, inténtelo de nuevo.');
         }
     });
 
@@ -96,13 +96,15 @@ function crearCategoria(desc) {
 
 function saveEgreso(egreso, descripcion) {
     var opcion = document.getElementById("categoriaMenu");
-    idCategoria = opcion.value;
+    var idCategoria = opcion.value;
+    var idMeta = document.getElementById("subcategoriaMenu").value;
     let id = localStorage.getItem('userId')
     var datos = {
         cantidadEgreso: egreso,
         descripcion: descripcion,
         usuario: { "id": id },
-        categoriaEgreso: { "idCategoriaEgreso": idCategoria }
+        categoriaEgreso: { "idCategoriaEgreso": idCategoria },
+        meta: {"id": idMeta}
     };
 
     let dataToSend = JSON.stringify(datos);
@@ -183,4 +185,45 @@ function cargarCategorias() {
             }
         }
     });
+}
+
+
+async function getMetas() {
+    try {
+        const token = localStorage.getItem('token');
+        const idUser = parseInt(localStorage.getItem('userId'), 10); // Asegúrate de que es un número
+        const url = `http://localhost:8080/metas/get_metas_by_user/${idUser}`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener las metas.');
+        }
+
+        const metas_usuario = await response.json();        
+        if (!metas_usuario) {
+            console.error('Usuario no encontrado');
+            return;
+        }
+
+        console.log("Las metas del usuario son:", metas_usuario);
+
+        const subcategoriaMenu = $('#subcategoriaMenu');
+
+        subcategoriaMenu.empty(); // Limpiar la lista desplegable existente
+
+        // Añadir las opciones de las metas al DOM
+        metas_usuario.forEach(meta => {
+            subcategoriaMenu.append($('<option>').text((meta.nombre).toUpperCase()).val(meta.id));
+        });
+        
+        console.log("Metas agregadas a la lista desplegable.");
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }

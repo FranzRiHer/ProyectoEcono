@@ -20,7 +20,7 @@ public class CategoriaEgresoService {
     public List<CategoriaEgreso> getCategoriasEgresos(){
         return catEgRepo.getCategoriasEgresos();
     }
-
+    
     @Transactional
     public CategoriaEgreso save(CategoriaEgreso catE) {
         Usuario usuario = usuarioService.getUsuarioById(catE.getUsuario().getId());
