@@ -25,11 +25,15 @@ public class Meta {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonIgnoreProperties("egresos")
     private Usuario usuario;
 
     @JsonIgnoreProperties("meta")
     @OneToMany(mappedBy = "meta" , cascade = CascadeType.ALL)
     private List<InformeMeta> InformesMetas;
+
+    @OneToMany(mappedBy = "meta" , cascade = CascadeType.ALL)
+    private List<Egreso> egresos;
 
     public Meta() {
 
