@@ -23,11 +23,11 @@ public class CategoriaIngreso {
     @JsonIgnoreProperties("categoriasIngreso")
     private Usuario usuario;
 
-    public Long getIdCategoriaEgreso() {
+    public Long getIdCategoriaIngreso() {
         return idCategoriaIngreso;
     }
 
-    public void setIdCategoriaEgreso(Long idCategoriaIngreso) {
+    public void setIdCategoriaIngreso(Long idCategoriaIngreso) {
         this.idCategoriaIngreso = idCategoriaIngreso;
     }
 

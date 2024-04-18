@@ -24,14 +24,14 @@ public class InformeMetaController {
         return informeMetaService.getAllInformeMeta();
     }
     
-    @GetMapping("/get_informes_metas_csv/{id}")
-    public ResponseEntity<String> getMetasCsv(@PathVariable(value = "id") Long id_meta){
-        List<InformeMeta> informes = InformeMetaService.getInformesMetas(id_meta);
-        String csvContent = informeMetaService.convertInformeMetasToCSV(informes);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=informes_metas.csv");
-        headers.add("Content-Type", "text/csv; charset=utf-8");
+    // @GetMapping("/get_informes_metas_csv/{id}")
+    // public ResponseEntity<String> getMetasCsv(@PathVariable(value = "id") Long id_meta){
+    //     List<InformeMeta> informes = InformeMetaService.getInformesMetas(id_meta);
+    //     String csvContent = informeMetaService.convertInformeMetasToCSV(informes);
+    //     HttpHeaders headers = new HttpHeaders();
+    //     headers.add("Content-Disposition", "attachment; filename=informes_metas.csv");
+    //     headers.add("Content-Type", "text/csv; charset=utf-8");
 
-        return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
-    }
+    //     return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
+    // }
 }

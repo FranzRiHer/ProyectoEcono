@@ -33,6 +33,11 @@ public class Ingreso {
     @JoinColumn(name = "id_usuario")
     @JsonIgnoreProperties("ingresos")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    @JsonIgnoreProperties("usuario")
+    private CategoriaIngreso categoriaIngreso;
     
     public int getId() {
         return id;
@@ -58,6 +63,10 @@ public class Ingreso {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     } 
+
+    public CategoriaIngreso getCategoriaIngreso() {
+        return categoriaIngreso;
+    }
         @PrePersist
     protected void onCreate() {
         fechaCreacion = new Date();

@@ -35,12 +35,25 @@ public class CategoriaEgresoService {
         return catEgRepo.getCategoriaBydescripcion(desc);
     }
 
-    public CategoriaEgreso getCategoriaById(Long id) {
-        Optional<CategoriaEgreso> categoriaEgresoOptional = catEgRepo.getCategoriaById(id);
-        if (categoriaEgresoOptional.isPresent()) {
-            return categoriaEgresoOptional.get();
-        } else {
-            throw new RuntimeException("Categoria no encontrada");
+    public List<CategoriaEgreso> getUserCatEgresos(Long user_id) {
+        Usuario usuario = usuarioService.getUsuarioById(user_id);
+        return usuario.getCategoriasEgreso();
+    }
+
+    public void createDefaultCategoriasForUser(Usuario user) {
+        List<CategoriaEgreso> defaultCategorias = getDefaultCategorias(user);
+        for (CategoriaEgreso categoria : defaultCategorias) {
+            catEgRepo.save(categoria); // Guarda cada categoria en la base de datos
         }
     }
+
+    public List<CategoriaEgreso> getDefaultCategorias(Usuario user) {
+        // Retorna una lista de objetos CategoriaEgreso con los valores predeterminados y el ID de usuario establecido
+        List<CategoriaEgreso> categorias = new ArrayList<>();
+        categorias.add(new CategoriaEgreso("COMIDA", user));
+        categorias.add(new CategoriaEgreso("TRANSPORTE", user));
+        categorias.add(new CategoriaEgreso("SOCIAL", user));
+        return categorias;
+    }
+    
 }

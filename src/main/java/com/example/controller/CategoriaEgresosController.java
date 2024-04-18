@@ -38,6 +38,6 @@ public class CategoriaEgresosController {
     @GetMapping("/get_by_user/{id}")
     public List<CategoriaEgreso> getMetasByUser(@PathVariable(value = "id") Long user_id){
         return catEgService.getUserCatEgresos(user_id);
-    } 
+    }                   
     
 }

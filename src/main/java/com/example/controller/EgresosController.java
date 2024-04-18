@@ -37,4 +37,16 @@ public class EgresosController {
     public List<Egreso> getMetasByUser(@PathVariable(value = "id") Long user_id){
         return egresosService.getEgresosUser(user_id);
     }
+
+    @GetMapping("/get_egresos_csv/{id}")
+    public ResponseEntity<String> getEgresosCsv(@PathVariable(value = "id") Long user_id){
+        List<Egreso> egresos = egresosService.getUserEgresos(user_id);
+        String csvContent = egresosService.convertEgresosToCSV(egresos);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=egresos.csv");
+        headers.add("Content-Type", "text/csv; charset=utf-8");
+
+        return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
+    }
+
 }
