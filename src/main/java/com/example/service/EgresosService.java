@@ -24,6 +24,9 @@ public class EgresosService {
     @Autowired
     private CategoriaEgresosRepository categoriaEgresosRepository;
 
+    @Autowired
+    private MetaService metaService;
+
     public List<Egreso> getAllEgresos() {
         return egresosRepository.getAllEgresos();
     }
@@ -65,4 +68,12 @@ public class EgresosService {
     
         return csvBuilder.toString();
     }
+
+    public List<Egreso> getEgresosUser(long id_User){
+        Usuario usuario = usuarioService.getUsuarioById(id_User);
+        List<Egreso> lista = usuario.getEgresos();
+        return lista;
+    }
 }
+
+

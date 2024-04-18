@@ -6,6 +6,24 @@ document.addEventListener("DOMContentLoaded", function () {
         chartData.data = [valorIngresos2, valorEgresos2];
         console.log(chartData);
 
+
+        // Verificar si los egresos son mayores que los ingresos
+        if (valorEgresos2 > valorIngresos2) {
+            // Si los egresos son mayores, enviar una notificación
+            console.log("Egresos mayores a ingresos")
+            enviarNotificacion("Cuidado con sus gastos. Sus egresos superan sus ingresos.");
+        }
+        // Verificar si los egresos de alguna meta superan el porcentaje indicado por la meta para el total de los ingresos
+        metasUsuario.forEach(meta => {
+            let egresosMeta = meta.total;
+            let porcentajeMeta = meta.porcentaje;
+            if (egresosMeta > (valorIngresos2 * (porcentajeMeta / 100))) {
+                enviarNotificacion(`¡Atención! Los egresos de la meta "${meta.nombre}" superan el ${porcentajeMeta}% de los ingresos.`);
+            }
+        });
+
+
+
         const ctx = document.querySelector(".my-chart");
         new Chart(ctx, {
             type: "doughnut",
@@ -97,6 +115,50 @@ function getEgresos() {
         error: function (error) {
             $('#egresos').text('Error al cargar los egresos.');
             console.log(error);
+        },
+    });
+}
+// Notificaciones --------------------------------------------------------------------------------------
+
+function enviarNotificacion(mensaje) {
+    getMetas()
+    // Verificar si el navegador soporta notificaciones
+    if (!("Notification" in window)) {
+        console.log("Este navegador no soporta notificaciones.");
+    } else if (Notification.permission === "granted") {
+        // Si ya se ha concedido permiso para mostrar notificaciones
+        new Notification("¡Atención!", { body: mensaje });
+    } else if (Notification.permission !== "denied") {
+        // Si aún no se ha pedido permiso, pedirlo
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                // Si el permiso se concede, mostrar la notificación
+                new Notification("¡Atención!", { body: mensaje });
+            }
+        });
+    }
+}
+
+// Función para obtener las metas del usuario
+function getMetas() {
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('userId');
+    return $.ajax({
+        url: `http://localhost:8080/metas/get_metas_by_user/${id}`,
+        type: "GET",
+        dataType: "JSON",
+        contentType: "application/json",
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function (result) {
+            console.log("Metas obtenidas:", result);
+            return result; // Retorna las metas
+        },
+        error: function (error) {
+            console.log('Error al cargar las metas:', error);
         },
     });
 }

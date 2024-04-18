@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.entities.Egreso;
 import com.example.service.EgresosService;
 
+
 @CrossOrigin
 @RestController
 @RequestMapping("/gastos")
@@ -32,14 +33,8 @@ public class EgresosController {
         return egresosService.save(s);
     }   
 
-    @GetMapping("/get_egresos_csv/{id}")
-    public ResponseEntity<String> getIngresosCsv(@PathVariable(value = "id") Long user_id){
-        List<Egreso> egresos = egresosService.getUserEgresos(user_id);
-        String csvContent = egresosService.convertEgresosToCSV(egresos);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=egresos.csv");
-        headers.add("Content-Type", "text/csv; charset=utf-8");
-
-        return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
+    @GetMapping("/get_by_user/{id}")
+    public List<Egreso> getMetasByUser(@PathVariable(value = "id") Long user_id){
+        return egresosService.getEgresosUser(user_id);
     }
 }
