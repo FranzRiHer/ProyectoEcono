@@ -1,12 +1,13 @@
 let categorias = [];
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    getMetas()
     cargarCategorias();
 });
 
-function mostrarPersonalizado(){
+function mostrarPersonalizado() {
     var opcion = document.getElementById("categoriaMenu");
-    if(opcion.value === "personalizado") {
+    if (opcion.value === "personalizado") {
         document.getElementById('crearCategoriaBTN').style.display = 'block';
     } else {
         document.getElementById('crearCategoriaBTN').style.display = 'none';
@@ -24,7 +25,7 @@ function validarLabels() {
     } else {
         window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
     }
-    if(desc === "personalizado"){
+    if (desc === "personalizado") {
         window.alert("Escoja una categoria valida");
     }
 }
@@ -35,12 +36,12 @@ function validarCategoria() {
 
     if (descripcion !== "") {
         // Verificar si la categoría ya existe en el arreglo local
-        let existeCategoria = categorias.some(function(categoria) {
+        let existeCategoria = categorias.some(function (categoria) {
             return categoria.toUpperCase() === descripcion;
         });
 
         if (!existeCategoria) {
-            crearCategoria(descripcion); 
+            crearCategoria(descripcion);
             setTimeout(() => cargarCategorias(), 500);
         } else {
             alert("La categoría ya existe.");
@@ -48,13 +49,17 @@ function validarCategoria() {
     } else {
         window.alert("El campo de categoría debe estar lleno.");
     }
-    
+
 
 }
 
-function crearCategoria(desc){
+function crearCategoria(desc) {
+    id = localStorage.getItem('userId')
     let data = {
-        descripcion: desc
+        descripcion: desc,
+        usuario: {
+            id: id
+        }        
     }
 
     let dataToSend = JSON.stringify(data);
@@ -69,18 +74,21 @@ function crearCategoria(desc){
         contentType: "application/json; charset=utf-8",
         data: dataToSend,
         // Incluir el token de autenticación en el encabezado de la solicitud
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
         },
         success: function (result) {
             $("#categoriaPersonalizada").val("");
-            alert('Datos enviados exitosamente.');
-            location.reload();
+            alert('Categoria creada exitosamente.');
         },
-        error: function (error) {
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+        error: function (xhr, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }
+            alert('Error al crear la categoría. Por favor, inténtelo de nuevo.');
         }
     });
 
@@ -88,17 +96,19 @@ function crearCategoria(desc){
 
 function saveEgreso(egreso, descripcion) {
     var opcion = document.getElementById("categoriaMenu");
-    idCategoria = opcion.value;
+    var idCategoria = opcion.value;
+    var idMeta = document.getElementById("subcategoriaMenu").value;
     let id = localStorage.getItem('userId')
     var datos = {
         cantidadEgreso: egreso,
         descripcion: descripcion,
-        usuario: {"id": id},
-        categoriaEgreso: {"idCategoriaEgreso": idCategoria}
+        usuario: { "id": id },
+        categoriaEgreso: { "idCategoriaEgreso": idCategoria },
+        meta: {"id": idMeta}
     };
 
     let dataToSend = JSON.stringify(datos);
-    console.log("Data To dend"  + dataToSend);
+    console.log("Data To dend" + dataToSend);
 
     // Obtener el token de autenticación del almacenamiento local
     let token = localStorage.getItem('token');
@@ -110,7 +120,7 @@ function saveEgreso(egreso, descripcion) {
         contentType: "application/json; charset=utf-8",
         data: dataToSend,
         // Incluir el token de autenticación en el encabezado de la solicitud
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
@@ -123,9 +133,14 @@ function saveEgreso(egreso, descripcion) {
             getEgresos();
             filtrarPorCategoria();
         },
-        error: function (error) {
-            console.log(error);
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+        error: function (xhr, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }
+            else{
+                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            }
         }
     });
 }
@@ -133,12 +148,13 @@ function saveEgreso(egreso, descripcion) {
 function cargarCategorias() {
 
     let token = localStorage.getItem('token');
+    let id = localStorage.getItem('userId')
 
     $.ajax({
-        url: "http://localhost:8080/categorias_e/get_cat_e",
+        url: "http://localhost:8080/categorias_e/get_by_user/" + id,
         type: "GET",
         dataType: "JSON",
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             if (token) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
@@ -148,33 +164,66 @@ function cargarCategorias() {
             select.empty();
             categorias = [];
 
-            // Verificar si el resultado está vacío
-            if (result.length === 0) {
-
-                // Categorías por defecto
-                setTimeout(() => crearCategoria('COMIDA'), 0);
-                setTimeout(() => crearCategoria('TRASNPORTE'), 500);
-                setTimeout(() => crearCategoria('SOCIAL'), 1000);
-                categorias.push('COMIDA');
-                categorias.push('TRASNPORTE');
-                categorias.push('SOCIAL');
-                setTimeout(() => cargarCategorias(), 500);
-
-            } else {
-                // Cargar categorías del resultado
-                $.each(result, function() {
-                    const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
-                    select.append(option);
-                    categorias.push(this.descripcion); 
-                });
-            }
+            // Cargar categorías del resultado
+            $.each(result, function () {
+                const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
+                select.append(option);
+                categorias.push(this.descripcion);
+            });
 
             // Añadir opción personalizada al final
             const optionPersonalizado = $('<option>').attr('value', 'personalizado').text('Otro...');
             select.append(optionPersonalizado);
         },
-        error: function(xhr, status, error) {
-            console.error('Error al cargar las categorías:', error);
+
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            } else {
+                alert('Error al traer las categorias. Por favor, inténtelo de nuevo.');
+            }
         }
     });
+}
+
+
+async function getMetas() {
+    try {
+        const token = localStorage.getItem('token');
+        const idUser = parseInt(localStorage.getItem('userId'), 10); // Asegúrate de que es un número
+        const url = `http://localhost:8080/metas/get_metas_by_user/${idUser}`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener las metas.');
+        }
+
+        const metas_usuario = await response.json();        
+        if (!metas_usuario) {
+            console.error('Usuario no encontrado');
+            return;
+        }
+
+        console.log("Las metas del usuario son:", metas_usuario);
+
+        const subcategoriaMenu = $('#subcategoriaMenu');
+
+        subcategoriaMenu.empty(); // Limpiar la lista desplegable existente
+
+        // Añadir las opciones de las metas al DOM
+        metas_usuario.forEach(meta => {
+            subcategoriaMenu.append($('<option>').text((meta.nombre).toUpperCase()).val(meta.id));
+        });
+        
+        console.log("Metas agregadas a la lista desplegable.");
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }

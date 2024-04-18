@@ -35,7 +35,13 @@ public class Egreso {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @JsonIgnoreProperties("usuario")
     private CategoriaEgreso categoriaEgreso;
+
+    @ManyToOne
+    @JoinColumn(name = "id_meta")
+    @JsonIgnoreProperties("usuario")
+    private Meta meta;
 
     public Long getIdEgreso() {
         return idEgreso;
@@ -87,5 +93,13 @@ public class Egreso {
 
     public void setCategoriaEgreso(CategoriaEgreso categoriaEgreso) {
         this.categoriaEgreso = categoriaEgreso;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }  
 }

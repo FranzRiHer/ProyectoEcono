@@ -1,56 +1,62 @@
 <!-- Barra de Navegacion Estudiante -->
 <div id="sidebar">
-    <div class="p-2">
-      <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
-        Menu
+  <div class="p-2">
+    <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+      Menu
+    </a>
+  </div>
+  <div id="sidebar-accordion" class="accordion">
+    <div class="list-group">
+      <a id="principalEST" href="#" onclick="redireccionar(this)"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
       </a>
-    </div>
-    <div id="sidebar-accordion" class="accordion">
-      <div class="list-group">
-        <a id="principalEST" href="#" onclick="redireccionar(this)"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="bi bi-house-door-fill mr-3" aria-hidden="true"></i>Principal
-        </a>
-        <a id="ingresosEST" href="#" onclick="redireccionar(this)"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
-        </a>
-        <a id="egresosEST" href="#" onclick="redireccionar(this)"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
-        </a>
-        <a href="#metas-items" data-toggle="collapse" aria-expanded="false"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="bi bi-clipboard-data-fill mr-3" aria-hidden="true"></i>Metas
-        </a>
-        <div id="metas-items" class="collapse" data-parent="#sidebar-accordion">
-          <a id="modMetasEST" href="#" onclick="redireccionar(this)"
-            class="list-group-item list-group-item-action bg-dark text-light pl-5">
-            Modificar Metas
-          </a>
-        </div>
-        <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
-        </a>
-        <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
-          class="list-group-item list-group-item-action bg-dark text-light">
-          <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
-        </a>
-        <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
-          <a id="editarPerfilEST" href="#" onclick="redireccionar(this)"
+      <a id="ingresosEST" href="#" onclick="redireccionar(this)"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="bi bi-piggy-bank-fill mr-3" aria-hidden="true"></i>Ingresos
+      </a>
+      <a id="egresosEST" href="#" onclick="redireccionar(this)"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="bi bi-coin mr-3" aria-hidden="true"></i>Egresos
+      </a>
+      <a href="#metas-items" data-toggle="collapse" aria-expanded="false"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="bi bi-clipboard-data-fill mr-3" aria-hidden="true"></i>Metas
+      </a>
+      <div id="metas-items" class="collapse" data-parent="#sidebar-accordion">
+        <a id="modMetasEST" href="#" onclick="redireccionar(this)"
           class="list-group-item list-group-item-action bg-dark text-light pl-5">
-            Perfil
-          </a>
-          <a id="informesEST" href="#" onclick="redireccionar(this)"
+          Modificar Metas
+        </a>
+      </div>
+      <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Settings
+      </a>
+      <a href="#cuenta-items" data-toggle="collapse" aria-expanded="false"
+        class="list-group-item list-group-item-action bg-dark text-light">
+        <i class="bi bi-person-circle mr-3" aria-hidden="true"></i>Cuenta
+      </a>
+      <div id="cuenta-items" class="collapse" data-parent="#sidebar-accordion">
+        <a id="editarPerfilEST" href="#" onclick="redireccionar(this)"
           class="list-group-item list-group-item-action bg-dark text-light pl-5">
-            Informes
-          </a>
-          <a id="salir" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
-            Salir
-          </a>
-        </div>
+          Perfil
+        </a>
+        <a id="informesEST" href="#" onclick="redireccionar(this)"
+          class="list-group-item list-group-item-action bg-dark text-light pl-5">
+          Informes
+        </a>
+        <a id="salir" href="#" class="list-group-item list-group-item-action bg-dark text-light pl-5">
+          Salir
+        </a>
       </div>
     </div>
   </div>
+</div>
+  
+<a href="/src/main/resources/static/estudiante/pilotoChatbot/pilotoChatbot.html" class="boton-flotante">
+  <img src="/src/main/resources/static/menu/img/FranzBot.png" alt="Canales de Atención" class="normal">
+  <img src="/src/main/resources/static/menu/img/FrankBot.png" alt="Canales de Atención" class="hover">
+</a>
+
 <!-- Barra de Navegacion Estudiante -->

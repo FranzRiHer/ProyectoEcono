@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entities.CategoriaEgreso;
 import com.example.entities.Egreso;
+import com.example.entities.Meta;
 import com.example.entities.Usuario;
 import com.example.repository.CategoriaEgresosRepository;
 import com.example.repository.EgresosRepository;
@@ -33,6 +34,10 @@ public class EgresosService {
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
         usuario.setEgresoTotal(egreso.getUsuario().getEgresoTotal() + egreso.getCantidadEgreso());
         usuarioService.save(usuario);
+
+        Meta meta = metaService.getMetaById(egreso.getMeta().getId());
+        meta.setTotal(meta.getTotal() + egreso.getCantidadEgreso());
+        metaService.saveMeta(meta);
         // Guardar el egreso
         return egresosRepository.save(egreso);
 

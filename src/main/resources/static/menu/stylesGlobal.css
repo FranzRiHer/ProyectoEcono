@@ -96,5 +96,44 @@ p {
 }
 
 /* ------------------------------------------------------------------------------ */
+.boton-flotante {
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+    z-index: 100;
+    cursor: pointer;
+    /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+.boton-flotante img {
+    display: block;
+    max-width: 200px;
+    max-height: 200px;
+    transition: opacity 0.3s ease;
+    /* Transición suave de opacidad */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.boton-flotante .hover {
+    opacity: 0;
+    /* Inicialmente oculta la imagen de hover */
+    position: absolute;
+    /* Asegura que ambas imágenes se alineen correctamente */
+}
+
+.boton-flotante:hover .normal {
+    opacity: 0;
+    /* Oculta la imagen normal al pasar el mouse */
+}
+
+.boton-flotante:hover .hover {
+    opacity: 1;
+    /* Muestra la imagen de hover al pasar el mouse */
+}
+
+/* ------------------------------------------------------------------------------ */
+
 
 /* Descomentar para las animaciones de container (aun no trabajamos en animaciones) .container {transition: all 0.5s ease-in-out;}*/
