@@ -5,23 +5,22 @@ document.addEventListener('DOMContentLoaded', function() {
 function getEgresos() {
   let token = localStorage.getItem('token');
   let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
-  var url = "http://localhost:8080/gastos/egresos";
+  var url = `http://localhost:8080/gastos/get_by_user/${userId}`; // URL actualizada para obtener los gastos de un usuario específico
 
-  fetch(url, {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${token}`,
-          },
-      })
-      .then(response => response.json())
-      .then(data => {
-          let datosUsuario = data.filter(egreso => egreso.usuario.id == userId); // Filtrar por usuario logueado
-          mostrarDatosEnTabla(datosUsuario);
-          llenarCategorias(datosUsuario); // Llenar el menú desplegable con las categorías disponibles
-      })
-      .catch(error => {
+  $.ajax({
+      url: url,
+      type: 'GET',
+      headers: {
+          'Authorization': `Bearer ${token}`
+      },
+      success: function(data) {
+          mostrarDatosEnTabla(data); // Asumiendo que data ya es un array de egresos
+          llenarCategorias(data); // Llenar el menú desplegable con las categorías disponibles
+      },
+      error: function(xhr, status, error) {
           console.error("Error al obtener los datos:", error);
-      });
+      }
+  });
 }
 
 function mostrarDatosEnTabla(data) {
@@ -39,14 +38,18 @@ function mostrarDatosEnTabla(data) {
       cellDescripcion.textContent = rowData.descripcion;
 
       var cellCategoria = row.insertCell();
-      cellCategoria.textContent = rowData.categoriaEgreso.descripcion;
+      if(rowData.categoriaEgreso) { // Verificar que categoriaEgreso existe antes de acceder a descripcion
+          cellCategoria.textContent = rowData.categoriaEgreso.descripcion;
+      } else {
+          cellCategoria.textContent = 'No especificado'; // Manejar el caso en que no haya información de categoría
+      }
   });
 
   tabla.appendChild(tbody);
 }
 
 function llenarCategorias(data) {
-  var categorias = new Set(data.map(rowData => rowData.categoriaEgreso.descripcion));
+  var categorias = new Set(data.map(rowData => rowData.categoriaEgreso ? rowData.categoriaEgreso.descripcion : 'No especificado'));
   var select = document.getElementById("categoriaSelect");
   select.innerHTML = '<option value="Todas">Todas</option>'; // Limpiar opciones anteriores y añadir "Todas"
 
