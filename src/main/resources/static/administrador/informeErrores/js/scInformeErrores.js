@@ -1,5 +1,5 @@
 
-/$(document).ready(function() {
+/* $(document).ready(function() {
     // Función para cargar todos los usuarios al inicializar la vista
     cargarUsuarios();
     var usuariosGlobal = []; // Almacena todos los usuarios aquí
@@ -95,7 +95,9 @@
         });
     });
     
+    
 
+ */
     $(document).ready(function() {
         var usuariosGlobal = []; // Almacena todos los usuarios aquí
     
