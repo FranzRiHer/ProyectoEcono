@@ -1,77 +1,158 @@
-function getCliente() {
-    let id = localStorage.getItem('userId') // Asegúrate de obtener el valor correcto
-    console.log("ID del usuario: ", id); // Verificar el ID obtenido
-    let token = localStorage.getItem("token");
-    var url = "http://localhost:8080/usuarios/usuario_get/" + id;
-  
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-      setFuentesIngresos(data); // Pasar el objeto directamente
-    })
-    .catch((error) => {
-      console.error("Error al obtener los datos:", error);
-    });
-  }
+let categorias = [];
 
-function setFuentesIngresos(data) {
-    var cifraDinero = document.getElementById("cifraDinero").value;
-    var comentario = document.getElementById("descripcion").value;
+document.addEventListener('DOMContentLoaded', function () {
+    cargarCategorias();
+});
 
-    // Validar si la cifra de dinero es un número
-    if (!isNaN(cifraDinero)) {
-        let token = localStorage.getItem('token');
-        let id = localStorage.getItem('userId')
-        // Crear objeto JSON con los datos
-        var datos = {
-            cantidad: cifraDinero,
-            descripcion: comentario,
-            usuario: data
-        };
-        console.log(datos)
-        // Configurar opciones para la solicitud fetch
-        var opciones = {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datos)
+function mostrarPersonalizado() {
+    var opcion = document.getElementById("categoriaMenu");
+    if (opcion.value === "personalizado") {
+        document.getElementById('crearCategoriaBTN').style.display = 'block';
+    } else {
+        document.getElementById('crearCategoriaBTN').style.display = 'none';
+    }
+}
 
-        };
-        console.log(JSON.stringify(datos))
+function validarLabels() {
+    var opcion = document.getElementById("categoriaMenu");
+    desc = opcion.value
+    let ingreso = $("#cifraDinero").val();
+    let descripcion = $("#descripcion").val();
 
-        // URL a la que se enviarán los datos
-        var url = 'http://localhost:8080/ingreso/add';
-        console.log(url)
-        // Realizar solicitud fetch
-        fetch(url, opciones)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al enviar los datos.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Manejar la respuesta si es necesario
-            console.log('Respuesta del servidor:', data);
+    if ((ingreso !== "" && !isNaN(ingreso)) && (descripcion !== "")) {
+        setFuentesIngresos(ingreso, descripcion);
+    } else {
+        window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
+    }
+    if (desc === "personalizado") {
+        window.alert("Escoja una categoria valida");
+    }
+}
+
+
+
+function setFuentesIngresos(cifraDinero, comentario) {
+
+    let token = localStorage.getItem('token');
+    let idUser = localStorage.getItem('userId')
+    // Crear objeto JSON con los datos
+    var datos = {
+        cantidad: cifraDinero,
+        descripcion: comentario,
+        usuario: {
+            id: idUser
+        }
+    };
+    console.log(datos);
+
+    // URL a la que se enviarán los datos
+    var url = 'http://localhost:8080/ingreso/add';
+    console.log(url);
+
+    // Realizar solicitud Ajax
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(datos),
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        success: function (response) {
+            console.log('Respuesta del servidor:', response);
             alert('Datos enviados exitosamente.');
             $("#cifraDinero").val("");
             $("#descripcion").val("");
             getFuentesIngreso();
-        })
-        .catch(error => {
+        },
+        error: function (xhr, status, error) {
             console.error('Error:', error);
             alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
-        });
-    } else {
-        // Mostrar alerta si la cifra de dinero no es un número
-        alert("La cifra de dinero debe ser un número.");
+        }
+    });
+}
+
+
+function crearCategoria(desc) {
+    id = localStorage.getItem('userId')
+    let data = {
+        descripcion: desc,
+        usuario: {
+            id: id
+        }        
     }
+
+    let dataToSend = JSON.stringify(data);
+    console.log(dataToSend);
+
+    let token = localStorage.getItem('token');
+
+    $.ajax({
+        url: "http://localhost:8080/categorias_i/add_add_i",
+        type: "POST",
+        dataType: "JSON",
+        contentType: "application/json; charset=utf-8",
+        data: dataToSend,
+        // Incluir el token de autenticación en el encabezado de la solicitud
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function (result) {
+            $("#categoriaPersonalizada").val("");
+            alert('Datos enviados exitosamente.');
+            location.reload();
+        },
+        error: function (xhr, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            }
+            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+        }
+    });
+
+}
+
+function cargarCategorias() {
+
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('userId')
+
+    $.ajax({
+        url: "http://localhost:8080/categorias_i/get_by_user/" + id,
+        type: "GET",
+        dataType: "JSON",
+        beforeSend: function (xhr) {
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function (result) {
+            const select = $('#categoriaMenu');
+            select.empty();
+            categorias = [];
+
+            // Cargar categorías del resultado
+            $.each(result, function () {
+                const option = $('<option>', { value: this.idCategoriaEgreso, text: this.descripcion });
+                select.append(option);
+                categorias.push(this.descripcion);
+            });
+
+            // Añadir opción personalizada al final
+            const optionPersonalizado = $('<option>').attr('value', 'personalizado').text('Otro...');
+            select.append(optionPersonalizado);
+        },
+        
+        error: function (xhr, status, error) {
+            if (xhr.status === 401) {
+                // Token expirado o inválido, manejar la redirección
+                manejarExpiracionToken();
+            } else {
+                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            }
+        }
+    });
 }

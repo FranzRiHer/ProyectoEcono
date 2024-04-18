@@ -25,6 +25,9 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final MetaService metaService;
+    private final CategoriaEgresoService catEgService;
+    private final CategoriaIngresoService catInService;
+
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user=userRepository.findByUsername(request.getUsername()).orElseThrow();
@@ -47,9 +50,10 @@ public class AuthService {
         // Guarda el usuario y captura la entidad guardada para obtener el ID generado
         Usuario savedUser = userRepository.save(user);
 
-        // Crea metas predeterminadas
+        // Crea metas y categorias predeterminadas
         metaService.createDefaultMetasForUser(savedUser);
-            
+        catEgService.createDefaultCategoriasForUser(savedUser);
+        catInService.createDefaultCategoriasForUser(savedUser);
 
         String token = jwtService.getToken(savedUser);
 
