@@ -35,6 +35,7 @@ public class Egreso {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @JsonIgnoreProperties("usuario")
     private CategoriaEgreso categoriaEgreso;
 
     public Long getIdEgreso() {
