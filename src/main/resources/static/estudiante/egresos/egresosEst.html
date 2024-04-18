@@ -69,11 +69,17 @@
           <!-- Las opciones se cargarán dinámicamente -->
         </select>
 
-        <!-- Asegúrate de que el botón esté usando la clase `btn-block` para que tome el ancho completo del contenedor -->
         <button id="crearCategoriaBTN" type="button" class="btn btn-primary btn-block mt-2" data-toggle="modal"
-          data-target="#modalRegistroCategoria" style="display: none">
-          Registrar Nueva Categoría
+        data-target="#modalRegistroCategoria" style="display: none">
+        Registrar Nueva Categoría
         </button>
+
+        <label for="subcategoriaMenu">Elige una subcategoría:</label>
+
+        <select name="subcategorias" id="subcategoriaMenu" class="form-control">
+          <!-- Las opciones se cargarán dinámicamente -->
+        </select>
+
         <button onclick="validarLabels()" class="btn">Enviar</button>
       </div>
       <!-- Tabla para cargar datos -->
@@ -120,7 +126,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary" onclick="validarCategoria()">
+            <button type="button" class="btn btn-primary" onclick="validarCategoria()", id="guardar_categoria">
               Guardar Categoría
             </button>
           </div>
