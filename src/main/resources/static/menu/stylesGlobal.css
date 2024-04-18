@@ -98,8 +98,8 @@ p {
 /* ------------------------------------------------------------------------------ */
 .boton-flotante {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 50px;
+    right: 40px;
     z-index: 100;
     cursor: pointer;
     /* Cambia el cursor a una mano para indicar que es clickeable */
@@ -107,8 +107,8 @@ p {
 
 .boton-flotante img {
     display: block;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 200px;
+    max-height: 200px;
     transition: opacity 0.3s ease;
     /* Transición suave de opacidad */
     position: absolute;
