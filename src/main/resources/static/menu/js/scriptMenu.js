@@ -30,14 +30,22 @@ function sendLink(idElemento, callback) {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             }else{
-                alert('Error con el servidor');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error con el servidor.",
+                  }); 
             }
         },
     });
 }
 
 function manejarExpiracionToken() {
-    alert("Su sesión ha expirado. Por favor, inicie sesión de nuevo.");
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Su sesión ha expirado. Por favor, inicie sesión de nuevo.",
+      }); 
     window.location.href = '/src/main/resources/static/acceso/login/login.html'; // Redirige al usuario a la página de inicio de sesión
 }
 

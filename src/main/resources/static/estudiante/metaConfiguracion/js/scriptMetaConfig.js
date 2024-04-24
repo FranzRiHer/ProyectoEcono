@@ -109,7 +109,15 @@ async function actualizarMetas() {
 
     // Comprobar si la suma de los porcentajes es igual a 100
     if (sumaPorcentajes !== 100) {
-        alert('La suma de los porcentajes debe ser igual a 100%');
+        Swal.fire({
+            title: "<strong>Verifica</strong>",
+            icon: "info",
+            html: `
+            La suma de los porcentajes debe ser igual a 100%.
+            `,
+            showCloseButton: true,
+            focusConfirm: false
+          });
         getMetas();
         return;
     }
@@ -141,7 +149,11 @@ async function actualizarMetas() {
             console.error(`Error al actualizar la meta ${meta.nombre}:`, error);
         }
     }
-    alert('Todas las metas han sido actualizadas.');
+    Swal.fire({
+        title: "¡Vas Por Ella!",
+        text: "Tus metas han sido actualizadas.",
+        icon: "success"
+      });
 
     // Actualizar metas en el frontend
     getMetas();

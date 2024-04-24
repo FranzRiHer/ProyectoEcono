@@ -6,7 +6,11 @@ $(document).ready(function () {
         var password = $('#password').val().trim();
 
         if (username === "" || password === "") {
-            alert("Por favor, rellena todos los campos.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, rellena todos los campos.",
+              }); 
             return;
         }
 
@@ -43,11 +47,20 @@ $(document).ready(function () {
                     
                 } else {
                     // Manejar el caso de que userId no exista o sea null
-                    alert("Error al obtener la información del usuario. Por favor, intenta nuevamente.");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Error al obtener la información del usuario. Por favor, intenta nuevamente.",
+                      }); 
                 }
             },
             error: function (xhr, status, error) {
-                alert("Error en el inicio de sesión: " + xhr.responseText);
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error en el inicio de sesión: " + xhr.responseText
+                  }); 
             }
         });
     });

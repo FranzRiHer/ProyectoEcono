@@ -23,10 +23,18 @@ function validarLabels() {
     if ((egreso !== "" && !isNaN(egreso)) && (descripcion !== "")) {
         saveEgreso(egreso, descripcion);
     } else {
-        window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Los campos deben estar llenos y el valor debe ser numérico.",
+          }); // El contenido no es un número o está vacío
     }
     if (desc === "personalizado") {
-        window.alert("Escoja una categoria valida");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Escoja una categoria valida.",
+          }); 
     }
 }
 
@@ -44,10 +52,22 @@ function validarCategoria() {
             crearCategoria(descripcion);
             setTimeout(() => cargarCategorias(), 500);
         } else {
-            alert("La categoría ya existe.");
+            Swal.fire({
+                title: "<strong>Verifica</strong>",
+                icon: "info",
+                html: `
+                La categoría ya existe.
+                `,
+                showCloseButton: true,
+                focusConfirm: false
+              });
         }
     } else {
-        window.alert("El campo de categoría debe estar lleno.");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El campo de categoría debe estar lleno.",
+          }); 
     }
 
 
@@ -81,14 +101,22 @@ function crearCategoria(desc) {
         },
         success: function (result) {
             $("#categoriaPersonalizada").val("");
-            alert('Categoria creada exitosamente.');
+            Swal.fire({
+                title: "¡Una Más!",
+                text: "Categoria creada exitosamente.",
+                icon: "success"
+              });
         },
         error: function (xhr, error) {
             if (xhr.status === 401) {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             }
-            alert('Error al crear la categoría. Por favor, inténtelo de nuevo.');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error al crear la categoría. Por favor, inténtelo de nuevo.",
+              }); 
         }
     });
 
@@ -129,7 +157,11 @@ function saveEgreso(egreso, descripcion) {
             console.log(result);
             $("#egresoInput").val("");
             $("#descripcionEgreso").val("");
-            alert('Datos enviados exitosamente.');
+            Swal.fire({
+                title: "¡Felicidades!",
+                text: "Has sumado un nuevo impulso a tus finanzas. ¡Sigue así!",
+                icon: "success"
+              });
             getEgresos();
             filtrarPorCategoria();
         },
@@ -139,7 +171,11 @@ function saveEgreso(egreso, descripcion) {
                 manejarExpiracionToken();
             }
             else{
-                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error al enviar los datos. Por favor, inténtelo de nuevo.",
+                  }); 
             }
         }
     });
@@ -181,7 +217,11 @@ function cargarCategorias() {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             } else {
-                alert('Error al traer las categorias. Por favor, inténtelo de nuevo.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error al traer las categorias. Por favor, inténtelo de nuevo.",
+                  }); 
             }
         }
     });

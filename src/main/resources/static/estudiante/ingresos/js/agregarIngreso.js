@@ -22,10 +22,18 @@ function validarLabels() {
     if ((ingreso !== "" && !isNaN(ingreso)) && (descripcion !== "")) {
         setFuentesIngresos(ingreso, descripcion);
     } else {
-        window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Los campos deben estar llenos y el valor debe ser numérico.",
+          }); // El contenido no es un número o está vacío
     }
     if (desc === "personalizado") {
-        window.alert("Escoja una categoria valida");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Escoja una categoria valida.",
+          }); 
     }
 }
 
@@ -60,14 +68,22 @@ function setFuentesIngresos(cifraDinero, comentario) {
         },
         success: function (response) {
             console.log('Respuesta del servidor:', response);
-            alert('Datos enviados exitosamente.');
+            Swal.fire({
+                title: "¡Felicidades! ",
+                text: "¡Controlando tus gastos como un maestro! Se ha registrado un nuevo egreso.",
+                icon: "success"
+              });
             $("#cifraDinero").val("");
             $("#descripcion").val("");
             getFuentesIngreso();
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error al enviar los datos. Por favor, inténtelo de nuevo.",
+              }); 
         }
     });
 }
@@ -101,7 +117,11 @@ function crearCategoria(desc) {
         },
         success: function (result) {
             $("#categoriaPersonalizada").val("");
-            alert('Datos enviados exitosamente.');
+            Swal.fire({
+                title: "¡Una Más!",
+                text: "Categoria creada exitosamente.",
+                icon: "success"
+              });
             location.reload();
         },
         error: function (xhr, error) {
@@ -109,7 +129,11 @@ function crearCategoria(desc) {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             }
-            alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error al traer las categorias. Por favor, inténtelo de nuevo.",
+              }); 
         }
     });
 
@@ -151,7 +175,11 @@ function cargarCategorias() {
                 // Token expirado o inválido, manejar la redirección
                 manejarExpiracionToken();
             } else {
-                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error al traer las categorias. Por favor, inténtelo de nuevo.",
+                  }); 
             }
         }
     });
