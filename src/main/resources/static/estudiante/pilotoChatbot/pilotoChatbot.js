@@ -8,23 +8,47 @@ $(document).ready(function () {
 
 // Define una función asincrónica llamada 'query' que toma un objeto 'data' como argumento.
 async function query(data) {
-    // Realiza una solicitud 'fetch' a la URL proporcionada, que parece ser una API de inferencia.
-    const response = await fetch(
-        "https://www.stack-inference.com/inference/v0/run/5f88e2a7-998b-4cca-a223-efff3e8e325a/661c4068895f652a7f53219f",
-        {
-            // Configura los headers de la solicitud con el token de autorización y el tipo de contenido.
+    try {
+        const token = localStorage.getItem('token');
+        const idUser = parseInt(localStorage.getItem('userId'), 10);
+        const url = `http://localhost:8080/chatbot/query`;
+        const response = await fetch(url, {
+            method: 'POST',
             headers: {
-                'Authorization': 'Bearer 68ace983-7f02-4dac-aeae-11c568d0f9e2', // Token de API
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${token}`,
             },
-            method: "POST", // Método HTTP POST
-            body: JSON.stringify(data), // Convierte el objeto 'data' a una cadena JSON para el cuerpo de la solicitud
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al realizar la consulta al chatbot.');
         }
-    );
-    // Espera a que la solicitud se complete y convierte la respuesta a JSON.
-    const result = await response.json();
-    // Devuelve el resultado de la conversión de la respuesta.
-    return result;
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error en la consulta al chatbot:', error);
+        throw error;
+    }
+
+
+    // Realiza una solicitud 'fetch' a la URL proporcionada, que parece ser una API de inferencia.
+    // const response = await fetch(
+    //     "https://www.stack-inference.com/inference/v0/run/5f88e2a7-998b-4cca-a223-efff3e8e325a/661c4068895f652a7f53219f",
+    //     {
+    //         // Configura los headers de la solicitud con el token de autorización y el tipo de contenido.
+    //         headers: {
+    //             'Authorization': 'Bearer 68ace983-7f02-4dac-aeae-11c568d0f9e2', // Token de API
+    //             'Content-Type': 'application/json'
+    //         },
+    //         method: "POST", // Método HTTP POST
+    //         body: JSON.stringify(data), // Convierte el objeto 'data' a una cadena JSON para el cuerpo de la solicitud
+    //     }
+    // );
+    // // Espera a que la solicitud se complete y convierte la respuesta a JSON.
+    // const result = await response.json();
+    // // Devuelve el resultado de la conversión de la respuesta.
+    // return result;
 }
 
 
