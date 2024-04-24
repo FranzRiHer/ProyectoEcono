@@ -11,7 +11,7 @@ async function query(data) {
     try {
         const token = localStorage.getItem('token');
         const idUser = parseInt(localStorage.getItem('userId'), 10);
-        const url = `http://localhost:8080/chatbot/query`;
+        const url = `http://localhost:8080/chatbot/query/${idUser}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -31,24 +31,6 @@ async function query(data) {
         throw error;
     }
 
-
-    // Realiza una solicitud 'fetch' a la URL proporcionada, que parece ser una API de inferencia.
-    // const response = await fetch(
-    //     "https://www.stack-inference.com/inference/v0/run/5f88e2a7-998b-4cca-a223-efff3e8e325a/661c4068895f652a7f53219f",
-    //     {
-    //         // Configura los headers de la solicitud con el token de autorización y el tipo de contenido.
-    //         headers: {
-    //             'Authorization': 'Bearer 68ace983-7f02-4dac-aeae-11c568d0f9e2', // Token de API
-    //             'Content-Type': 'application/json'
-    //         },
-    //         method: "POST", // Método HTTP POST
-    //         body: JSON.stringify(data), // Convierte el objeto 'data' a una cadena JSON para el cuerpo de la solicitud
-    //     }
-    // );
-    // // Espera a que la solicitud se complete y convierte la respuesta a JSON.
-    // const result = await response.json();
-    // // Devuelve el resultado de la conversión de la respuesta.
-    // return result;
 }
 
 
