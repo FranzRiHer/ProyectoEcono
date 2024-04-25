@@ -10,7 +10,11 @@ $(document).ready(function () {
 
         // Verificar que todos los campos estén llenos
         if (name === "" || email === "" || username === "" || password === "" || role === "") {
-            alert("Por favor, rellena todos los campos.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, rellena todos los campos."
+              }); 
             return;
         }
 
@@ -30,13 +34,21 @@ $(document).ready(function () {
             success: function (response) {
                 // Aquí podrías almacenar el token si el registro también inicia sesión automáticamente
                 // localStorage.setItem('token', response.token);
-                alert("Registro exitoso. Por favor, inicie sesión.");
+                Swal.fire({
+                    title: "¡Comienza a gestionar tus finanzas hoy mismo!",
+                    text: "Registro exitoso. Por favor, inicie sesión.",
+                    icon: "success"
+                  });
                 // Redireccionar al usuario a la página de inicio de sesión
                 window.location.href = '/src/main/resources/static/acceso/login/login.html';
             },
             error: function (xhr, status, error) {
                 // Manejar errores específicos del registro (por ejemplo, usuario ya existe)
-                alert("Error en el registro: " + xhr.responseText);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error en el inicio de sesión: " + xhr.responseText
+                  }); 
             }
         });
     });

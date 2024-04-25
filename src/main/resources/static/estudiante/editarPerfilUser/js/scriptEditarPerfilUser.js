@@ -4,7 +4,11 @@ function validarLabels() {
     let email = $("#emailInput").val()
 
     if ((nombre === "" || contrasena === "" || email === "")) {
-        window.alert("Por favor, complete todos los campos.");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Por favor, complete todos los campos.",
+          }); // El contenido no es un número o está vacío
     } else {
         saveEdit(nombre, contrasena, email)
     }
@@ -41,7 +45,11 @@ function saveEdit(nombre, contrasena, email) {
             $("#contrasenaInput").val("");
             $("#emailInput").val();
             console.log(result)
-            alert('Datos enviados exitosamente.');
+            Swal.fire({
+                title: "¿Un Nuevo Tu?",
+                text: "Datos registrados con éxito.",
+                icon: "success"
+              });
         },
         error: function (error) {
             console.log(error);
@@ -49,7 +57,11 @@ function saveEdit(nombre, contrasena, email) {
             $("#nameInput").val("");
             $("#contrasenaInput").val("");
             $("#emailInput").val("");
-            alert('Datos enviados exitosamente.');S
+            Swal.fire({
+                title: "¿Un Nuevo Tu?",
+                text: "Datos registrados con éxito.",
+                icon: "success"
+              });
         }
     })
 }

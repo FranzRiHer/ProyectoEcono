@@ -17,6 +17,8 @@
   <!-- Configuración jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <!-- Configuración global de CSS -->
   <link rel="stylesheet" href="/src/main/resources/static/menu/stylesGlobal.css" />
@@ -39,14 +41,16 @@
 <body>
   <!-- TODO EL CONTENIDO AQUÍ -->
   <div class="d-flex flex-column flex-md-row vh-100">
-    <!-- Barra de Navegacion Admin -->
+    <!-- Barra de Navegacion Estudiante -->
     <div id="menu-container"></div>
     <script>
       $(function () {
-        $("#menu-container").load("/src/main/resources/static/menu/menuAdmin.html");
+        $("#menu-container").load(
+          "/src/main/resources/static/menu/menuAdmin.html"
+        );
       });
     </script>
-    <!-- Fin Barra de Navegacion Admin -->
+    <!-- Fin Barra de Navegacion Estudiante-->
 
     <!-- Egresos -->
     <div class="container">
@@ -58,9 +62,6 @@
             <input id="egresoInput" type="text" placeholder="Cantidad" class="form-control" />
             <textarea id="descripcionEgreso" placeholder="Descripción" class="form-control"></textarea>
           </div>
-          <div>
-
-          </div>
         </div>
 
         <label for="categoriaMenu">Elige una categoría:</label>
@@ -69,15 +70,21 @@
           <!-- Las opciones se cargarán dinámicamente -->
         </select>
 
-        <!-- Asegúrate de que el botón esté usando la clase `btn-block` para que tome el ancho completo del contenedor -->
         <button id="crearCategoriaBTN" type="button" class="btn btn-primary btn-block mt-2" data-toggle="modal"
-          data-target="#modalRegistroCategoria" style="display: none">
-          Registrar Nueva Categoría
+        data-target="#modalRegistroCategoria" style="display: none">
+        Registrar Nueva Categoría
         </button>
+
+        <label for="subcategoriaMenu">Elige una subcategoría:</label>
+
+        <select name="subcategorias" id="subcategoriaMenu" class="form-control">
+          <!-- Las opciones se cargarán dinámicamente -->
+        </select>
+
         <button onclick="validarLabels()" class="btn">Enviar</button>
       </div>
       <!-- Tabla para cargar datos -->
-      <h1>Ver Historial de sus Gatos</h1>
+      <h1>Ver Historial de sus Egresos</h1>
       <div class="input-container">
         <label for="categoriaSelect">Filtrar por categoría:</label>
         <select id="categoriaSelect" onchange="filtrarPorCategoria()">
@@ -120,7 +127,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary" onclick="validarCategoria()">
+            <button type="button" class="btn btn-primary" onclick="validarCategoria()", id="guardar_categoria">
               Guardar Categoría
             </button>
           </div>
