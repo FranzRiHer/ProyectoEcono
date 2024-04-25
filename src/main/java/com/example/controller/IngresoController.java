@@ -34,6 +34,11 @@ public class IngresoController {
         return ingresoService.save(i);
     }
 
+    @GetMapping("/get_by_user/{id}")
+    public List<Ingreso> getMetasByUser(@PathVariable(value = "id") Long user_id){
+        return ingresoService.getUserIngresos(user_id);
+    }
+
     @GetMapping("/get_ingresos_csv/{id}")
     public ResponseEntity<String> getIngresosCsv(@PathVariable(value = "id") Long user_id){
         List<Ingreso> ingresos = ingresoService.getUserIngresos(user_id);
