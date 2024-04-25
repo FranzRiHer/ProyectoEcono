@@ -42,21 +42,12 @@
                 <div class="form-group last mb-4">
                   <input type="password" class="form-control" id="password" placeholder="Contraseña">
                 </div>
-                <input type="button" value="Log In" id="loginBtn" class="btn btn-block btn-primary">              
-                
-                <!-- <div class="d-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                    <input type="checkbox" checked="checked"/>
-                    <div class="control__indicator"></div>
-                  </label>
-                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>    
-                </div>
-                <input type="submit" value="Log In" class="btn btn-block btn-primary">  -->
-  
+                <input type="button" onclick = "logIn()" value="Log In" id="loginBtn" class="btn btn-block btn-primary">
+
                 <span class="d-block text-left my-4 text-muted">&mdash; o registrarse &mdash;</span>
                 
                 <div class="ir-registro">
-                  <input type="button" value="Registrarse" id="registrarseBtn" class="btn btn-block ">
+                  <input type="button" onclick = "register()" value="Registrarse" id="registrarseBtn" class="btn btn-block ">
                 </div>
               </form>
               </div>
@@ -73,7 +64,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Tus scripts personalizados pueden mantenerse locales si no están alojados en línea -->
     <script src="js/scriptLogin.js"></script>
   </body>
 </html>
