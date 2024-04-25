@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Ingreso;
 import com.example.entities.Usuario;
-import com.example.repository.CategoriaEgresosRepository;
 import com.example.repository.CategoriaIngresosRepository;
 import com.example.repository.IngresoRepository;
 
@@ -36,27 +35,27 @@ public class IngresoService {
         return ingresoRepository.save(ingreso);
     }
 
-    public List<Ingreso> getUserIngresos(Long user_id) {
-        Usuario usuario = usuarioService.getUsuarioById(user_id);
-        return usuario.getIngresos();
-    }
 
     public String convertIngresosToCSV(List<Ingreso> ingresosList) {
         StringBuilder csvBuilder = new StringBuilder();
         // Añadir encabezados de columnas
-        csvBuilder.append("Descripcion,Cantidad,Categoria,");
+        csvBuilder.append("Descripcion,Cantidad,");
     
         for (Ingreso ingreso : ingresosList) {
-            Long categoria_id = ingreso.getCategoriaIngreso().getIdCategoriaIngreso();
+            // Long categoria_id = ingreso.getCategoriaIngreso().getIdCategoriaIngreso();
             csvBuilder.append(ingreso.getDescripcion())
                       .append(",")
-                      .append(ingreso.getCantidad())
-                      .append(",")
-                      .append(categoriaIngresosRepository.getCategoriaById(categoria_id).get().getDescripcion())
-                      .append(",");
+                      .append(ingreso.getCantidad());
+                    //   .append(",")
+                    //   .append(categoriaIngresosRepository.getCategoriaById(categoria_id).get().getDescripcion())
+                    //   .append(",");
         }
-        
+        return csvBuilder.toString();
+    }
 
-    return csvBuilder.toString();
-}
+    public List<Ingreso> getUserIngresos(Long user_id) {
+        Usuario usuario = usuarioService.getUsuarioById(user_id);
+        return usuario.getIngresos();
+    }
+    
 }

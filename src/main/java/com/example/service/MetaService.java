@@ -69,7 +69,7 @@ public class MetaService {
     public String convertMetasToCSV(List<Meta> metasList) {
         StringBuilder csvBuilder = new StringBuilder();
         // Añadir encabezados de columnas
-        csvBuilder.append("Nombre,Porcentaje,Total_mes_actual\n");
+        csvBuilder.append("Nombre,Porcentaje,Total_mes_actual");
     
         for (Meta meta : metasList) {
             csvBuilder.append(meta.getNombre())
@@ -77,7 +77,7 @@ public class MetaService {
                       .append(meta.getPorcentaje())
                       .append(",")
                       .append(meta.getTotal())
-                      .append("\n");
+                      .append(",");
         }
     
         return csvBuilder.toString();

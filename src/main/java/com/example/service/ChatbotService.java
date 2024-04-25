@@ -36,16 +36,18 @@ public class ChatbotService {
     public String sendQueryToChatbot(String userMessage, Long id) {
         HttpHeaders headers = new HttpHeaders();
         String egresos_csv = egresosController.getBackCsv(id);
+        String ingresos_csv = ingresoController.getBackCsv(id);
+        String metas_csv = metasController.getBackCsv(id);
 
         String jsonString = userMessage;
-        String textoNuevo = "Contexto_csv: "+egresos_csv+"Prompt de usuario: ";
+        String textoNuevo = "Contexto_csv: Egresos -> "+egresos_csv+". Ingresos -> "+ingresos_csv+". Metas -> "+metas_csv+".Prompt de usuario: ";
 
         int indiceIn0 = jsonString.indexOf("\"in-0\":\"") + "\"in-0\":\"".length();
 
         String jsonStringModificado = jsonString.substring(0, indiceIn0) + textoNuevo  + jsonString.substring(indiceIn0);
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n"+jsonStringModificado);
-        headers.setBearerAuth("68ace983-7f02-4dac-aeae-11c568d0f9e2"); // Pon tu token aquí
+        System.out.println("\n\n\n\n"+jsonStringModificado);
+        headers.setBearerAuth("0712a71f-72fd-4cbe-8548-806d9aa5ac91"); // Pon tu token aquí
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         // Construye el cuerpo de la solicitud
@@ -56,7 +58,7 @@ public class ChatbotService {
 
         // Envía la solicitud POST
         ResponseEntity<String> response = restTemplate.exchange(
-            "https://api.stack-ai.com/inference/v0/run/5f88e2a7-998b-4cca-a223-efff3e8e325a/661c4068895f652a7f53219f", // URL de la API del chatbot
+            "https://api.stack-ai.com/inference/v0/run/77dd424a-e336-45b8-82df-52b31dffb113/6629ddfa1cb3433070a6b41d", // URL de la API del chatbot
             HttpMethod.POST,
             entity,
             String.class
