@@ -56,3 +56,7 @@ $(document).ready(function () {
         window.location.href = 'http://127.0.0.1:5500/src/main/resources/static/acceso/registroUsuario/regitroUsuario.html'; 
     });
 });
+function showRecoverPasswordForm() {
+    // O redireccionar al usuario a otra página
+     window.location.href = '/src/main/resources/static/acceso/recuperarContrasena/recuperarContrasena.html';
+}
