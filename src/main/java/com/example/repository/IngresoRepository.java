@@ -20,4 +20,5 @@ public class IngresoRepository {
         return ingresosCRUDRepository.save(i);
     }
     
+    
 }
