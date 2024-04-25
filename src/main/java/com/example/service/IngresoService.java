@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Ingreso;
 import com.example.entities.Usuario;
-import com.example.repository.CategoriaEgresosRepository;
 import com.example.repository.CategoriaIngresosRepository;
 import com.example.repository.IngresoRepository;
 
