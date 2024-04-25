@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    // Escuchar el evento 'keypress' en el campo de contraseña
+    $(document).keypress(function(event) {
+        // Verificar si la tecla presionada es 'Enter' (código 13)
+        if (event.which === 13) {
+            // Llamar a la función logIn para iniciar sesión
+            validarLabels();
+        }
+    });
+});
+
+
 let categorias = [];
 
 document.addEventListener('DOMContentLoaded', function () {

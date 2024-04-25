@@ -1,3 +1,20 @@
+$(document).ready(function() {
+    // Escuchar el evento 'keypress' en el campo de contraseña
+    $("#email").keypress(function(event) {
+        // Verificar si la tecla presionada es 'Enter' (código 13)
+        if (event.which === 13) {
+            // Llamar a la función logIn para iniciar sesión
+            validateUser();
+        }
+    });
+
+    $("#confirmPassword").keypress(function(event){
+        if (event.which === 13){
+            submitNewPassword();
+        }
+    });
+});
+
 function validateUser() {
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
