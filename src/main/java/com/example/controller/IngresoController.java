@@ -50,4 +50,11 @@ public class IngresoController {
         return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
     }
 
+    public String getBackCsv(Long user_id){
+        List<Ingreso> ingreso = ingresoService.getUserIngresos(user_id);
+        String csvContent = ingresoService.convertIngresosToCSV(ingreso);
+
+        return csvContent;
+    }
+
 }
