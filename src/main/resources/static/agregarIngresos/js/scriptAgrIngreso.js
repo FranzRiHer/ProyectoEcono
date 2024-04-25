@@ -71,6 +71,64 @@ function setFuentesIngresos(data) {
         });
     } else {
         // Mostrar alerta si la cifra de dinero no es un número
-        alert("La cifra de dinero debe ser un número.");
+        alert("La cifra de dinero debe ser un número positivo.");
     }
+
+    /*function setFuentesIngresos(data) {
+        var cifraDinero = document.getElementById("cifraDinero").value;
+        var comentario = document.getElementById("descripcion").value;
+    
+        // Convertir cifraDinero a número flotante para realizar la validación
+        var cifraNumerica = parseFloat(cifraDinero);
+    
+        // Validar si la cifra de dinero es un número positivo
+        if (!isNaN(cifraNumerica) && cifraNumerica > 0) {
+            let token = localStorage.getItem('token');
+            let id = localStorage.getItem('userId');
+            // Crear objeto JSON con los datos
+            var datos = {
+                cantidad: cifraNumerica,  // Asegurarse de enviar el número convertido
+                descripcion: comentario,
+                usuario: data
+            };
+            console.log(datos);
+            // Configurar opciones para la solicitud fetch
+            var opciones = {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            };
+            console.log(JSON.stringify(datos));
+    
+            // URL a la que se enviarán los datos
+            var url = 'http://localhost:8080/ingreso/add';
+            console.log(url);
+            // Realizar solicitud fetch
+            fetch(url, opciones)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al enviar los datos.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Manejar la respuesta si es necesario
+                console.log('Respuesta del servidor:', data);
+                alert('Datos enviados exitosamente.');
+                document.getElementById("cifraDinero").value = "";
+                document.getElementById("descripcion").value = "";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al enviar los datos. Por favor, inténtelo de nuevo.');
+            });
+        } else {
+            // Mostrar alerta si la cifra de dinero no es un número positivo
+            alert("La cifra de dinero debe ser un número positivo.");
+        }
+    }*/
+    
 }

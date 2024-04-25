@@ -52,6 +52,30 @@ function validarLabels() {
     }
 }
 
+/*function validarLabels() {
+    var opcion = document.getElementById("categoriaMenu");
+    var desc = opcion.value;
+    let egreso = $("#egresoInput").val(); // Obtener el valor como texto
+    let descripcion = $("#descripcionEgreso").val();
+
+    // Verificar primero que egreso no esté vacío y sea un número
+    if (egreso !== "" && !isNaN(egreso)) {
+        let egresoNumerico = parseFloat(egreso); // Convertir a número sólo si no es NaN y no está vacío
+        // Ahora verificar si es un número positivo y la descripción no está vacía
+        if (egresoNumerico > 0 && descripcion !== "") {
+            saveEgreso(egresoNumerico, descripcion); // Pasar el número ya convertido y validado
+        } else {
+            window.alert("Los campos deben estar llenos y el valor de egreso debe ser un número positivo.");
+        }
+    } else {
+        window.alert("Los campos deben estar llenos y el valor debe ser numérico."); // El contenido no es un número o está vacío
+    }
+
+    if (desc === "personalizado") {
+        window.alert("Escoja una categoría válida");
+    }
+}*/
+
 function validarCategoria() {
     let descripcion = $("#categoriaPersonalizada").val().toUpperCase(); // Convertir a mayúsculas
     document.getElementById('categoriaPersonalizada').value = '';
