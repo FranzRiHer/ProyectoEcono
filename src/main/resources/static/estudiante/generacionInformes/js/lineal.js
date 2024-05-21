@@ -103,8 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para actualizar el gráfico de líneas con los datos de ingresos y egresos
     function updateLineChart(ingresosPorMes, egresosPorMes) {
+        console.log("Datos de ingresos:", ingresosPorMes);
+        console.log("Datos de egresos:", egresosPorMes);
         const lineChartElement = document.getElementById("lineChart").getContext('2d');
-
+    
         // Crear el nuevo gráfico con los datos actualizados
         lineChart = new Chart(lineChartElement, {
             type: 'line',
@@ -147,10 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
 
     // Llamar a las funciones para obtener los datos de ingresos y egresos al cargar el DOM
     getIngresos();
     getEgresos();
+    
     actualizarGraficaRadar(localStorage.getItem('userId'));
     // Realizar solicitud GET a la URL para obtener los datos JSON
     function actualizarGraficaRadar(userId) {
