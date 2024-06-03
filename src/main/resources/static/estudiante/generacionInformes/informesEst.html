@@ -40,8 +40,8 @@
 <body>
 
   <!-- TODO EL CONTENIDO AQUÍ -->
+
   <div class="d-flex flex-column flex-md-row vh-100">
-    <!-- Barra de Navegacion Estudiante -->
     <div id="menu-container"></div>
     <script>
       $(function () {
@@ -50,21 +50,21 @@
         );
       });
     </script>
-    <!-- Fin Barra de Navegacion Estudiante-->
-
-    <!-- Tabla para cargar datos -->
     <div class="container">
       <h1>Informes</h1>
       <h3>Grafica de periodos de tiempo</h3>
-      <div id="line">
-        <canvas id="lineChart"></canvas>
+      <div class="chart-container">
+        <div class="chart">
+          <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart">
+          <canvas id="radarChart"></canvas>
+        </div>
       </div>
-      <div id="radar">
-        <canvas id="radarChart"></canvas>
-      </div>
-
     </div>
   </div>
+</div>
+
 
 </body>
 

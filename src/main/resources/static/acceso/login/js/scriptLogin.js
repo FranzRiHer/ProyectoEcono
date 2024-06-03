@@ -10,7 +10,6 @@ $(document).ready(function() {
 });
 
 function logIn() {
-
     var username = $('#username').val().trim();
     var password = $('#password').val().trim();
 
@@ -76,7 +75,9 @@ function logIn() {
 
 function register(){
     window.location.href = 'http://127.0.0.1:5500/src/main/resources/static/acceso/registroUsuario/regitroUsuario.html'; 
-}function showRecoverPasswordForm() {
+}
+
+function showRecoverPasswordForm() {
     // O redireccionar al usuario a otra página
      window.location.href = '/src/main/resources/static/acceso/recuperarContrasena/recuperarContrasena.html';
 }

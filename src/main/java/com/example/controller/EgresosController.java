@@ -49,4 +49,12 @@ public class EgresosController {
         return new ResponseEntity<>(csvContent, headers, HttpStatus.OK);
     }
 
+
+    public String getBackCsv(Long user_id){
+        List<Egreso> egresos = egresosService.getUserEgresos(user_id);
+        String csvContent = egresosService.convertEgresosToCSV(egresos);
+
+        return csvContent;
+    }
+
 }

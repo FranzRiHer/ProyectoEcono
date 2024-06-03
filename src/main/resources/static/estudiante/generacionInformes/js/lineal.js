@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function getIngresos() {
         let token = localStorage.getItem('token');
         let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
-        var url = "http://localhost:8080/ingreso/ingreso";
+        var url = "http://localhost:8080/ingreso/get_by_user/"+userId;
 
         fetch(url, {
             method: 'GET',
@@ -32,12 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     const fecha = new Date(entry.fechaCreacion);
                     const mes = fecha.getMonth() + 1; // El mes en JavaScript es base 0, por eso se suma 1
                     const cantidad = entry.cantidad;
-
-                    // Si el mes ya existe en el objeto, sumar la cantidad, de lo contrario, inicializarlo
+                
+                    // Si el mes ya existe en el objeto de ingresos, sumar la cantidad, de lo contrario, inicializarlo
                     if (ingresosPorMes[mes]) {
                         ingresosPorMes[mes] += cantidad;
                     } else {
                         ingresosPorMes[mes] = cantidad;
+                    }
+                    
+                    // Asegurarse de que también haya una entrada para este mes en los egresos, si no existe, inicializarlo en 0
+                    if (!egresosPorMes[mes]) {
+                        egresosPorMes[mes] = 0;
                     }
                 });
 
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function getEgresos() {
         let token = localStorage.getItem('token');
         let userId = localStorage.getItem('userId'); // Obtener el ID del usuario logueado
-        var url = "http://localhost:8080/gastos/egresos";
+        var url = "http://localhost:8080/gastos/get_by_user/"+userId;
 
         fetch(url, {
             method: 'GET',
@@ -72,12 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     const fecha = new Date(entry.fechaCreacion);
                     const mes = fecha.getMonth() + 1; // El mes en JavaScript es base 0, por eso se suma 1
                     const cantidad = entry.cantidadEgreso;
-
-                    // Si el mes ya existe en el objeto, sumar la cantidad, de lo contrario, inicializarlo
+                
+                    // Si el mes ya existe en el objeto de egresos, sumar la cantidad, de lo contrario, inicializarlo
                     if (egresosPorMes[mes]) {
                         egresosPorMes[mes] += cantidad;
                     } else {
                         egresosPorMes[mes] = cantidad;
+                    }
+                    
+                    // Asegurarse de que también haya una entrada para este mes en los ingresos, si no existe, inicializarlo en 0
+                    if (!ingresosPorMes[mes]) {
+                        ingresosPorMes[mes] = 0;
                     }
                 });
 
@@ -93,8 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para actualizar el gráfico de líneas con los datos de ingresos y egresos
     function updateLineChart(ingresosPorMes, egresosPorMes) {
+        console.log("Datos de ingresos:", ingresosPorMes);
+        console.log("Datos de egresos:", egresosPorMes);
         const lineChartElement = document.getElementById("lineChart").getContext('2d');
-
+    
         // Crear el nuevo gráfico con los datos actualizados
         lineChart = new Chart(lineChartElement, {
             type: 'line',
@@ -137,10 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
 
     // Llamar a las funciones para obtener los datos de ingresos y egresos al cargar el DOM
     getIngresos();
     getEgresos();
+    
     actualizarGraficaRadar(localStorage.getItem('userId'));
     // Realizar solicitud GET a la URL para obtener los datos JSON
     function actualizarGraficaRadar(userId) {
@@ -158,18 +172,27 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(jsonData => {
+                console.log(jsonData)
                 // Procesar los datos JSON recibidos para obtener la suma de egresos por categoría
                 const sumaEgresosPorCategoria = {};
                 jsonData.forEach(entry => {
                     entry.usuario.egresos.forEach(egreso => {
                         const categoria = egreso.categoriaEgreso.descripcion;
+                        const cantidadEgreso = egreso.cantidadEgreso;
+                
+                        // Verificar si la categoría ya existe en el objeto
                         if (sumaEgresosPorCategoria[categoria]) {
-                            sumaEgresosPorCategoria[categoria] += egreso.cantidadEgreso;
+                            // Si existe, solo sumar si el valor no es duplicado
+                            if (sumaEgresosPorCategoria[categoria] !== cantidadEgreso) {
+                                sumaEgresosPorCategoria[categoria] += cantidadEgreso;
+                            }
                         } else {
-                            sumaEgresosPorCategoria[categoria] = egreso.cantidadEgreso;
+                            // Si la categoría no existe, agregarla al objeto
+                            sumaEgresosPorCategoria[categoria] = cantidadEgreso;
                         }
                     });
                 });
+                
 
                 // Convertir el objeto de suma de egresos por categoría a un array de objetos {label, data}
                 const labels = Object.keys(sumaEgresosPorCategoria);
@@ -181,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     labels: labels,
                     datasets: [
                         {
-                            label: "% de ingreso",
+                            label: "Anual",
                             data: data,
                             borderColor: 'rgb(77, 56, 124)',
                             borderWidth: 5,
