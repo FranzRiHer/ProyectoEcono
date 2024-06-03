@@ -4,6 +4,13 @@ $(document).ready(function () {
             sendMessage();
         }
     });
+
+    // Verifica que marked está definido
+    if (typeof marked !== 'undefined') {
+        console.log('marked está disponible.');
+    } else {
+        console.error('marked no está disponible.');
+    }
 });
 
 // Define una función asincrónica llamada 'query' que toma un objeto 'data' como argumento.
@@ -30,15 +37,19 @@ async function query(data) {
         console.error('Error en la consulta al chatbot:', error);
         throw error;
     }
-
 }
 
-
-
-
+// Función para mostrar el mensaje con formato Markdown
 function appendMessage(who, text) {
     const messageContainer = $('<div>').addClass(`message ${who}`);
-    messageContainer.text(`${who === 'user' ? 'Tú' : 'Chatbot'}: ${text}`);
+
+    if (who === 'bot') {
+        // Convierte el texto de Markdown a HTML
+        const html = marked(text);
+        messageContainer.html(`Chatbot: ${html}`);
+    } else {
+        messageContainer.text(`Tú: ${text}`);
+    }
 
     $('#chatbox').append(messageContainer);
     $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
@@ -55,7 +66,7 @@ function sendMessage() {
 
     query({"in-0": userInput, "user_id": "exampleUserId"}).then(response => {
         console.log('Chatbot:', response);
-        jsonString = JSON.stringify(response);
+        const jsonString = JSON.stringify(response);
         // Parse the JSON string
         const jsonObject = JSON.parse(jsonString);
 
