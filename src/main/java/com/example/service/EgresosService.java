@@ -35,7 +35,7 @@ public class EgresosService {
     public Egreso save(Egreso egreso) {
         Usuario usuario = usuarioService.getUsuarioById(egreso.getUsuario().getId());
         usuario.setSaldo(usuario.getSaldo() - egreso.getCantidadEgreso());
-        usuario.setEgresoTotal(egreso.getUsuario().getEgresoTotal() + egreso.getCantidadEgreso());
+        usuario.setEgresoTotal(usuario.getEgresoTotal() + egreso.getCantidadEgreso());
         usuarioService.save(usuario);
 
         Meta meta = metaService.getMetaById(egreso.getMeta().getId());

@@ -1,57 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     $.when(getIngresos(), getEgresos()).then(function (valorIngresos, valorEgresos) {
-        let valorIngresos2 = valorIngresos[0].ingresoTotal; // Accede al resultado de la solicitud y luego a ingresoTotal
-        let valorEgresos2 = valorEgresos[0].egresoTotal;
-        chartData.data = [valorIngresos2, valorEgresos2];
-        console.log(chartData);
+        let valorIngresos2 = valorIngresos[0].ingresoTotal;
+                let valorEgresos2 = valorEgresos[0].egresoTotal;
+                chartData.data = [valorIngresos2, valorEgresos2];
 
+                if (valorEgresos2 > valorIngresos2) {
+                    enviarNotificacion("Cuidado con sus gastos. Sus egresos superan sus ingresos.");
+                }
 
-        // Verificar si los egresos son mayores que los ingresos
-        if (valorEgresos2 > valorIngresos2) {
-            // Si los egresos son mayores, enviar una notificación
-            console.log("Egresos mayores a ingresos")
-            enviarNotificacion("Cuidado con sus gastos. Sus egresos superan sus ingresos.");
-        }
-        // Verificar si los egresos de alguna meta superan el porcentaje indicado por la meta para el total de los ingresos
-        metasUsuario.forEach(meta => {
-            let egresosMeta = meta.total;
-            let porcentajeMeta = meta.porcentaje;
-            if (egresosMeta > (valorIngresos2 * (porcentajeMeta / 100))) {
-                enviarNotificacion(`¡Atención! Los egresos de la meta "${meta.nombre}" superan el ${porcentajeMeta}% de los ingresos.`);
-            }
-        });
-
-
-
-        const ctx = document.querySelector(".my-chart");
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: chartData.labels,
-                datasets: [
-                    {
-                        label: "Ingresos vs Egresos",
-                        data: chartData.data,
+                const ctx = document.querySelector(".chart-container .my-chart");
+                new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        labels: chartData.labels,
+                        datasets: [{
+                            label: "Ingresos vs Egresos",
+                            data: chartData.data,
+                        }],
                     },
-                ],
-            },
-            options: {
-                borderWidth: 10,
-                borderRadius: 2,
-                hoverBorderWidth: 0,
-                plugins: {
-                    legend: {
-                        display: false,
+                    options: {
+                        borderWidth: 10,
+                        borderRadius: 2,
+                        hoverBorderWidth: 0,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                        },
                     },
-                },
-            },
-        });
+                });
 
-        // Update list items with data
-        populateUl();
-    });
-});
+                populateUl();
+            }).fail(function () {
+                console.error("Error al obtener los datos.");
+            });
+        });
 
 // Definition of chartData moved inside DOMContentLoaded event
 const chartData = {

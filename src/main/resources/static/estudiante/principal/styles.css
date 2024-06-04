@@ -95,3 +95,6 @@
     font-weight: 700;
     color: #000000;
 }
+.container-fluid{
+    justify-content: center;
+}

@@ -100,6 +100,40 @@ function setFuentesIngresos(cifraDinero, comentario) {
     });
 }
 
+function validarCategoria() {
+    let descripcion = $("#categoriaPersonalizada").val().toUpperCase(); // Convertir a mayúsculas
+    document.getElementById('categoriaPersonalizada').value = '';
+
+    if (descripcion !== "") {
+        // Verificar si la categoría ya existe en el arreglo local
+        let existeCategoria = categorias.some(function (categoria) {
+            return categoria.toUpperCase() === descripcion;
+        });
+
+        if (!existeCategoria) {
+            crearCategoria(descripcion);
+            setTimeout(() => cargarCategorias(), 500);
+        } else {
+            Swal.fire({
+                title: "<strong>Verifica</strong>",
+                icon: "info",
+                html: `
+                La categoría ya existe.
+                `,
+                showCloseButton: true,
+                focusConfirm: false
+              });
+        }
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El campo de categoría debe estar lleno.",
+          }); 
+    }
+
+
+}
 
 function crearCategoria(desc) {
     id = localStorage.getItem('userId')
@@ -134,7 +168,7 @@ function crearCategoria(desc) {
                 text: "Categoria creada exitosamente.",
                 icon: "success"
               });
-            location.reload();
+            //location.reload();
         },
         error: function (xhr, error) {
             if (xhr.status === 401) {
@@ -152,7 +186,6 @@ function crearCategoria(desc) {
 }
 
 function cargarCategorias() {
-
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('userId')
 
