@@ -76,7 +76,7 @@ public class MetaService {
                       .append(",")
                       .append(meta.getPorcentaje())
                       .append(",")
-                      .append(meta.getTotal())
+                      .append(meta.getTotal_mes())
                       .append(",");
         }
     

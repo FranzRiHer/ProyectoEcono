@@ -16,5 +16,8 @@ public class InformeMetaRepository {
         return (List<InformeMeta>) informeMetaCRUDRepository.findAll();
     }
 
+    public InformeMeta save(InformeMeta informeMeta){
+        return informeMetaCRUDRepository.save(informeMeta);
+    }
     
 }

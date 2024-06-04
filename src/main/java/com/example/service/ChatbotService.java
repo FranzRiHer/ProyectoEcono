@@ -47,7 +47,7 @@ public class ChatbotService {
         String jsonStringModificado = jsonString.substring(0, indiceIn0) + textoNuevo  + jsonString.substring(indiceIn0);
 
         System.out.println("\n\n\n\n"+jsonStringModificado);
-        headers.setBearerAuth("0712a71f-72fd-4cbe-8548-806d9aa5ac91"); // Pon tu token aquí
+        headers.setBearerAuth("8cabf3d7-4857-479b-bd70-0bb123185dc9"); // Pon tu token aquí
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         // Construye el cuerpo de la solicitud
@@ -58,7 +58,7 @@ public class ChatbotService {
 
         // Envía la solicitud POST
         ResponseEntity<String> response = restTemplate.exchange(
-            "https://api.stack-ai.com/inference/v0/run/77dd424a-e336-45b8-82df-52b31dffb113/6629ddfa1cb3433070a6b41d", // URL de la API del chatbot
+            "https://api.stack-ai.com/inference/v0/run/80a9f767-7849-45b3-91e6-78379dce40cd/665e2f2d18fb29def33a47ca", // URL de la API del chatbot
             HttpMethod.POST,
             entity,
             String.class
