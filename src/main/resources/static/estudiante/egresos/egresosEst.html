@@ -19,7 +19,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
   <!-- Configuración global de CSS -->
   <link rel="stylesheet" href="/src/main/resources/static/menu/stylesGlobal.css" />
   <link rel="stylesheet" href="styleEgresos.css" />
@@ -36,10 +35,24 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+
+  <style>
+    .table-scrollable {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .vh-100 {
+      height: 100vh;
+    }
+
+    .content-container {
+      overflow-y: auto;
+    }
+  </style>
 </head>
 
 <body>
-  
   <!-- TODO EL CONTENIDO AQUÍ -->
   <div class="d-flex flex-column flex-md-row vh-100">
     <!-- Barra de Navegacion Estudiante -->
@@ -54,7 +67,7 @@
     <!-- Fin Barra de Navegacion Estudiante-->
 
     <!-- Egresos -->
-    <div class="container">
+    <div class="container content-container">
       <!-- Registro de Egresos -->
       <h1>Ingrese sus Gastos</h1>
       <div class="input-container">
@@ -72,8 +85,8 @@
         </select>
 
         <button id="crearCategoriaBTN" type="button" class="btn btn-primary btn-block mt-2" data-toggle="modal"
-        data-target="#modalRegistroCategoria" style="display: none">
-        Registrar Nueva Categoría
+          data-target="#modalRegistroCategoria" style="display: none">
+          Registrar Nueva Categoría
         </button>
 
         <label for="subcategoriaMenu">Elige una subcategoría:</label>
@@ -93,7 +106,7 @@
         </select>
       </div>
       <div class="table-scrollable table-responsive">
-        <table id="tablaDatos">
+        <table id="tablaDatos" class="table table-striped">
           <thead>
             <tr>
               <th>Cantidad</th>
@@ -128,18 +141,16 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary" onclick="validarCategoria()", id="guardar_categoria">
+            <button type="button" class="btn btn-primary" onclick="validarCategoria()" id="guardar_categoria">
               Guardar Categoría
             </button>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Fin Tabla para cargar datos -->
 
   </div>
-
 </body>
 
 </html>
