@@ -1,0 +1,117 @@
+/* Contenedor Principal */
+.container {
+    /* Quitar alineación vertical y altura fija para permitir el crecimiento con el contenido */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */ /* Removido para permitir inicio desde arriba */
+    /* height: 100vh; */ /* Removido para permitir crecimiento con el contenido */
+    flex-direction: column;
+    padding-bottom: 20px; /* Espacio adicional en el fondo si es necesario */
+    width: 100%; /* Usa todo el ancho disponible */
+    overflow-y: auto;
+}
+
+.content-container {
+    overflow-y: auto;
+  }
+  
+/* Título */
+h1 {
+    text-align: center;
+    margin-top: 20px; /* Asegúrate de tener un margen superior */
+}
+
+/* Contenedor de Entrada */
+.input-container {
+    width: 300px; /* Mantén el ancho que ya tienes */
+    margin: 20px auto; /* Asegura el margen superior y centrado horizontal */
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between; /* Esto separará los elementos equitativamente */
+    width: 100%; /* Se ajusta al ancho definido en .input-container */
+    max-width: 300px; /* O el ancho máximo que prefieras */
+    margin: 20px auto; /* Centrado y con margen superior */
+}
+
+/* Estilos para los inputs, textarea y select */
+.input-container input,
+.input-container textarea,
+.input-container select {
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+    padding: 10px;
+    margin-bottom: 10px; /* Espacio entre los elementos del formulario */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para los botones para que coincidan con los inputs */
+.input-container button {
+    width: 100%; /* Coincide con el ancho de los inputs */
+    padding: 10px; /* Asegura que el padding sea igual que los inputs */
+    margin-bottom: 10px; /* Espacio después del botón */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+/* Si tienes algún botón que esté por fuera de '.input-container' y también quieras centrar */
+button {
+    display: block; /* Hacer que el botón sea un bloque para permitir márgenes automáticos */
+    margin: 10px auto; /* Centra el botón horizontalmente con margen automático */
+    /* El resto de tus estilos para el botón */
+}
+/* Tabla */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 20px;
+}
+
+/* Celdas de la Tabla */
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Encabezado de Tabla */
+th {
+    background-color: #f2f2f2;
+}
+
+/* Contenedor específico para la tabla que permite desplazamiento */
+.table-scrollable {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+/* Estilos específicos para la tabla de datos */
+#tablaDatos {
+    width: 100%; /* Ajustar al contenedor */
+    margin: 0; 
+    border-collapse: collapse;
+    /* Quitar el margen superior para que el título no se desplace */
+}
+
+/* Posición sticky para el encabezado de la tabla */
+#tablaDatos thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #ddd; /* Color de fondo para que no sea transparente */
+}
+
+/* Estilos para celdas del encabezado y del cuerpo de la tabla */
+#tablaDatos th,
+#tablaDatos td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.vh-100 {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+/* Si tienes una barra de navegación u otros elementos fijos, deberás ajustar el max-height en consecuencia. */

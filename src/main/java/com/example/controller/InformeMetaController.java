@@ -19,5 +19,5 @@ public class InformeMetaController {
     public List<InformeMeta> getInformeMeta(){
         return informeMetaService.getAllInformeMeta();
     }
-    
+
 }

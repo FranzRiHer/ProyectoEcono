@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Style -->
+    <title>Registro Usuario</title>
+    <style>
+        .full-height {
+            min-height: 100vh; /* Esto hace que el contenedor tenga al menos la altura de la ventana */
+            display: flex;
+            align-items: center;
+            background-color:#F8FAFB; /* Centra verticalmente el contenido */
+        }
+    </style>
+</head>
+<body>
+    <div class="container full-height mt-5">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://scmlatam.com/wp-content/uploads/2023/10/registro-de-capacitaciones.jpg" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="col-md-6 contents">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                <h3>Registro de Usuario</h3>
+                                <p class="mb-4">El único presupuesto bueno es el presupuesto equilibrado. (Adam Smith)</p>
+                                </div>
+                                <form id="registerForm">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" placeholder="Nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="username" placeholder="Usuario">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" id="role">
+                                            <option value="">Seleccione un rol</option>
+                                            <option value="user">Usuario</option>
+                                            <option value="admin">Administrador</option>
+                                        </select>
+                                    </div>
+                                    <input type="button" onclick = "registro()" value="Registrarse" id = "registerBtn" class="btn btn-block btn-primary">              
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/scriptRegistro.js"></script>
+</body>
+</html>

@@ -2,8 +2,9 @@ package com.example.entities;
 
 import java.time.YearMonth;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,11 +19,14 @@ public class InformeMeta {
 
     private YearMonth fecha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_meta")
-    private Meta id_meta;
+    @JsonIgnoreProperties("InformesMetas")
+    private Meta meta;
 
     private double total_mes;
+
+    
 
     public Long getId() {
         return id;
@@ -40,12 +44,12 @@ public class InformeMeta {
         this.fecha = fecha;
     }
 
-    public Meta getId_meta() {
-        return id_meta;
+    public Meta getMeta() {
+        return meta;
     }
 
-    public void setId_meta(Meta id_meta) {
-        this.id_meta = id_meta;
+    public void setMeta(Meta id_meta) {
+        this.meta = id_meta;
     }
 
     public double getTotal_mes() {

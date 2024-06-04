@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Ingreso;
 import com.example.entities.Usuario;
+import com.example.repository.CategoriaIngresosRepository;
 import com.example.repository.IngresoRepository;
-
 
 @Service
 public class IngresoService {
@@ -18,18 +18,45 @@ public class IngresoService {
     @Autowired
     private UsuarioService usuarioService;
 
-    public List<Ingreso> getAllIngresos(){
+    @Autowired
+    private CategoriaIngresosRepository categoriaIngresosRepository;
+
+    public List<Ingreso> getAllIngresos() {
         return ingresoRepository.getAllIngresos();
     }
-    
+
     @Transactional
-    public Ingreso save(Ingreso ingreso){
+    public Ingreso save(Ingreso ingreso) {
         Usuario usuario = usuarioService.getUsuarioById(ingreso.getUsuario().getId());
+        System.out.println("Usuario"+usuario.getUsername()+"ingreso antiguo:"+usuario.getIngresoTotal());
         usuario.setSaldo(usuario.getSaldo() + ingreso.getCantidad());
-        usuario.setIngresoTotal(ingreso.getUsuario().getIngresoTotal() + ingreso.getCantidad());
+        usuario.setIngresoTotal(usuario.getIngresoTotal() + ingreso.getCantidad());
         usuarioService.save(usuario);
 
         return ingresoRepository.save(ingreso);
+    }
+
+
+    public String convertIngresosToCSV(List<Ingreso> ingresosList) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Añadir encabezados de columnas
+        csvBuilder.append("Descripcion,Cantidad,");
+    
+        for (Ingreso ingreso : ingresosList) {
+            // Long categoria_id = ingreso.getCategoriaIngreso().getIdCategoriaIngreso();
+            csvBuilder.append(ingreso.getDescripcion())
+                      .append(",")
+                      .append(ingreso.getCantidad());
+                    //   .append(",")
+                    //   .append(categoriaIngresosRepository.getCategoriaById(categoria_id).get().getDescripcion())
+                    //   .append(",");
+        }
+        return csvBuilder.toString();
+    }
+
+    public List<Ingreso> getUserIngresos(Long user_id) {
+        Usuario usuario = usuarioService.getUsuarioById(user_id);
+        return usuario.getIngresos();
     }
     
 }

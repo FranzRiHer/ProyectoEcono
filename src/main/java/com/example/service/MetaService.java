@@ -65,4 +65,21 @@ public class MetaService {
 
         return metaRepository.save(meta);
     }
+
+    public String convertMetasToCSV(List<Meta> metasList) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Añadir encabezados de columnas
+        csvBuilder.append("Nombre,Porcentaje,Total_mes_actual");
+    
+        for (Meta meta : metasList) {
+            csvBuilder.append(meta.getNombre())
+                      .append(",")
+                      .append(meta.getPorcentaje())
+                      .append(",")
+                      .append(meta.getTotal_mes())
+                      .append(",");
+        }
+    
+        return csvBuilder.toString();
+    }
 }
